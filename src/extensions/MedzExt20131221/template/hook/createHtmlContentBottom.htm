@@ -1,0 +1,23 @@
+<hook-action name="MedzExt20131221createHtmlContentBottomHtml" args="data">
+<!--# if( is_array( $data ) && !empty( $data ) ) { #-->
+<div class="medzext20131221warp cc">
+	<div class="medz_ext_20131221_tienei_head">
+		<h4 class="medz_ext_20131221_title medz_ext_20131221_title_orange">
+			<span style="font-weight:bold;color:#333;">帖子很精彩，楼层不断搭</span>
+		</h4>
+	</div>
+	<!--# $i = 1; #-->
+	<!--# foreach( $data as $pid => $v ) { #-->
+	<div class="medzext20131221tieneimain">
+		<div class="medzext20131221tieneileft">
+		    <li>
+			<span class="medzext20131221tieneilou"><img src="/images/sun.gif"><b>第{$v['lou']}楼：</b></span>
+			<a href="javascript:;" onclick="window.open('{@url:bbs/read/jump?tid=$v['tid']&pid=$v['pid']}')" target="_blank" title="此回复由{$v['created_username']}发表">{@Pw::substrs(Pw::stripWindCode($v['content']), 40)}</a></li>
+		</div>
+		<div class="medzext20131221tieneiright">{@Pw::time2str($v['created_time'])}</div>
+	</div>
+	<!--# $i++; #-->
+	<!--# } #-->
+</div>
+<!--# } #-->
+</hook-action>

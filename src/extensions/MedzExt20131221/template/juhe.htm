@@ -1,0 +1,32 @@
+<!--=============聚合弹窗=============-->
+<div class="pop_report">
+	<form id="Medz_report_form" action="{@url:app/MedzExt20131221/post/post}" method="post" >
+		<div class="pop_cont medzext20131221_pop">
+			<table width="100%">
+				<col width="30%"/>
+				<col />
+				<tr>
+					<th class="vt">聚合类型：</th>
+					<td>
+						<ul class="switch_list cc">
+							<li><label><input type="radio" name="type" value="1" ><span>图文</span></label></li>
+							<li><label><input type="radio" name="type" value="2" ><span>纯图</span></label></li>
+							<li><label><input type="radio" name="type" value="3" ><span>文字</span></label></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th class="vt">聚合帖ID：</th>
+					<td>
+						<input class="input length_4" type="text" name="jutid">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="pop_bottom">
+			<input type="hidden" name="tid" value="{$tid}">
+			<button type="submit" class="btn btn_submit">提交</button>
+		</div>
+	</form>
+</div>
+<!--=============聚合弹窗结束=============-->

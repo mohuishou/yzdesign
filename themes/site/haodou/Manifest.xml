@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>好豆模板</name>
+		<alias>haodou</alias>
+		<version>1.0</version>
+		<pw-version>9.0</pw-version>
+		<charset>UTF-8</charset>
+		<type>style</type>
+		<style-type>site</style-type>
+		<description>林克设计好豆模板</description>
+		<logo>images/preview.jpg</logo>
+		<website>http://www.nihao.me</website>
+		<author-name>l!nk</author-name>
+		<author-email>link@nihao.me</author-email>
+		<author-icon>http://www.nihao.me/logo.gif</author-icon>
+	</application>
+
+</manifest>

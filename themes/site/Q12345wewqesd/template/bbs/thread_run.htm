@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+
+<head>
+    <template source='TPL:common.head' load='true' />
+    <!-- <link href="{@theme:css}/forum.css?v={@NEXT_RELEASE}" rel="stylesheet" /> -->
+    <!-- <link href="{@theme:css}/thread.css" rel="stylesheet" /> -->
+</head>
+
+<body>
+    <pw-start/>
+    <div class="wrap">
+        <template source='TPL:common.header' load='true' />
+        <div class="main_wrap">
+            <pw-tpl id="main_segment" />
+			
+			<!-- 面包屑导航 -->
+			<div class="m-guide">
+				{@$headguide|html}
+			</div>
+			<!-- 面包屑导航结束 -->
+			
+			<!-- 当前版块 -->
+			<div class="m-head">
+				<div class="m-head-title">
+					{$cateList['cate_2']['name']}
+				</div>
+				<div class="m-head-num">
+					<div>
+						<span>今日:</span>
+						<span>{$cateList['cate_2']['todayposts']}</span>
+					</div>
+					<div>
+						<span>主题:</span>
+						<span>{$cateList['cate_2']['threads']}</span>
+					</div>
+					<div>
+						<span>总贴:</span>
+						<span><!--# echo $cateList['cate_2']['threads']+$cateList['cate_2']['posts'] #--></span>
+					</div>
+				</div>
+			</div>
+			<!-- 当前版块end -->
+
+            <!-- 版块导航区域 -->
+            <div id="m-nav">
+                <!-- 二级目录 -->
+                <div>
+                    <div class="m-nav-des">
+                        <span>版块：</span>
+                    </div>
+                    <div class="m-nav-main">
+                        <ul class="m-cate">
+                            <!--#foreach($cateList['2'] as $val){#-->
+                            <li><a class="{$val['active'] ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$val['fid']}">{$val['name']}</a></li>
+                            <!--#}#-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- 二级目录 end -->
+                <!-- 三级目录 -->
+                <div>
+                    <div class="m-nav-des">
+                        <span>分类：</span>
+                    </div>
+                    <div class="m-nav-main">
+                        <ul class="m-cate">
+                            <li><a class="{$cateList['all']['active'] ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$cateList['all']['fid']}">全部</a></li>
+                            <!--#foreach($cateList['3'] as $k => $val){#-->
+                            <li><a class="{$val['active'] ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$val['fid']}">{$val['name']}</a></li>
+                            <!--#}#-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- 三级目录 end -->
+            </div>
+
+			<!-- <div class="pages_wrap cc">
+                <a href="{@url:bbs/post/run?fid=$pwforum->fid}" class="btn_post J_thread_post_btn{$postNeedLogin}" data-rel="J_thread_post_types_1">发帖</a>
+                <template source="widget_thread_page" />
+            </div> -->
+
+            <!-- 版块导航区域 end -->
+            <div class="m-main">
+                <div class="m-main-header">
+                	<a class="{$tab ? '' : 'active'}" href="{@url:bbs/thread/run?fid=$pwforum->fid}{$_urladd_}">全部</a>
+                    <a class="{$tab ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$fid&tab=digest}">精华</a>
+                    <a class="{$orderby=='lastpost' ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$fid}{$_urladd_}{@$defaultOrderby == 'lastpost' ? '' : '&orderby=lastpost'}">最后回复</a>
+                    <a class="{$orderby=='postdate' ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$fid}{$_urladd_}{@$defaultOrderby == 'lastpost' ? '&orderby=postdate' : ''}">最新发帖</a>
+                </div>
+                <div class="m-main-content">
+                    <!-- 帖子展示区域，缩略图形式 -->
+                    <!--# if(isset($threaddb)&&!empty($threaddb)){ #-->
+	                    <!--# foreach($threaddb as $value){ #-->
+	                    <div class="m-panel">
+	                        <div class="m-panel-head">
+	                            <a href="{@url:bbs/read/run?tid=$value['tid']&fid=$value['fid']}">
+	                                <img src="{$value['thumb']}" alt="">
+	                            </a>
+	                        </div>
+	                        <div class="m-panel-content">
+	                            <div class="m-panel-title">
+	                                <!--# if($value['topped']){ #-->
+	                                <span class="m-panel-top">置顶</span>
+	                                <!--#}#-->
+	                                <!--# if($value['digest']){ #-->
+	                                <span class="m-panel-hot">精华</span>
+	                                <!--#}#-->
+	                                <span>{$value['subject']}</span>
+	                            </div>
+	                            <div class="m-panel-icon">
+	                                <div>
+	                                    <span><img class="icon" src="{@theme:images}/mohuishou/thread/like.png" alt="">{$value['like_count']}</span>
+	                                </div>
+	                                <div>
+	                                    <span><img class="icon" src="{@theme:images}/mohuishou/thread/reply.png" alt="">{$value['replies']}</span>
+	                                </div>
+	                                <div>
+	                                    <span><img class="icon" src="{@theme:images}/mohuishou/thread/eye.png" alt="">{$value['hits']}</span>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="m-panel-footer">
+	                            <div class="m-panel-author">
+	                                <span class="m-panel-avatar"><img src="{@Pw::getAvatar($value['created_userid'])}"></span>
+	                                <div class="m-panel-author-name">
+	                                    <a href="{@url:space/index/run?uid=$value['created_userid']}">{$value['created_username']}</a>
+	                                </div>
+	                            </div>
+	                            <div class="m-panel-type">
+	                                <a href="{@url:bbs/thread/run?fid=$value['fid']}">{$pwforum->foruminfo['name']}</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!--# } #-->
+                    <!--# }else{ #-->
+                    	<div class="m-no-content">
+                    		啊哦，这个分类没有帖子！
+                    	</div>
+                    <!--# } #-->
+                    <!-- 帖子展示区域，缩略图形式 end -->
+                </div>
+            </div>
+            <div class="pages_wrap cc">
+                <a href="{@url:bbs/post/run?fid=$pwforum->fid}" class="btn_post J_thread_post_btn{$postNeedLogin}" data-rel="J_thread_post_types_1">发帖</a>
+                <template source="widget_thread_page" />
+            </div>
+        </div>
+        <template source='TPL:common.footer' load='true' />
+    </div>
+    <script>
+    var FID = '{$pwforum->fid}';
+    var content_lenght='<!--# echo count($threaddb); #-->';
+    Wind.use('jquery', 'global', function() {
+
+    	//去除分类链接
+    	$(".m-guide a:eq(1)").removeAttr('href');
+
+    	//计算content高度
+    	var height=(Math.ceil(content_lenght/3) * ($('.m-panel').height()+15));
+    	$(".m-main-content").css("height",height+"px");
+
+        //主题分类下拉
+        $('li.J_menu_drop').on('mouseenter', function(e) {
+            $(this).children('div.J_menu_drop_list').show();
+        }).on('mouseleave', function(e) {
+            $(this).children('div.J_menu_drop_list').hide();
+        });
+
+        <!--# if(!$is_design) { #-->
+        <!--# if ($operateThread) { #-->
+        //管理
+        Wind.js(GV.JS_ROOT + 'pages/bbs/threadManage.js?v=' + GV.JS_VERSION);
+        <!--# } #-->
+
+        <!--# if ($loginUser->isExists()) { #-->
+        var JOIN_URL = "{@url:bbs/forum/join}", //版块加入
+            QUIT_URL = "{@url:bbs/forum/quit}", //版块退出
+            lock = false;
+
+        //ie6 hover显示版块退出
+        if ($.browser.msie && $.browser.version < 7) {
+            $('a.J_forum_join').hover(function() {
+                if ($(this).data('role') == 'quit') {
+                    $(this).children().show();
+                }
+            }, function() {
+                if ($(this).data('role') == 'quit') {
+                    $(this).children().hide();
+                }
+            });
+        }
+
+        //版块加入 退出
+        $('a.J_forum_join').on('click', function(e) {
+            e.preventDefault();
+            var $this = $(this),
+                role = $this.data('role'),
+                url = (role == 'join' ? JOIN_URL : QUIT_URL);
+
+            if (lock) {
+                return false;
+            }
+            lock = true;
+
+            //global.js
+            Wind.Util.ajaxMaskShow();
+
+            $.post(url, {
+                fid: $this.data('fid')
+            }, function(data) {
+                //global.js
+                Wind.Util.ajaxMaskRemove();
+
+                if (data.state == 'success') {
+                    if (role == 'join') {
+                        $this.html('已加入<span>&nbsp;&nbsp;|&nbsp;&nbsp;取消</span>').removeClass('core_follow').addClass('core_unfollow').data('role', 'quit');
+                    } else {
+                        $this.html('加入版块').removeClass('core_unfollow').addClass('core_follow').data('role', 'join');
+                    }
+                } else if (data.state == 'fail') {
+                    //global.js
+                    Wind.Util.resultTip({
+                        error: true,
+                        msg: data.message,
+                        elem: $this,
+                        follow: true
+                    });
+                }
+                lock = false;
+
+            }, 'json');
+        });
+        <!--# } #-->
+
+        /*
+         * 版块简介收起展开
+         */
+        $('a.J_forum_intro_slide').on('click', function(e) {
+            e.preventDefault();
+            var role = $(this).data('role');
+
+            if (role == 'down') {
+                $(this).text('收起<<').data('role', 'up');
+            } else {
+                $(this).text('更多>>').data('role', 'down');
+            }
+            $('span.J_forum_intro:hidden').show().siblings('.J_forum_intro').hide();
+        });
+
+        var thread_post_btn = $('a.J_thread_post_btn');
+        thread_post_btn.each(function(i, o) {
+            Wind.Util.hoverToggle({
+                elem: $(o), //hover元素
+                list: $('#' + $(o).data('rel')), //下拉菜单
+                callback: function(elem, list) {
+                    list.css({
+                        left: elem.offset().left,
+                        top: elem.offset().top + elem.height()
+                    });
+                }
+            });
+        });
+
+        <!--# } #-->
+    });
+    </script>
+    <pw-end/>
+</body>
+
+</html>

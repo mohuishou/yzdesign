@@ -1,0 +1,12 @@
+<hook-action name="MedzExt20131221BottomHtml" args="data">
+<a class="a_like" style="margin-left: 15px;background-position: -100px -62px;">&nbsp;</a>
+<!--# if( $data['is'] == 1 ) { #-->
+<a style="margin-left: -5px;" data-uri="{@url:app/MedzExt20131221/post/unset}" href="javascript:;" class="J_post_top J_qlogin_trigger" data-pdata="{'tid':'{$data['tid']}', 'pid':'{$data['pid']}'}">取消聚合</a>
+<!--# } else { #-->
+<a style="margin-left: -5px;" data-uri="{@url:app/MedzExt20131221/post/run}" href="javascript:;" class="J_post_top J_qlogin_trigger" data-pdata="{'tid':'{$data['tid']}', 'pid':'{$data['pid']}'}">添加聚合</a>
+<!--# } #-->
+</hook-action>
+<hook-action name="MedzExt20131221BottomjuheHtml" args="tid">
+<a class="a_like" style="background-position: -80px -60px;">&nbsp;</a>
+<a style="margin-left: -5px;" rel="nofollow" data-uri="{@url:app/MedzExt20131221/post/juhe?tid=$tid}" class="mr10 Medz_ext20131221" href="javascript:;">帖子聚合</a>
+</hook-action>

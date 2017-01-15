@@ -1,0 +1,83 @@
+<hook-action name="MedzExt20131221createHtmlAfterContentHtml1" args="data,data2,data3">
+<?php
+	function stripTags($str) {
+		return strip_tags($str);
+	}
+?>
+<!--# if( !empty( $data ) || !empty( $data2 ) || !empty( $data3 ) ) { #-->
+		<!--# if( is_array( $data ) && !empty( $data ) ) { #-->
+	<div class="medzext20131221warp cc">
+		<div class="medz_ext_20131221_tienei_head">
+			<h4 class="medz_ext_20131221_title medz_ext_20131221_title_orange">
+				<span style="font-weight:bold;color:#333;">相关聚合推荐</span>
+			</h4>
+		</div>
+		<!--# foreach( $data as $v ) { #-->
+		<div class="medzext20131221main">
+			<div class="medzext20131221juheleft">
+				<!--# if( is_array( $v['images'] ) ) { #-->
+				<!--# foreach( $v['images'] as $v_img ) { #-->
+				<img src="{@Pw::getPath($v_img['path'],2)}" alt="{@Pw::substrs(stripTags($v['subject']), 12)}" />
+				<!--# break; #-->
+				<!--# } #-->
+				<!--# } #-->
+			</div>
+			<div class="medzext20131221juheright">
+				<h4><a href="javascript:;" onclick="window.open('{@url:bbs/read/run?tid=$v['tid']&fid=$v['fid']}')" target="_blank" style="color:#61B230;" title="{$v['created_username']}发表于{@Pw::time2str($v['created_time'])}">{@Pw::substrs(stripTags($v['subject']), 12)}</a></h4>
+				<p>{@Pw::substrs(Pw::stripWindCode(stripTags($v['content'])), 50)}</p>
+			</div>
+		</div>
+		<!--# } #-->
+		</div>
+		<!--# } #-->
+		<!--# if( is_array( $data3 ) && !empty( $data3 ) ) { #-->
+	<div class="medzext20131221warp cc">
+		<div class="medz_ext_20131221_tienei_head">
+			<h4 class="medz_ext_20131221_title medz_ext_20131221_title_bule">
+				<span style="font-weight:bold;color:#333;">相关聚合推荐</span>
+			</h4>
+		</div>
+		<table width="100%">
+			<col />
+			<col width="20%"/>
+			<col width="17%"/>
+			<!--# $PwForum = wekit::load('SRV:forum.PwForum'); #-->
+			<!--# foreach( $data3 as $v ) { #-->
+			<!--# $forum = $PwForum->getForum( $v['fid'] ); #-->
+			<tr>
+				<td><a style="color:#1C72A7;" href="{@url:bbs/cate/run?fid=$v['fid']}">[{@Pw::substrs(stripTags($forum['name']),5)}]</a><a href="javascript:;" onclick="window.open('{@url:bbs/read/run?tid=$v['tid']&fid=$v['fid']}')" target="_blank" style="color:#333;" title="{$v['created_username']}发表于{@Pw::time2str($v['created_time'])}">{@Pw::substrs(Pw::stripWindCode(stripTags($v['subject'])), 25)}</a></td>
+				<td>
+					<a href="{@url:space/index/run?uid=$v['created_userid']}" class="J_user_card_show MedzReplyTop_xi2 MedzReplyTop_xw1" data-uid="{$v['created_userid']}" target="_blank">{@Pw::substrs($v['created_username'],10)}</a>
+				</td>
+				<td>{@Pw::time2str($v['created_time'])}</td>
+			</tr>
+			<!--# } #-->
+		</table>
+	</div>
+		<!--# } #-->
+		<!--# if( is_array( $data2 ) && !empty( $data2 ) ) { #-->
+	<div class="medzext20131221warp cc">
+		<div class="medz_ext_20131221_tienei_head">
+			<h4 class="medz_ext_20131221_title medz_ext_20131221_title_green">
+				<span style="font-weight:bold;color:#333;">相关聚合推荐</span>
+			</h4>
+		</div>
+		<!--# foreach( $data2 as $v ) { #-->
+		<div class="medzext20131221img">
+			<div class="medzext20131221imgtop">
+				<!--# if( is_array( $v['images'] ) ) { #-->
+				<!--# foreach( $v['images'] as $v_img ) { #-->
+				<a href="javascript:;" onclick="window.open('{@url:bbs/read/run?tid=$v['tid']&fid=$v['fid']}')" target="_blank" title="{$v['created_username']}发表于{@Pw::time2str($v['created_time'])}">
+				<img src="{@Pw::getPath($v_img['path'])}" alt="{@Pw::substrs(stripTags($v['subject']), 12)}" />
+				</a>
+				<!--# break; #-->
+				<!--# } #-->
+				<!--# } #-->
+			</div>
+			<div class="medzext20131221imddwon"><a href="javascript:;" onclick="window.open('{@url:bbs/read/run?tid=$v['tid']&fid=$v['fid']}')" target="_blank" style="color: #808000;" title="{$v['created_username']}发表于{@Pw::time2str($v['created_time'])}">{@Pw::substrs(stripTags($v['subject']), 8)}</a></div>
+		</div>
+		<!--# } #-->
+	</div>
+		<!--# } #-->
+<!--# } #-->
+</hook-action>

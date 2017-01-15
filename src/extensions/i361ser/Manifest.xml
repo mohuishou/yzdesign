@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>点卡充值积分</name>
+		<alias>i361ser</alias>
+		<version>1.0.0</version>
+		<pw-version>9.0</pw-version>
+		<type>app</type>
+		<description>使用点卡充值积分</description>
+		<charset>utf-8</charset>
+		<logo>images/icon.png</logo>
+		<website>http://www.361ser.com</website>
+		<author-name>华思拓网络</author-name>
+		<author-email>info@info.com</author-email>
+	</application>
+	<res>res</res>
+	<install>EXT:i361ser.service.srv.App_I361ser_Install</install>
+	<inject-services>
+		<hook-name name="s_admin_menu">
+			<alias name="app_i361ser">
+				<class>EXT:i361ser.service.srv.PwI361serConfigDo</class>
+				<loadway>load</loadway>
+				<method>getAdminMenu</method>
+				<description>点卡后台菜单扩展</description>
+			</alias>
+		</hook-name>
+		<hook-name name="s_PwCreditOperationConfig"> 
+			<alias name="app_i361ser"> 
+				<class>EXT:i361ser.service.srv.PwI361serConfigDo</class>           
+				<method>getCreditConfig</method>                  
+				<loadway>load</loadway>                 
+				<description>积分日志--点卡充值</description>             
+			</alias>        
+		</hook-name>
+		<hook-name name="s_profile_menus"> 
+			<alias name="app_i361ser"> 
+				<class>EXT:i361ser.service.srv.PwI361serConfigDo</class>           
+				<method>getProfile</method>                  
+				<loadway>load</loadway>                 
+				<description>点卡充值:个人资料页扩展</description>             
+			</alias>        
+		</hook-name>
+		<hook-name name="c_profile_extends_run">
+			<alias name="app_i361ser"> 
+				<class>EXT:i361ser.service.srv.injector.App_I361ser_ProfileInjector</class>           
+				<method>run</method>                  
+				<loadway></loadway>
+				<expression>service:current==credit_app_i361ser</expression>                
+				<description>用户菜单功能扩展-展示</description>             
+			</alias>        
+		</hook-name>
+	</inject-services>
+</manifest>

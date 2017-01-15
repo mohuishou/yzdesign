@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+	<name>聚合</name>
+	<alias>MedzExt20131221</alias>
+	<version>1.0</version>
+	<pw-version>9.0</pw-version>
+	<description>帖子繁多？一帖士聚合多贴！</description>
+	<logo>images/logo.jpg</logo>
+	<type>app</type>
+	<charset>UTF-8</charset>
+	<website>http://www.medz.cn</website>
+	<author-name>Sivay Du</author-name>
+	<author-email>lovevipdsw@vip.qq.com</author-email>
+	<author-icon>your icon</author-icon>
+	</application>
+	<res>res</res>
+	<installation-service>
+	</installation-service>
+	<inject-services>
+	<s_admin_menu>
+	<app_MedzExt20131221>
+	<class>EXT:MedzExt20131221.service.srv.App_MedzExt20131221_ConfigDo</class>
+	<loadway>load</loadway>
+	<method>getAdminMenu</method>
+	<description>聚合admin menu</description>
+	</app_MedzExt20131221>
+	</s_admin_menu>
+	<m_PwThreadDisplay>
+	<app_MedzExt20131221>
+	<class>EXT:MedzExt20131221.service.srv.App_MedzExt20131221PwThreadDisplayDo</class>
+	<description>this is another m_PwThreadDisplay</description>
+	</app_MedzExt20131221>
+	</m_PwThreadDisplay>
+	<s_head>
+	<app_MedzExt20131221>
+	<class>EXT:MedzExt20131221.service.srv.App_Medz_Ext20131221_HookDo</class>
+	<loadway>load</loadway>
+	<method>setHead</method>
+	<description>聚合head</description>
+	</app_MedzExt20131221>
+	</s_head>
+	<s_footer>
+	<app_MedzExt20131221>
+	<class>EXT:MedzExt20131221.service.srv.App_Medz_Ext20131221_HookDo</class>
+	<loadway>load</loadway>
+	<method>footer</method>
+	<description>聚合footer</description>
+	</app_MedzExt20131221>
+	</s_footer>
+	</inject-services>
+	</manifest>

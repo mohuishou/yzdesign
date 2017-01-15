@@ -1,0 +1,171 @@
+<hook-action name="order" args="userbo,config,type,code,mydata">
+<div class="content_type">
+	<ul class="cc">
+		<li><a href="{@url:profile/extends/run}&_left=credit&_tab=app_i361ser">点卡充值积分</a></li>
+		<li class="line"></li>
+		<li class="current"><a href="{@url:profile/extends/run}&_left=credit&_tab=app_i361ser&mymet=order">点卡订单记录</a></li>
+		<!--#if($config['yunid']){#-->
+		<li class="fr"><a target="_blank" class="red" href="http://www.361ser.com/pay/{$config['yunid']}">商家独享收款链接</a></li>
+		<!--#}#-->
+	</ul>
+</div>
+<style>.pages{
+	margin-top: 10px;
+}</style>
+	<div class="order_history">
+		<table width="100%">
+			<colgroup>
+				<col width="80" />
+				<col />
+				<col width="80" />
+				<col width="80" />
+				<col width="80" />
+				<col width="60" />
+				<col width="120" />
+			</colgroup>
+			<thead>
+				<tr>
+					<td>点卡</td>
+					<td>订单号</td>
+					<td>充值金额</td>
+					<td>实际面值</td>
+					<td>充值积分</td>
+					<td>交易状态</td>
+					<td>交易时间</td>
+				</tr>
+			</thead>
+			<!--# if ($mydata['list']) { #-->
+				<!--# $i=0; #-->
+				<!--# foreach ($mydata['list'] as $key => $value) { #-->
+			<tr>
+				<td>{$type[$value['type']]}</td>
+				<td>{$value['order_no']}</td>
+				<td>{$value['price']} 元</td>
+				<td>{$value['prices']} 元</td>
+				<td>{$value['number']} ({$mydata['creditBo']->cUnit[$value['ctype']]}){$mydata['creditBo']->cType[$value['ctype']]}</td>
+				<td><!--# if ($value['state']==1) {#--><span class="green">已完成</span><!--# } else if ($value['state']==2) {#--><span class="green">处理失败</span><!--# } else if ($value['state']==4) {#--><span class="red">处理中</span><!--# } else { #--><span class="red">订单失败</span><!--# } #--></td>
+				<td>{@Pw::time2str($value['created_time'])}</td>
+			</tr>
+				<!--# } #-->
+			<!--# } else { #-->
+			<tr>
+				<td colspan="7" class="tac">暂无订单记录</td>
+			</tr>
+			<!--# } #-->
+		</table>
+	<page tpl="TPL:common.page" count="$mydata['total']" page="$mydata['page']" per="$mydata['perpage']" args="$mydata['args']" url="profile/extends/run" />
+	</div>
+</hook-action>
+
+<hook-action name="chongzhi" args="userbo,config,type,code,mydata">
+<div class="content_type">
+	<ul class="cc">
+		<li class="current"><a href="{@url:profile/extends/run}&_left=credit&_tab=app_i361ser">点卡充值积分</a></li>
+		<li class="line"></li><li><a href="{@url:profile/extends/run}&_left=credit&_tab=app_i361ser&mymet=order">点卡订单记录</a></li>
+		<!--#if($config['yunid']){#-->
+		<li class="fr"><a target="_blank" class="red" href="http://www.361ser.com/pay/{$config['yunid']}">商家独享收款链接</a></li>
+			<!--# } #-->
+	</ul>
+</div>
+<style>
+.profile_ct {
+padding: 10px 0 100px;
+}
+.profile_ct dt {
+width: 70px;
+}	
+.profile_ct dd {
+width: 668px;
+}
+.payment_type {
+width: 100%;
+}
+.payment_type li {
+padding: 5px 5px 5px 2px;
+height: 48px;
+width: 120px;
+}
+.payment_type li a {
+width: 120px;
+height: 48px;
+}
+.payment_type li.current em {
+right: 4px;
+bottom: 4px;
+}
+/*
+===================
+金额方式
+===================
+*/
+.payment_money{
+	width:100%;
+}
+.payment_money a{
+	margin-right: 5px;
+}
+</style>	
+	<form id="J_recharge_form" action="{@url:app/i361ser/pay/run}" method="post">
+	<input name="type" id="J_type" value="01" type="hidden" />
+	<input name="code" id="J_code" value="010010" type="hidden" />
+	<input name="money" id="J_money" value="10.00" type="hidden" />
+	<div class="profile_ct">
+		<dl class="cc">
+			<dt>选择点卡：</dt>
+			<dd>
+				<div class="payment_type">
+					<ul class="cc" id="J_payment_type">
+					<!--# $i=0;foreach($type as $key=>$item){$i++;#-->
+						<li class="{@Pw::isCurrent($i==1)}"><em></em><a href="" class="" style="background:url({@G:url.extres}/i361ser/images/120x48/{$key}.png);" data-val="{$key}" title="{$item}">{$item}</a></li>
+						<!--#}#-->
+					</ul>
+				</div>
+			</dd>
+		</dl>
+		<dl class="cc">
+			<dt>选择金额：</dt>
+			<dd>
+				<div class="payment_money pick_list" id="J_payment_money">
+					
+				</div>
+			</dd>
+		</dl>
+		<dl class="cc">
+			<dt>充值比例：</dt>
+			<dd><span id="J_recharge_rate">{$config['czlv']['01']}</span>%</dd>
+		</dl>
+		<dl class="cc">
+			<dt>可获得：</dt>
+			<dd>
+				<span id="J_recharge_count"><span class="red"></span>({$mydata['creditBo']->cUnit[$config['credit']]}){$mydata['creditBo']->cType[$config['credit']]}</span>
+			</dd>
+		</dl>
+		<dl class="cc">
+			<dt>卡号：</dt>
+			<dd>
+				<input id="J_kahao" type="text" class="input length_5" name="kahao" />
+			</dd>
+		</dl>
+		<dl class="cc">
+			<dt>密码：</dt>
+			<dd>
+			<input id="J_password" type="text" class="input length_5" name="password" />
+			</dd>
+		</dl>
+		<dl class="cc">
+			<dt>&nbsp;</dt>
+			<dd>
+				<button type="submit" class="btn btn_big btn_submit">充值</button>
+			</dd>
+		</dl>
+	</div>
+</form>
+<script>
+var czlv = {$config['czlv']|json};
+var types = {$type|json};
+var code = {$code|json};
+Wind.ready(document, function(){
+	Wind.use('jquery', 'global', 'ajaxForm', '{@G:url.extres}/i361ser/js/mypay.js?v=' +GV.JS_VERSION);
+});
+</script>	
+</hook-action>

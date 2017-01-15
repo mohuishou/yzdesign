@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+	<application>
+	<name>Tuozhe8</name>
+	<alias>Q12345wewqesd</alias>
+	<version>1.0</version>
+	<pw-version>9.0.1</pw-version>
+	<charset>UTF-8</charset>
+	<type>style</type>
+	<style-type>site</style-type>
+	<description>测试</description>
+	<logo>images/preview.jpg</logo>
+	<website>http://lailin.xyz</website>
+	<author-name>莫回首</author-name>
+	<author-email>1@lailin.xyz</author-email>
+	<author-icon>
+	</author-icon>
+	</application>
+	</manifest>

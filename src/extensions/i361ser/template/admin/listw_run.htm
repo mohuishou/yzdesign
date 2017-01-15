@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:admin.common.head' />
+</head>
+<body>
+<style>
+.table_full td {
+padding: 7px 5px 9px 5px;
+}	
+</style>
+<div class="wrap J_check_wrap">
+	<div class="nav">
+		<ul class="cc">
+			<li><a href="{@url:app/i361ser/manage/run}">基本设置</a></li>
+			<li><a href="{@url:app/i361ser/manage/type}">充值比例</a></li>
+			<li class="current"><a href="{@url:app/i361ser/listw/run}">充值记录</a></li>
+		</ul>
+	</div>
+	<div class="h_a">搜索</div>
+	<div class="search_type cc mb10">
+	  <form action="{@url:app/i361ser/listw/run}" method="post">
+       <select name="key" class="select_2">
+	       <option value="order_no" {@Pw::isSelected($args['key']=='order_no')}>订单号</option>
+	       <option value="ordernum" {@Pw::isSelected($args['key']=='ordernum')}>流水号</option>
+	       <option value="kahao" {@Pw::isSelected($args['key']=='kahao')}>卡号</option>
+       </select>
+       <input type="text" name="keyword" value="{$args['keyword']}" class="input length_4">
+       充值时间：<input type="text" name="stime" value="{$args['stime']}" class="input length_2 J_date"> - <input type="text" name="etime" value="{$args['etime']}" class="input length_2 J_date">
+		<button type="submit" class="btn">搜索</button></form>
+	</div>
+	<div class="h_a">充值记录</div>
+  	<div class="table_full">
+  		<table width="100%" style="margin-bottom:5px;">
+			<tr>
+				<td width="80">点卡</td>
+				<td width="">订单号</td>
+				<td width="180">流水号</td>
+				<td width="40">UID</td>
+				<td width="85">操作时间</td>
+				<td width="120">卡号</td>
+				<td width="50">金额</td>
+				<td width="50">面值</td>
+				<td width="70">充值积分</td>
+				<td width="50">状态</td>
+			    <td width="42">操作</td>
+			</tr>
+    <!--# foreach($list as $k => $v){
+	 #-->
+		<tr>
+			<td>{$type[$v['type']]}</td>
+			<td>{$v[order_no]}</td>
+			<td><!--# if ($v['ordernum']) {#-->{$v[ordernum]}<!--# } #--></td>
+			<td>{$v[created_userid]}</td>
+			<td>{@Pw::time2str($v[created_time], 'm-d H:i:s')}</td>
+			<td>{$v['kahao']}</td>
+			<td>{$v['price']}</td>
+			<td>{$v['prices']}</td>
+			<td>{$v['number']} ({$creditBo->cUnit[$v['ctype']]}){$creditBo->cType[$v['ctype']]}</td>
+			<td>
+				<!--# if ($v['state']==1) {#--><span class="green">已完成</span><!--# } else if ($v['state']==2) {#--><span class="green">处理失败</span><!--# } else if ($v['state']==4) {#--><span class="red">处理中</span><!--# } else { #--><span class="red">订单失败</span><!--# } #-->
+			</td>
+			<td><a href="{@url:app/i361ser/listw/delete?id=$v['id']}" class="mr5 J_ajax_del">删除</a></td>
+		</tr>
+	<!--# } #-->
+  		</table>
+        <page tpl="TPL:common.page" page="$page" per="$perpage" count="$total" url="app/i361ser/listw/run" args="$args"/> 
+  	</div>
+</div>
+<template source='TPL:admin.common.footer' />
+</body>
+</html>

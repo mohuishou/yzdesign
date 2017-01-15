@@ -1,0 +1,96 @@
+﻿<!--#if ($site_info_notice = Wekit::C('site','info.notice')) {#-->
+<style>.header_wrap{top:29px;}body{padding-top:75px;}</style><div id="notice">{$site_info_notice}</div>
+<!--#}#-->
+<header class="header_wrap">
+	<div id="J_header" class="header cc">
+		<nav class="nav_wrap">
+			<div class="nav">
+				<ul>
+					<li><a href="#">好斗网</a></li><li class="line">|</li>
+					<li><a href="#">菜谱</a></li><li class="line">|</li>
+					<li><a href="#">去哪吃</a></li><li class="line">|</li>
+					<li><a href="#">广场</a></li><li class="line">|</li>
+					<li><a href="#">商城</a></li><li class="line">|</li>
+					<li><a href="#">精选专题</a></li><li class="line">|</li>
+					<li><a href="#">应用</a></li>
+				</ul>
+			</div>
+		</nav>
+		<hook name="header_nav"/>
+		<template source="TPL:common.header_login" load="true" />
+	</div>
+</header>
+<div class="head">
+<div class="header cc" style="padding:15px 0">
+		<div class="logo">
+			<a href="{@url:}">
+				<!--# if($__css = Wekit::C('site', 'css.logo')) { #-->
+				<!--后台logo上传-->
+				<img src="{@Pw::getPath($__css)}" alt="{@Wekit::C('site','info.name')}">
+				<!--# } else { #-->
+				<img src="{@theme:site.images}/logo_recipe.jpg" alt="{@Wekit::C('site','info.name')}">
+				<!--# } #-->
+			</a>
+            <img src="{@theme:site.images}/logo_vice_index_recipe.jpg" alt="烹饪好时光">
+		</div>
+		<div class="header_search" role="search">
+			<form action="{@url:search/s/run}" method="post">
+				<input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="keyword"/>
+				<button type="submit" aria-label="搜索"><i class="ico20 srh">&nbsp;</i>搜索</button>
+			</form>
+		</div>
+       <div class="xsearch_tag">
+					<a href="#" target="_blank" title="冬季养生">冬季养生</a>
+					<a href="#" target="_blank" title="山药">山药</a>
+					<a href="#" target="_blank" title="火锅">火锅</a>
+					<a href="#" target="_blank" title="蛋糕">蛋糕</a>
+					<a href="#" target="_blank" title="面条">面条</a>
+					<a href="#" target="_blank" title="豆腐">豆腐</a>
+					<a href="#" target="_blank" title="饼干">饼干</a>
+			</div>
+</div>
+<div class="main_mu_bar">
+		<div class="header cc">
+			<div class="row">
+				<div class="sort_box" id="category">
+					<!-- <div class="tt" onmouseover="this.className='tt ttt'" onmouseout="this.className='tt'">菜谱分类导航<i class="ico20 iarr">&nbsp;</i><div class="subx" id="category_a" style="display: none;">
+						<p class="xt">菜谱分类导航<i class="ico20 iarr">&nbsp;</i></p>
+						<ul id="category_nav"><li><a class="ht" href="/recipe/all?ct=1" target="_blank" title="热门分类">热门分类<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=2" target="_blank" title="菜式菜品">菜式菜品<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=3" target="_blank" title="菜系">菜系<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=4" target="_blank" title="人群功效">人群功效<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=5" target="_blank" title="食材">食材<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=6" target="_blank" title="场景">场景<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=7" target="_blank" title="烹饪方法">烹饪方法<em class="ico12">&nbsp;</em></a></li><li><a class="ht" href="/recipe/all?ct=8" target="_blank" title="口味">口味<em class="ico12">&nbsp;</em></a></li><li><a class="last" href="/recipe/category" target="_blank" title="更多分类标签">更多分类标签</a></li></ul>
+					</div></div>
+					 -->
+				</div>
+				<div class="site_menu">
+					<ul>
+					<!--# $nav = Wekit::load('SRV:nav.bo.PwNavBo');
+					  $nav->setRouter();
+					  $currentId =  '';
+					   $main = $child = array();
+					  if ($nav->isForum()) $nav->setForum($pwforum->foruminfo['parentid'], $fid, $tid);
+					  $main = $nav->getNavFromConfig('main', true);
+					  foreach($main as $key=>$value){
+						if ($value['current']) {
+							$current = 'current';
+							$currentId = $key;
+						} else {
+							$current = '';
+						}
+						$value['child'] && $child[$key] = $value['child'];
+					  #-->
+						<li class="{$current}">{$value['name']|html}</li>
+					<!--# } #-->
+					</ul>
+				</div>
+				<div class="is_ext">
+					<!--# if( !empty( $pwforum->fid ) ) { #-->
+					<a class="dbtn btn_gray torecipe f14" href="{@url:bbs/post/run?fid=$pwforum->fid}" title="发布菜谱"><i class="ico20">&nbsp;</i>发布菜谱</a>
+					<!--# } #-->
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    
+</div>
+
+
+<div class="tac"><advertisement id='Site.NavBanner' sys='1'/></div>

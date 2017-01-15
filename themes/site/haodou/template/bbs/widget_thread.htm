@@ -1,0 +1,28 @@
+﻿<li>
+	<div class="pic">
+    <a href="{@url:bbs/read/run?tid=$value['tid']&fid=$value['fid']}" title="{$value['subject']}">
+		<img src="{@url:app/MedzExt20131231/get/image?tid=$value['tid']}" alt="{$value['subject']}" />
+	</a>
+			<!--# if ($operateThread) { #-->
+			<input class="J_check" name="" type="checkbox" value="{$value['tid']}" autocomplete="off" />
+			<!--# } #-->
+	</div>
+    <div class="els">
+<p>
+			<a href="{@url:bbs/read/run?tid=$value['tid']&fid=$value['fid']}" target="_blank"><span class="posts_icon"><i class="icon_{$value['icon']}" title="{$icon[$value['icon']]}  新窗口打开"></i></span></a>
+			<!--# if ($value['topic_type'] && $pwforum->forumset['topic_type_display'] && isset($topictypes['all_types'][$value['topic_type']])) { #-->
+				<!--# if ($_parentid = $topictypes['all_types'][$value['topic_type']]['parentid']) { #-->
+			<a href="{@url:bbs/thread/run?fid=$pwforum->fid&type=$_parentid}">[{$topictypes['all_types'][$_parentid]['name']|html}]</a>
+				<!--# } #-->
+			<a href="{@url:bbs/thread/run?fid=$pwforum->fid&type=$value['topic_type']}">[{$topictypes['all_types'][$value['topic_type']]['name']|html}]</a>
+			<!--# } #-->
+			<a href="{@url:bbs/read/run?tid=$value['tid']&fid=$value['fid']}" style="{$value['highlight_style']}" title="{$value['subject']}">{@Pw::substrs($value['subject'],$numofthreadtitle)}</a>
+			<hook class='$threadList' name='createHtmlAfterSubject' args="array($value)" />
+</p>
+			
+<p><span class="fr" title="回复({$value['replies']}),阅读({$value['hits']})"><em>{$value['replies']}</em> / {$value['hits']}</span>
+<a class="J_user_card_show" data-uid="{$value['created_userid']}" href="{@url:space/index/run?uid=$value['created_userid']}"><img class="J_avatar" src="{@Pw::getAvatar($value['created_userid'], 'small')}" data-type="small" width="18" height="18" alt="{$value['created_username']}" /></a> <a class="J_user_card_show" data-uid="{$value['created_userid']}" href="{@url:space/index/run?uid=$value['created_userid']}">{$value['created_username']}</a>
+</p>
+		</div>
+</li>
+<!--# $tpc_topped = isset($value['issort']); #-->

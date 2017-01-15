@@ -1,0 +1,71 @@
+<style type="text/css">
+    	/*tab 标题*/
+    	.design_layout_tab li a{
+			text-decoration: none;
+			color: #444;
+			font-size: 15px;
+    	}
+    	.design_layout_tab li a:hover{
+			text-decoration: none;
+			background: #eee;
+			transition: all 1s;
+			-moz-transition: all 1s;	/* Firefox 4 */
+			-webkit-transition: all 1s;	/* Safari 和 Chrome */
+			-o-transition: all 1s;
+    	}
+    	.design_layout_tab li.current a{
+    		background: #eee;
+    	}
+
+
+    	/*tab内容*/
+    	ul.m-list{
+    		font-size: 14px;
+    		line-height: 200%;
+    		margin-top: 12px;
+    		margin-left: 12px;
+    	}
+
+    	ul.m-list a {
+    		padding-left: 2px;
+    	}
+
+    	ul.m-list a,
+    	ul.m-list a:hover{
+    		text-decoration: none;
+    	}
+    </style>
+<pw-drag id="first_segment"/>
+<script>
+Wind.use('jquery', 'global', function() {
+    Wind.js('{@theme:js}/jquery.slideBox.min.js', function() {
+        $("#m-slider").slideBox({
+            direction: 'left', //left,top
+            duration: 0.6, //unit:seconds
+            easing: 'swing', //swing,linear
+            delay: 3, //unit:seconds
+            startIndex: 0,
+            hideClickBar: false,
+            clickBarRadius: 5, //unit:px
+            hideBottomBar: false,
+            // width: 574,
+            // height: 322
+        });
+
+        //tab页面切换
+        $('li[role="tab"]').hover(function (t) {
+        	//选中状态切换
+        	$('li[role="tab"]').removeClass("current");
+        	$(this).addClass("current");
+
+        	//展示区域切换
+        	var data_id=$(this).children("a").attr("data-id");
+        	$('.J_tabs_ct>div').css("display",'none');
+        	$('.J_tabs_ct>div').attr("aria-hidden","true");
+        	var $tab=$('.J_tabs_ct div[tabid="'+data_id+'"]');
+        	$tab.css("display",'block');
+        	$tab.attr("aria-hidden","false");
+        });
+    });
+});
+</script>
