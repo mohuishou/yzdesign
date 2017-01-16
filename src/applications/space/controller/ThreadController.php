@@ -15,6 +15,7 @@ class ThreadController extends SpaceBaseController {
 	 *
 	 */
 	public function run() {
+
 		Wind::import('SRV:forum.srv.PwThreadList');
 		list($page, $perpage) = $this->getInput(array('page', 'perpage'));
 		!$perpage && $perpage = 20;
@@ -40,7 +41,7 @@ class ThreadController extends SpaceBaseController {
 		$this->setOutput($threadList->total, 'count');
 		$this->setOutput($threadList->page, 'page');
 		$this->setOutput($threadList->perpage, 'perpage');
-		$this->setOutput($threadList->getList(), 'threads');
+		$this->setOutput($this->threadDB($threadList->getList()), 'threads');
 		$this->setOutput($topictypes, 'topictypes');
 		$this->setOutput('thread', 'src');
 		
@@ -59,6 +60,56 @@ class ThreadController extends SpaceBaseController {
 		}
 		Wekit::setV('seo', $seoBo);
 	}
+
+
+    /**
+     * 去除重复数据
+     * @author mohuishou<1@lailin.xyz>
+     * @param $thread_db
+     * @return array|boolean
+     */
+    private function threadDB($data){
+        if(!isset($data)||!is_array($data)){
+            return false;
+        }
+        $thread_data=[];
+        $tmp=[];
+        foreach ($data as  $k => $v){
+            $v['thumb']=$this->getThumb($v['tid']);
+            if($v['topped']){
+                if(!in_array($v['tid'],$tmp)){
+                    $tmp[]=$v['tid'];
+                    $thread_data[]=$v;
+                }
+            }else{
+                $thread_data[]=$v;
+            }
+        }
+        return $thread_data;
+    }
+
+    /**
+     * 获取缩略图路径
+     * @author mohuishou<1@lailin.xyz>
+     * @param $tid
+     * @return bool|string
+     */
+    private function getThumb($tid){
+        $pwThread=Wekit::load('attach.PwThreadAttach');
+        $data=$pwThread->fetchAttachByTid([$tid]);
+        foreach ($data as $v){
+            if($v['ifthumb']){
+                if($v['ifthumb']==2){
+                    return Pw::getPath($v['path'],2);
+                }else{
+                    return Pw::getPath($v['path'],1);
+                }
+
+            }
+        }
+
+        return false;
+    }
 	
 	/**
 	 * 我的回复

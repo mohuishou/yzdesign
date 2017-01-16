@@ -1,0 +1,45 @@
+<!--# if (!$loginUser->isExists()) { #-->
+	<!--# Wind::import('APPS:u.service.helper.PwUserHelper'); #-->
+	<!--# $_loginWay = PwUserHelper::getLoginMessage(); #-->
+    <div class="box_wrap sidebar_login">
+        <!--
+		<form id="J_login_form" action="{@url:u/login/dologin}" method="post">
+		<dl>
+			<dt id="J_sidebar_login_dt" class="cc">
+				<i class="icon_username" title="请输入{$_loginWay}"></i><label for="J_username">用户名</label><input required type="text" class="input" id="J_username" name="username" placeholder="{$_loginWay}">
+				<i class="icon_password" title="请输入密码"></i><label for="J_password">密　码</label><input required type="password" class="input" id="J_password" name="password" placeholder="密码">
+			</dt>
+			<dd class="associate"><a class="sendpwd" rel="nofollow" href="{@url:u/findPwd/run}">找回密码</a><label for="head_checkbox" title="下次自动登录"><input type="checkbox" id="head_checkbox" name="rememberme" value="31536000">自动登录</label></dd>
+			<dd class="operate"><button type="submit" id="J_sidebar_login" class="btn btn_big btn_submit">登录</button><a class="btn btn_big btn_error" href="{@url:u/register/run}" rel="nofollow">立即注册</a></dd>
+		</dl>
+		</form>
+        -->
+        <dd class="operate"><button type="button" id="J_sidebar_login" class="btn btn_big btn_submit" onclick="location.href='{@url:u/login/run}'">登录</button><a class="btn btn_big btn_error" href="{@url:u/register/run}" rel="nofollow" onclick="location.href='{@url:u/register/run}'">立即注册</a></dd>
+    </div>
+<!--# } else { #-->
+	<!--# $_group = $loginUser->getGroupInfo(); #-->
+	<div class="box_wrap user_info">
+		<dl class="cc">
+			<dt id="J_ava_ie6">
+				<a href="{@url:space/index/run?uid=$loginUser->uid}"><img class="J_avatar" src="{@Pw::getAvatar($loginUser->uid)}" data-type="middle" width="72" height="72" alt="{$loginUser->username}" /></a>
+				<a href="{@url:profile/avatar/run?_left=avatar}"><b></b><span>修改头像</span></a>
+			</dt>
+			<dd>
+				<div class="name"><a href="{@url:space/index/run?uid=$loginUser->uid}" class="username">{$loginUser->username}<i></i></a></div>
+				<div class="level"><a href="{@url:profile/right/run?_left=right}">{$_group['name']}</a></div>
+				<div class="level_img">
+					<a href="{@url:profile/credit/run}"><img src="{@G:url.images}/level/{$_group['image']}" alt="{$_group['name']}" /></a>
+				</div>
+			</dd>
+		</dl>
+		<div class="num">
+			<ul class="cc">
+				<li><a href="{@url:my/follow/run}"><span>{$loginUser->info['follows']}</span><em>关注</em></a></li>
+				<li><a href="{@url:my/fans/run}"><span>{$loginUser->info['fans']}</span><em>粉丝</em></a></li>
+				<li class="tail"><a href="{@url:my/article/run}"><span>{$loginUser->info['postnum']}</span><em>帖子</em></a></li>
+			</ul>
+		</div>
+	
+
+	</div>
+<!--# } #-->

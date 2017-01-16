@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:common.head' load='true' />
+<link href="{@theme:css}/register.css" rel="stylesheet" />
+</head>
+<body>
+<div class="wrap">
+<template source='TPL:common.header' load='true' />
+	<div class="main_wrap">
+
+			<div class="box_wrap register cc">
+				<div class="reg_activation">
+					<h1><!--# if($username){ #-->{$username}，<!--# } #-->恭喜您充值成功！<!--# if($cnums){ #-->您账户已增加{$cnums}{$cname}。<!--# } #--></h1>
+					<div class="reg_activation_tip">
+						<p>
+						<span id="jumpTo" style="color:#FF1200">5</span> 秒后跳转到 
+						<a href="{@url:profile/extends/run}&_left=credit&_tab=jsjpay" class="s4">充值记录</a> 页面。</p>
+					</div>
+				</div>
+			</div>
+			</div>
+	</div>
+<script>
+Wind.use('jquery', 'global');
+countDown(5,'{@url:profile/extends/run}&_left=credit&_tab=jsjpay'); 
+function countDown(secs,surl){     
+var jumpTo = document.getElementById('jumpTo');
+jumpTo.innerHTML=secs;  
+	if(--secs>0){     
+     		setTimeout("countDown("+secs+",'"+surl+"')",1000);    
+	}else{       
+		location.href=surl;     
+	}     
+} 
+</script>
+<template source='TPL:common.footer' load='true' />
+</div>
+</body>
+</html>

@@ -17,11 +17,16 @@ class IndexController extends SpaceBaseController {
 	 * @see wekit/wind/web/WindController::run()
 	 */
 	public function run() {
+
 		$page = (int)$this->getInput('page','get');
 		if ($page < 1) $page = 1;
 		$this->setOutput('index', 'src');
 		$this->setOutput($page, 'page');
-		
+
+        //不需要该页面，直接重定向到帖子列表页面
+        $uid=$this->getInput("uid");
+        $this->forwardRedirect(WindUrlHelper::createUrl('space/thread/run?uid='.$uid));
+
 		// seo设置
 
 		Wind::import('SRV:seo.bo.PwSeoBo');

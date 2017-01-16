@@ -1,23 +1,30 @@
+<link href="{@theme:css}/jquery.slideBox.css" rel="stylesheet" />
 <style type="text/css">
     	/*tab 标题*/
+
+        .box_wrap .design_layout_hd{
+            border: none;
+        }
+
     	.design_layout_tab li a{
 			text-decoration: none;
-			color: #444;
-			font-size: 15px;
+			font-size: 12px;
+            font-weight: bold;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
     	}
+        .design_layout_tab li.current a,
     	.design_layout_tab li a:hover{
 			text-decoration: none;
-			background: #eee;
+			background: #aaa;
+            color: #fff;
+            /*border: none;*/
 			transition: all 1s;
 			-moz-transition: all 1s;	/* Firefox 4 */
 			-webkit-transition: all 1s;	/* Safari 和 Chrome */
 			-o-transition: all 1s;
     	}
-    	.design_layout_tab li.current a{
-    		background: #eee;
-    	}
-
-
     	/*tab内容*/
     	ul.m-list{
     		font-size: 14px;
@@ -51,21 +58,42 @@ Wind.use('jquery', 'global', function() {
             // width: 574,
             // height: 322
         });
+            
+            // if(tab_wrap2.length) {
+            //     Wind.use('tabs', function(){
+            //         tab_wrap2.each(function(){
+            //             $(this).find('.J_tabs_nav').first().tabs($(this).find('div.J_tabs_ct').first().find('div'));
+            //         });
+            //     });
+            // }
+        
+        // tab页面切换
+        var $tab_wrap = $('.J_tab_wrap');
+        $tab_wrap.each(function () {
+            var _this = this;
+            $(this).find('li[role="tab"]').mouseover(function (t) {
 
-        //tab页面切换
-        $('li[role="tab"]').hover(function (t) {
-        	//选中状态切换
-        	$('li[role="tab"]').removeClass("current");
-        	$(this).addClass("current");
+                //已经在选中状态下，直接返回
+                if($(this).hasClass("current")){
+                    return;
+                }
 
-        	//展示区域切换
-        	var data_id=$(this).children("a").attr("data-id");
-        	$('.J_tabs_ct>div').css("display",'none');
-        	$('.J_tabs_ct>div').attr("aria-hidden","true");
-        	var $tab=$('.J_tabs_ct div[tabid="'+data_id+'"]');
-        	$tab.css("display",'block');
-        	$tab.attr("aria-hidden","false");
+                //选中状态切换
+                $(_this).find('li[role="tab"]').removeClass("current");
+                $(this).addClass("current");
+
+                //展示区域切换
+                var data_id=$(this).find("a").attr("data-id");
+                $(_this).find('.J_tabs_ct>div').fadeOut(1000,function(){
+                    $(this).attr("aria-hidden","true");
+                });
+                var $tab=$(_this).find('.J_tabs_ct div[tabid="'+data_id+'"]');
+                $tab.fadeIn(1200,function(){
+                    $(this).attr("aria-hidden","false");
+                });
+            });
         });
+        
     });
 });
 </script>

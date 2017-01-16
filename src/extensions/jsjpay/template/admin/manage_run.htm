@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:admin.common.head' />
+<style>
+#sel  {width:350px;clear:both;}
+.sel  {float:left;margin:0px 13px 5px 0px;position:relative;width:100px;height:20px;
+overflow:visible;border:none;}
+</style>
+	</head>
+<body>
+<div class="wrap">
+	<div class="nav">
+		<ul class="cc">
+			<li class="current"><a href="{@url:app/jsjpay/manage/run}">基本设置</a></li>
+			<li><a href="{@url:app/jsjpay/list/run}">充值记录管理</a></li>
+			<li><a href="{@url:index/run|pw}index.php?m=app&app=jsjpay" target="_blank">插件前台</a></li>
+		</ul>
+	</div>
+	<form class="J_ajaxForm" action="{@url:app/jsjpay/manage/dorun}" method="post">
+
+  	<div class="table_full">
+  		<table width="100%">
+			<col class="th" />
+			<col width="400" />
+			<col />
+    		<tr>
+      			<td>1.插件开关</td>
+      			<td>
+      				<ul class="switch_list cc">
+            			<li><input type="radio" name="config[isopen]" value="1" {@Pw::ifcheck($config['isopen'])} />开启</li>
+            			<li><input type="radio" name="config[isopen]" value="0" {@Pw::ifcheck(!$config['isopen'])} />关闭</li>
+          			</ul>      			</td>
+	  			<td><div class="fun_tips"></div></td>
+    		</tr>
+    		<tr>
+      			<td>2.充值积分类型</td>
+      			<td>
+
+      				<ul id="sel">
+            			<!--# foreach ($creditBo->cType as $key => $value) { #-->
+				<li class="sel"><input name="config[credit]" type="radio" value="{$key}" {@Pw::ifcheck($config['credit']==$key)} />{$value}</li>
+				<!--# } #-->
+          			</ul>
+      			</td>
+	  		<td><div class="fun_tips"></div></td>
+    		</tr>
+
+    		<tr>
+      			<td>3.充值比例</td>
+      			<td><input name="config[bili]" id="bili" value="{$config['bili']}" class="input length_2"></td>
+	  			<td><div class="fun_tips">1元人民币等于多少个积分，请设置整数！</div></td>
+    		</tr>
+
+    		<tr>
+      			<td>4.最小充值数量</td>
+      			<td><input name="config[min]" id="bili" value="{$config['min']}" class="input length_2"></td>
+	  			<td><div class="fun_tips">允许最少充值多少个积分，请设置整数！</div></td>
+    		</tr>
+
+    		<tr>
+
+    		<tr>
+      			<td>5.Api-id</td>
+      			<td><input name="config[apiid]" id="apiid" value="{$config['apiid']}" class="input length_2"></td>
+	  			<td><div class="fun_tips">Api-id和Api-key是唯一的计费和使用凭证，请真实填写。</div></td>
+    		</tr>
+    		<tr>
+      			<td>6.Api-key</td>
+      			<td><input name="config[apikey]" id="apikey" value="{$config['apikey']}" class="input length_5" maxlength="32" type="password"></td>
+	  			<td><div class="fun_tips">请在合作平台 	<a target="_blank" href="http://api.web567.net/plugin.php?id=add:user">免费领取Api-id和Api-key</a></div></td>
+    		</tr>
+    		<tr>
+      			<td>7.充值标题</td>
+      			<td><input name="config[name]" id="name" value="{$config['name']}" class="input length_5" maxlength="32"></td>
+	  			<td><div class="fun_tips">比如：XXX网站在线积分充值</div></td>
+    		</tr>
+  		</table>
+  	</div>
+	<div class="">
+		<div class="btn_wrap_pd">
+			<button class="btn btn_submit J_ajax_submit_btn" type="submit" >提交</button>
+		</div>
+	</div>
+	</form>
+
+	<div class="h_a">其他信息</div>
+<br />
+
+<div class="container" id="cpcontainer" style="border:1px dashed #f60;background-color:#FFC;width:500px;line-height:30px;text-align:center;font-size:12px;color:#f60">
+小技巧：在任意页面的模板合适位置，加入以下html代码，就可以进行弹窗支付宝充值！<br />
+<textarea class="length_6" onclick="this.select()">
+<a rel="nofollow" href="#" data-uri="{@url:index/run|pw}index.php?m=app&app=jsjpay&act=open" class="J_plugin_jsjpay">支付宝在线充值</a>
+<script>Wind.ready('global.js', function(){Wind.js('{@G:url.base}/src/extensions/jsjpay/res/js/pay.js');});</script></textarea>
+<br /><br />
+<a href="http://api.web567.net/plugin.php?id=add:user&act=rmb" target="_blank">
+<img src="{@G:url.base}/src/extensions/jsjpay/res/images/rmb.gif" ></a>
+<a href="http://api.web567.net/plugin.php?id=add:user&act=list&type=alipay" target="_blank">
+<img src="{@G:url.base}/src/extensions/jsjpay/res/images/num.gif" ></a>
+<a href="http://api.web567.net/plugin.php?id=add:user" target="_blank">
+<img src="{@G:url.base}/src/extensions/jsjpay/res/images/api.gif" ></a>
+</div>
+</div>
+
+<template source='TPL:admin.common.footer' />
+</body>
+</html>

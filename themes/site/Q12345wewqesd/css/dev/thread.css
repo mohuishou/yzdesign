@@ -74,9 +74,10 @@
 }
 
 .m-cate li a.active , .m-cate li a:hover{
-	background: #99CC66;
-	color: #efefef;
+	background: #aaa;
+	color: #fff;
 	border: 1px solid #eee;
+	text-decoration: none;
 }
 
 .m-cate li a{
@@ -108,9 +109,10 @@
 }
 
 .m-main-header a:hover,.m-main-header a.active{
-	background: #99CC66;
-	color: #efefef;
+	background: #aaa;
+	color: #fff;
 	border: 1px solid #eee;
+	text-decoration: none;
 }
 
 .m-main-content{
@@ -139,7 +141,7 @@
 }
 
 .m-panel-top,.m-panel-hot{
-	color: #efefef;
+	color: #fff;
 	border-radius: 2px;
 	padding: 5px;
 	font-size: 10px;
@@ -147,7 +149,7 @@
 }
 
 .m-panel-top{
-	background: #99CC66;
+	background: #99cc66;
 }
 
 .m-panel-hot{
@@ -250,6 +252,8 @@
 /* 用于首页的index-panel */
 .m-index-panel{
 	width: 220px;
+	margin-left: 10px;
+	margin-right: 0px;
 }
 
 .m-index-panel .m-panel-head{

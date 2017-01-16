@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+
+<head>
+    <template source='TPL:common.head' load='true' />
+    <link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+    <link href="{@theme:css}/space.css" rel="stylesheet" />
+    <style>
+    .aPre {
+        cursor:url({@theme:site.images}/common/pre.cur),
+        auto;
+    }
+    
+    .aNext {
+        cursor:url({@theme:site.images}/common/next.cur),
+        auto;
+        right: 0;
+    }
+    </style>
+</head>
+<!--# 
+    $user=$space->spaceUser;
+    $address="中国";
+    if($user['location_text']){
+        $tmp=explode(" ",$user['location_text']);
+        $address=$tmp[0];
+    }
+ #-->
+
+<body>
+    <div class="wrap">
+        <template source='TPL:common.header' load='true' />
+        <div class="m-space main_wrap">
+            <!-- header 开始-->
+            <div class="m-space-header">
+                <div class="m-space-author">
+                    <div class="m-space-avatar">
+                        <img src="{@Pw::getAvatar($space->spaceUid,'middle')}" alt="">
+                    </div>
+                    <div class="m-space-my">
+                        <div class="m-space-name">
+                            {$user['username']}
+                        </div>
+                        <div class="m-space-address">
+                            <span>
+                                <img src="{@theme:images}/local.png" alt=""> {$address}
+                            </span>
+                        </div>
+                        <div class="m-space-operation">
+                            <!--#if($space->visitUid==$space->spaceUid){#-->
+                            <a href="{@url:profile/index/run}">
+                                个人设置
+                            </a>
+                            <a href="{@url:space/thread/run?uid=$space->spaceUid}">
+                                我的帖子
+                            </a>
+                            <a href="{@url:my/follow/run}">
+                                我的关注
+                            </a>
+                            <!--# }else{ #-->
+                            <!--# if($space->tome >= 4){ #-->
+                            <a class="follow unfollow J_space_follow J_qlogin_trigger m-unfollow" data-uid="{$space->spaceUid}" data-role="unfollow" href="{@url:my/follow/delete?uid=$space->spaceUid}">取消关注</a>
+                            <!--# }else{ #-->
+                            <a rel="nofollow" class="J_space_follow follow J_qlogin_trigger" data-uid="{$space->spaceUid}" data-role="follow" href="{@url:my/follow/add}"><em></em>加关注</a>
+                            <!--# } #-->
+                            <a rel="nofollow" class="m-send-msg" href="{@url:message/message/pop?uid=$space->spaceUser['uid']}" class="message J_qlogin_trigger J_send_msg_pop" data-name="{$space->spaceUser['username']}"><em></em>写私信</a>
+                            <!--# } #-->
+                        </div>
+                    </div>
+                </div>
+                <div class="m-space-count">
+                    <p>
+                        <em>主题</em>
+                        <span>{$user['postnum']}</span>
+                    </p>
+                    <p>
+                        <em>粉丝</em>
+                        <span>{$user['fans']}</span>
+                    </p>
+                    <p>
+                        <em>积分</em>
+                        <span>{$user['credit1']}</span>
+                    </p>
+                </div>
+            </div>
+            <!-- header end -->
+            <div class="m-space-nav-all">
+                <div class="m-space-nav">
+                    <!--#if($space->visitUid==$space->spaceUid){#-->
+                    <a href="{@url:space/thread/run?uid=$space->spaceUid}">
+                        我的帖子
+                    </a>
+                    <a class="active" href="#">
+                        我的资料
+                    </a>
+                    <!--#}else{#-->
+                    <a href="{@url:space/thread/run?uid=$space->spaceUid}">
+                        他的帖子
+                    </a>
+                    <a class="active" href="#">
+                        他的资料
+                    </a>
+                    <!--#}#-->
+                </div>
+            </div>
+            <!-- main 开始 -->
+            <div class="m-space-user-main">
+                <div class="m-space-user-intro">
+                    <!--# if ( ($user['hometown_text'] || $user['location_text'] || $user['qq'] || $user['mobile']) && ($space->allowView('qq')  || $space->allowView('mobile') || $space->allowView('local') || $space->allowView('nation') ) ){ #-->
+                        <div class="m-space-user-connect">
+                            <!--# if ( $user['qq'] && $space->allowView('qq')){ #-->
+                            <dl class="cc">
+                                <dt>QQ</dt>
+                                <dd>{$user['qq']}</dd>
+                            </dl>
+                            <!--# } #-->
+                            <!--# if ($user['mobile'] && $space->allowView('mobile')){ #-->
+                            <dl class="cc">
+                                <dt>手机号码</dt>
+                                <dd>{$user['mobile']}</dd>
+                            </dl>
+                            <!--# } #-->
+                            <!--# if ($user['location_text'] && $space->allowView('local')){ #-->
+                            <dl class="cc">
+                                <dt>现居住地</dt>
+                                <dd>{$user['location_text']}</dd>
+                            </dl>
+                            <!--# } #-->
+                            <!--# if ($user['hometown_text'] && $space->allowView('nation')){ #-->
+                            <dl class="cc">
+                                <dt>家乡</dt>
+                                <dd>{$user['hometown_text']}</dd>
+                            </dl>
+                            <!--# } #-->
+                        </div>
+                    <!--# }else{ #-->
+                        <div class="m-space-user-no">
+                            该用户尚未设置资料
+                        </div>
+                    <!--# } #-->
+                </div>
+                <div class="m-space-user-des">
+                    <img src="{@Pw::getAvatar($space->spaceUid,'middle')}" alt="">
+                    <div>
+                        <em>用户名</em><span>{$user['username']}</span>
+                    </div>
+                    <div>
+                        <!--#
+                            $sex=["男","女"];
+                        #-->
+                        <em>性别</em><span>{$sex[$user['gender']]}</span>
+                    </div>
+                    <div>
+                        <em>用户组</em><span>{$groupName}</span>
+                    </div>
+                    <div>
+                        <em>最后登陆</em><span>{@Pw::time2str($user['lastvisit'], 'Y-m-d')}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- main end -->
+        </div>
+        <template source='TPL:common.footer' load='true' />
+    </div>
+    <script>
+    var SPACE_FOLLOW = "{@url:my/follow/add}",
+        SPACE_UNFOLLOW = "{@url:my/follow/delete}";
+
+    //新鲜事回复提交地址
+    var FRESH_DOREPLY = "{@url:space/myspace/doreply}";
+    var content_lenght = '<!--# echo count($threads); #-->';
+    //引入js组件
+    Wind.use('jquery', 'global', 'dialog', 'ajaxForm', 'tabs', 'draggable', 'uploadPreview', function() {
+        //计算content高度
+        var height = (Math.ceil(content_lenght / 3) * ($('.m-panel').height() + 15));
+        $(".m-space-main").css("height", height + "px");
+        Wind.js(GV.JS_ROOT + 'pages/space/space_index.js?v=' + GV.JS_VERSION, GV.JS_ROOT + 'pages/common/freshRead.js?v=' + GV.JS_VERSION);
+
+        //回复表情 表情js由freshRead.js引入
+        $('#J_feed_lists').on('click', 'a.J_fresh_emotion', function(e) {
+            e.preventDefault();
+            insertEmotions($(this), $($(this).data('emotiontarget')));
+        });
+    });
+    </script>
+</body>
+
+</html>

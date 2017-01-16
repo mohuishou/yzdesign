@@ -215,12 +215,6 @@ class ThreadController extends PwBaseController {
         $thread_data=[];
         $tmp=[];
         foreach ($data as  $k => $v){
-            //如果第一个数据都没有置顶，那么就不存在置顶的数据
-            if($k==0){
-                if(!$v['topped']){
-                    return $data;
-                }
-            }
             $v['thumb']=$this->getThumb($v['tid']);
             if($v['topped']){
                 if(!in_array($v['tid'],$tmp)){
