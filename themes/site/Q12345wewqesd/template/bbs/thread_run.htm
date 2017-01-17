@@ -51,7 +51,7 @@
                     </div>
                     <div class="m-nav-main">
                         <ul class="m-cate">
-                            <!--#foreach($cateList['2'] as $val){#-->
+                            <!--# foreach($cateList['2'] as $val){#-->
                             <li><a class="{$val['active'] ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$val['fid']}">{$val['name']}</a></li>
                             <!--#}#-->
                         </ul>
@@ -66,9 +66,10 @@
                     <div class="m-nav-main">
                         <ul class="m-cate">
                             <li><a class="{$cateList['all']['active'] ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$cateList['all']['fid']}">全部</a></li>
+                            <!--# if(isset($cateList['3'])&&!empty($cateList['3'])){ #-->
                             <!--#foreach($cateList['3'] as $k => $val){#-->
                             <li><a class="{$val['active'] ? 'active' : ''}" href="{@url:bbs/thread/run?fid=$val['fid']}">{$val['name']}</a></li>
-                            <!--#}#-->
+                            <!--#}}#-->
                         </ul>
                     </div>
                 </div>
@@ -141,7 +142,7 @@
                     <!-- 帖子展示区域，缩略图形式 end -->
                 </div>
             </div>
-            <div class="pages_wrap cc">
+            <div class="pages_wrap cc m-footer">
                 <a href="{@url:bbs/post/run?fid=$pwforum->fid}" class="btn_post J_thread_post_btn{$postNeedLogin}" data-rel="J_thread_post_types_1">发帖</a>
                 <template source="widget_thread_page" />
             </div>

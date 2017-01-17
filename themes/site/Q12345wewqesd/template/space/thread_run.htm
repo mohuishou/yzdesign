@@ -5,18 +5,6 @@
     <template source='TPL:common.head' load='true' />
     <link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
     <link href="{@theme:css}/space.css" rel="stylesheet" />
-    <style>
-    .aPre {
-        cursor:url({@theme:site.images}/common/pre.cur),
-        auto;
-    }
-    
-    .aNext {
-        cursor:url({@theme:site.images}/common/next.cur),
-        auto;
-        right: 0;
-    }
-    </style>
 </head>
 <!--# 
 	$user=$space->spaceUser;
@@ -163,7 +151,7 @@
             <div class="m-space-footer">
 	            <div class="pages_wrap cc">
 	             <div class="J_page_wrap" data-key="true">
-	             	<page tpl="TPL:common.page" page="$page" per="$perpage" count="$count" total="$totalpage" url="bbs/thread/run?fid=$fid" args="$urlargs"/>
+	             	<page tpl="TPL:common.page" page="$page" per="$perpage" count="$count" total="$totalpage" url="bbs/allUser/run" args="$urlargs"/>
 	             </div>
 	            </div>
             </div>

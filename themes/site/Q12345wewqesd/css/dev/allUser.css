@@ -1,0 +1,65 @@
+
+.m-user-nav{
+	width: 100%;
+	height: 36px;
+	border-bottom: 1px solid #aaa;
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+.m-user-nav div a{
+	float: left;
+	padding: 8px 15px;
+	background: #fff;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	border-radius: 3px;
+	color: #888;
+	font-size: 13px;
+	text-decoration: none;
+	margin-right: 15px;
+
+}
+
+.m-user-nav div a:hover{
+	border: 1px solid #444;
+	color: #444;
+	transition: all 1s;
+	-moz-transition: all 1s;	/* Firefox 4 */
+	-webkit-transition: all 1s;	/* Safari 和 Chrome */
+	-o-transition: all 1s;
+}
+
+.m-space-header{
+	float: left;
+	width: 400px;
+}
+
+.m-user-main>div{
+	width: 100%;
+	margin-top: 10px;
+	padding-bottom: 8px;
+	height: 130px;
+}
+
+.m-user-thread{
+	float: right;
+}
+
+.m-user-thread div{
+	float: right;
+	margin-left: 10px;
+	margin-top: 13px;
+}
+
+.m-user-thread div img{
+	width: 160px;
+}
+
+.m-user-no{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 20px;
+	color: #555;
+}

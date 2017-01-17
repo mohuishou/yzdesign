@@ -1,0 +1,84 @@
+<!--#if ($site_info_notice = Wekit::C('site','info.notice')) {#-->
+<style>
+.header_wrap {
+    top: 29px;
+}
+
+body {
+    padding-top: 75px;
+}
+</style>
+<div id="notice">{$site_info_notice}</div>
+<!--#}#-->
+<div id="loader">
+    <div class="loader">
+        <div class="loading-1"></div>
+        <div class="loading-2">Loading...</div>
+    </div>   
+</div>
+<header class="header_wrap">
+    <div class="header-top">
+        <div class="logo">
+            <a href="{@url:}">
+                <!--# if($__css = Wekit::C('site', 'css.logo')) { #-->
+                <!--后台logo上传-->
+                <img src="{@Pw::getPath($__css)}" alt="{@Wekit::C('site','info.name')}">
+                <!--# } else { #-->
+                <img src="{@theme:site.images}/logo.png" alt="{@Wekit::C('site','info.name')}">
+                <!--# } #-->
+            </a>
+        </div>
+        <div class="header_search" role="search">
+            <form action="{@url:search/s/run}" method="post">
+                <input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="keyword" />
+                <button type="submit" aria-label="搜索"><span>搜索</span></button>
+            </form>
+        </div>
+    </div>
+    <div class="header-2">
+        <div id="J_header" class="header cc">
+            <nav class="nav_wrap">
+                <div class="nav">
+                    <ul>
+                        <!--# $nav = Wekit::load('SRV:nav.bo.PwNavBo');
+          $nav->setRouter();
+          $currentId =  '';
+           $main = $child = array();
+          if ($nav->isForum()) $nav->setForum($pwforum->foruminfo['parentid'], $fid, $tid);
+          $main = $nav->getNavFromConfig('main', true);
+          foreach($main as $key=>$value){
+            if ($value['current']) {
+                $current = 'current';
+                $currentId = $key;
+            } else {
+                $current = '';
+            }
+          #-->
+                        <li class="{$current}">{$value['name']|html}
+                            <!--#if(isset($value['child']) && !empty($value['child']) ){ #-->
+                                <ul class="m-nav-child">
+                                    <!--# foreach($value['child'] as $v){ #-->
+                                    <li>{$v['name']|html}</li>
+                                    <!--# } #-->
+                                </ul>
+                            <!--#}#-->
+                        </li>
+                        <!--# } #-->
+                        <li class="m-nav-more"><a href="javascript:;">更多</a>
+                        <ul></ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+            <hook name="header_nav" />
+            <template source="TPL:common.header_login" load="true" />
+        </div>
+    </div>
+</header>
+
+    <div class="tac">
+        <advertisement id='Site.NavBanner' sys='1' />
+    </div>
+
+    

@@ -4,9 +4,7 @@
 <head>
     <template source='TPL:common.head' load='true' />
     <link href="{@theme:css}/forum.css?v={@NEXT_RELEASE}" rel="stylesheet" />
-    <link href="{@theme:css}/thread.css" rel="stylesheet" />
-    
-
+    <link href="{@theme:css}/index.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -14,29 +12,51 @@
     <div class="wrap">
         <template source='TPL:common.header' load='true' />
         <div class="main_wrap">
+            <div class="m-catelist">
+            <!--# 
+            $j=0;
+            foreach($cateList as $cate_id => $cate){ 
+            if($j>=4) break;
+            $j++;
+            #-->
+                <div>
+                    <div class="m-cate-title">
+                        {$cate['name']}
+                    </div>
+                    <div class="m-forum">
+                        <!--# 
+                            $forums=$forumList[$cate_id];
+                            $i=0;
+                            foreach($forums as $v) {
+                        #-->
+                                <!--#if($i==5 && count($forums)>6){#-->
+                                <a href="{@url:bbs/thread/run?fid=$v['fid']}">更多</a>
+                                <!--# break;}else{ #-->
+                                <a title="{$v['name']}" href="{@url:bbs/thread/run?fid=$v['fid']}">{$v['name']}</a>
+                                <!--# } #-->
+                        <!--# $i++; } #-->
+                    </div>
+                </div>
+                <!--# } #-->
+            </div>
             <pw-tpl id="main_segment" />
-            <!--div class="bread_crumb">
-			{@$headguide|html}
-		</div-->
             <div class="forum_page">
                 <div class="bbs_info_box">
                     <span>今日：{$todayposts}</span><i></i><span>昨日：{$bbsinfo['yposts']}</span><i></i><span>最高日：{$bbsinfo['hposts']}</span><i></i><span>帖子：{$article}</span><i></i><span>会员：{$bbsinfo['totalmember']}</span><i></i><span>新会员：<a href="{@url:space/index/run?username=$bbsinfo['newmember']}" target="_blank">{$bbsinfo['newmember']}</a></span>
                 </div>
                 <pw-tpl id="first_segment" />
-                <div class="box_wrap">
-                </div>
+                <!-- <div class="box_wrap"> -->
+                <!-- </div> -->
             </div>
             <pw-tpl id="forumlist_bottom" />
-            <div class="box_wrap"></div>
+            <!-- <div class="box_wrap"></div> -->
             <pw-tpl id="forumlist_2" />
-            <div class="box_wrap"></div>
             <pw-tpl id="forumlist_3" />
         </div>
         <template source='TPL:common.footer' load='true' />
     </div>
     <script>
-    Wind.use('jquery', 'global', function() {
-    });
+    Wind.use('jquery', 'global', function() {});
     </script>
     <pw-end/>
 </body>

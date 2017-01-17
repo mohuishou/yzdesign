@@ -1,0 +1,77 @@
+<!--.main-wrap,#main End-->
+<div class="tac">
+<advertisement id='Site.Footer1' sys='1'/><br />
+<advertisement id='Site.Footer2' sys='1'/>
+</div>
+<div class="footer_wrap">
+	<div class="footer">
+		<pw-drag id="footer_segment"/>
+		<div class="bottom">
+		<!--#
+			$nav = Wekit::load('SRV:nav.bo.PwNavBo');
+			$bottom = $nav->getNavFromConfig('bottom');
+			foreach($bottom as $key=>$value){
+		#-->
+			{$value['name']|html}
+		<!--# } #-->
+		</div>
+		<p>技术支持 <a href="http://www.lailin.xyz/" target="_blank" rel="nofollow">Mohuishou</a> &copy;20015-<!--#echo date('Y');#--> <a href="#" target="_blank" rel="nofollow">{@G:seo.title}</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">{@Wekit::C('site','info.icp')}</a></p>
+		<p>{@Wekit::C('site','statisticscode')|html}</p>
+	</div>
+	<advertisement id='Site.FloatLeft' sys='1'/>
+	<advertisement id='Site.FloatRight' sys='1'/>
+	<advertisement id='Site.PopupNotice' sys='1'/>
+	<div id="cloudwind_common_bottom"></div>
+	<hook name="footer"/>
+</div>
+
+<!--返回顶部-->
+<a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>
+
+<script>
+    Wind.use("jquery",function () {
+        function header(i) {
+            if(i>5) return;
+            var $nav=$(".header-2 #J_header div.nav");
+            var nav_l=$nav.width();
+            if((960-nav_l)<200){
+                if(i==0)$nav.find("ul>li.m-nav-more").css("display","block");
+                 var $li=$nav.find("ul:first>li:last").prev();
+                 $nav.find("ul>li.m-nav-more ul").prepend($li);
+                 i++;header(i);
+            }
+        }
+        $("body").fadeIn(500,function (argument) {
+        	header(0);
+        });
+        setTimeout(function () {
+        	$("#loader").fadeOut(1000,function () {
+        		$("#loader").remove();
+        	});
+        },500);
+        $("a").click(function () {
+        	if($(this).prev().attr("data-role")=="readbar"){
+        		return;
+        	}
+        	var target=$(this).attr("target");
+        	var aria=$(this).attr("aria-haspopup");
+        	var href=$(this).attr("href");
+        	var loader_html='<body><div style="display:none;" id="loader">'+
+							'    <div class="loader">'+
+							'        <div class="loading-1"></div>'+
+							'        <div class="loading-2">Loading...</div>'+
+							'    </div>   '+
+							'</div></body>';
+        	//检查链接
+        	var regex =/^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?$/i
+        	if(regex.test(href)&& (!target || target!="_blank") && !aria){
+        		$("body").fadeOut(1500,function () {
+        		});
+        		// $("body").before(loader_html);
+        		// $("#loader").fadeIn(3000);
+        	}
+        });
+       
+       
+    });
+</script>

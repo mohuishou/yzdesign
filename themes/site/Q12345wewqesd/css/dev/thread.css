@@ -6,6 +6,12 @@
 	margin-top: 10px;
 }
 
+a:hover{
+	transition: all 1s;
+	-moz-transition: all 1s;	/* Firefox 4 */
+	-webkit-transition: all 1s;	/* Safari 和 Chrome */
+	-o-transition: all 1s;
+}
 
 /* 面包屑导航开始 */
 .m-guide{
@@ -243,6 +249,25 @@
 	
 
 /* 帖子列表结束 */
+
+.m-footer a{
+	padding: 7px 20px;
+	color: #666;
+	border: 1px solid #999;
+	text-decoration: none;
+	border-radius: 3px;
+}
+
+.m-footer{
+	margin-top: 20px;
+
+}
+
+.m-footer a:hover{
+	text-decoration: none;
+	border: 1px solid #333;
+	color: #333;
+}
 
 .m-page{
 	
