@@ -1,0 +1,85 @@
+@import url("config");
+
+/* 用于首页的index-panel */
+@index-panel-width: (@baseWidth / 4) - 20px;
+.m-index-panel{
+	width: @index-panel-width;
+	margin-left: 10px;
+	margin-right: 2px;
+	margin-top: 10px;
+}
+
+.m-index-panel{
+	 .m-panel-head{
+		width: @index-panel-width;
+		height: (@index-panel-width * 9) / 16;
+		overflow: hidden;
+	}
+
+	 .m-panel-head img{
+		width: @index-panel-width;
+		border-radius: 5px;
+	}
+
+	 .m-panel-head a img:hover{
+		width: (@index-panel-width + 20px);
+		.transition;
+	}
+}
+
+
+/* index-panel end */
+
+/* 首页版块列表 */
+@cate-height: 90px;
+.m-catelist{
+	background: #ddd;
+	padding-right: 3px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	width: 100%;
+	height: (@cate-height + 20px);
+	margin-bottom: 10px;
+}
+
+.m-catelist>div{
+	width: (@baseWidth / 4)- 15px;
+	height: @cate-height;
+	margin: 5px 0 5px 5px;
+	background: #eee;
+	padding-left: 10px;
+	padding-top: 8px;
+	border-radius: 5px;
+	float: left;
+}
+
+.m-cate-title{
+	font-size: 28px;
+	width: 30px;
+	float: left;
+	font-family: "楷体";
+
+}
+
+/* 首页版块列表  end */
+
+/*.m-forum p{
+	float: left;
+	padding-left: 8px;
+	padding-top: 9px;
+}*/
+
+.m-forum  a{
+	font-size: 15px;
+	margin-top: 13px;
+	color: #333;
+	display: block;
+	float: left;
+	width: 70px;
+	height: 20px;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space:nowrap;
+	margin-left: 15px;
+}

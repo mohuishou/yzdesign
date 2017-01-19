@@ -1,4 +1,28 @@
-.header-top{
-	position: absolute !important;
-	top: 20px;
+/*头部包裹 style.css:255*/
+.header_wrap {
+  display: block;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.header-2 {
+  width: 100%;
+  background: #666;
+  /*导航背景*/
+}
+.header-top {
+  width: 1260px;
+  min-height: 70px;
+  margin: 20px auto 10px auto;
+}
+/*导航宽度*/
+.header {
+  width: 1260px;
+  margin: auto;
+  min-height: 45px;
+  _height: 45px;
+}
+/*顶部菜单效果*/
+.header_wrap .cure_menu {
+  position: fixed;
 }

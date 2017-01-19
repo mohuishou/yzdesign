@@ -34,7 +34,8 @@
             if(i>5) return;
             var $nav=$(".header-2 #J_header div.nav");
             var nav_l=$nav.width();
-            if((960-nav_l)<200){
+            var baseWidth=$(".header-top").width();
+            if((baseWidth-nav_l)<230){
                 if(i==0)$nav.find("ul>li.m-nav-more").css("display","block");
                  var $li=$nav.find("ul:first>li:last").prev();
                  $nav.find("ul>li.m-nav-more ul").prepend($li);
@@ -49,28 +50,28 @@
         		$("#loader").remove();
         	});
         },500);
-        $("a").click(function () {
-        	if($(this).prev().attr("data-role")=="readbar"){
-        		return;
-        	}
-        	var target=$(this).attr("target");
-        	var aria=$(this).attr("aria-haspopup");
-        	var href=$(this).attr("href");
-        	var loader_html='<body><div style="display:none;" id="loader">'+
-							'    <div class="loader">'+
-							'        <div class="loading-1"></div>'+
-							'        <div class="loading-2">Loading...</div>'+
-							'    </div>   '+
-							'</div></body>';
-        	//检查链接
-        	var regex =/^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?$/i
-        	if(regex.test(href)&& (!target || target!="_blank") && !aria){
-        		$("body").fadeOut(1500,function () {
-        		});
-        		// $("body").before(loader_html);
-        		// $("#loader").fadeIn(3000);
-        	}
-        });
+       //  $("a").click(function () {
+       //  	if($(this).prev().attr("data-role")=="readbar" && $(this).attr("role")){
+       //  		return;
+       //  	}
+       //  	var target=$(this).attr("target");
+       //  	var aria=$(this).attr("aria-haspopup");
+       //  	var href=$(this).attr("href");
+       //  	var loader_html='<body><div style="display:none;" id="loader">'+
+							// '    <div class="loader">'+
+							// '        <div class="loading-1"></div>'+
+							// '        <div class="loading-2">Loading...</div>'+
+							// '    </div>   '+
+							// '</div></body>';
+       //  	//检查链接
+       //  	var regex =/^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?$/i
+       //  	if(regex.test(href)&& (!target || target!="_blank") && !aria){
+       //  		$("body").fadeOut(1500,function () {
+       //  		});
+       //  		// $("body").before(loader_html);
+       //  		// $("#loader").fadeIn(3000);
+       //  	}
+       //  });
        
        
     });

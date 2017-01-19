@@ -1,0 +1,41 @@
+@import url("config");
+
+/*主体内容结构*/
+.main_wrap{
+	width: @baseWidth;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+}
+
+/*主体结构样式*/
+.main{
+	background:#fff url(../../images/main_bg.png) right 0 repeat-y;
+	border:1px solid;
+	border-color:#fff #efefef #d3d3d3 #efefef;
+	box-shadow:0 1px 1px rgba(0,0,0,0.02);
+	margin-bottom:10px;
+}
+/*主体自适应左右栏*/
+.main_body{
+	float:left;
+	min-height:1px;
+	width:100%;
+}
+.main_body .box_wrap,
+.main_sidebar .box_wrap{
+	border:0 none;
+	box-shadow:0 0 0;
+	background:none;
+	border-radius:0;
+}
+.main_content{
+	margin-right:280px;
+	padding:17px 20px;
+}
+.main_sidebar{
+	float:left;
+	width:260px;
+	margin-left:-270px;
+	overflow:hidden;
+}
