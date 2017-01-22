@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mADs.template.common.m_head' />
+</head>
+
+<body>
+
+    <div class="wrap">
+    <template source='SRC:extensions.mADs.template.common.m_nav' />
+
+        <div>
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-block">
+                        <select lay-verify="required">
+                            <option value="">请先选择广告类型</option>
+                            <!--# foreach($types as $type){ #-->
+                                <option value="{$type['id']}">{$type['name']}</option>
+                            <!--# } #-->
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <template source='TPL:admin.common.footer' />
+    <script type="text/javascript">
+    
+    var type_id= <!--# echo ($type_id ? $type_id : 0 ); #--> ;
+    $('select option').removeAttr("selected");
+    $('select option[value="'+type_id+'"]').attr("selected","");
+
+    layui.use('form', function() {
+        var form = layui.form();
+
+        //监听提交
+        form.on('select', function(data) {
+            layer.load();
+            location.href="?m=app&app=mADs&c=manage&a=run&type_id="+data.value;
+        });
+    });
+    </script>
+</body>
+
+</html>

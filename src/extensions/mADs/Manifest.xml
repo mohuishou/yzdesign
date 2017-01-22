@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>广告助手</name>                  
+		<alias>mADs</alias>
+		<version>1.0</version>	 
+		<pw-version>9.0.1</pw-version>       
+		<description>发布管理广告</description>   
+		<logo>images/logo.jpg</logo>		
+		<type>app</type>					
+		<charset>UTF-8</charset>		 
+		<website>http://lailin.xyz</website>	 
+		<author-name>莫回首</author-name>		     
+		<author-email>1@lailin.xyz</author-email>		  	
+		<author-icon>your icon</author-icon>	         
+	</application>
+
+	<res>res</res>
+
+	<installation-service></installation-service>
+	<inject-services>
+<s_admin_menu>
+	<app_mADs>
+	<class>EXT:mADs.service.srv.App_MADs_ConfigDo</class>
+	<loadway>load</loadway>
+	<method>getAdminMenu</method>
+	<description>广告助手admin menu</description>
+	</app_mADs>
+	</s_admin_menu>
+</inject-services>
+</manifest>

@@ -1,0 +1,38 @@
+<div class="layui-tab layui-tab-brief" lay-filter="demo">
+    <ul class="layui-tab-title">
+        <li>广告列表</li>
+        <li class="layui-this">广告类型</li>
+    </ul>
+    <div class="layui-tab-content"></div>
+</div>
+
+<script type="text/javascript">
+
+initNav();
+function initNav() {
+    var c=getQueryString("c");
+    if(c=="manage"){
+        $(".layui-tab-title li").toggleClass("layui-this");
+    }
+}
+
+function getQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+	layui.use(['element', 'layer'], function() {
+        var element = layui.element();
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            layer.load();
+            if (data.index) {
+                location.href = "{@url:app/mADs/type/run}"
+            } else {
+                location.href = "{@url:app/mADs/manage/run}"
+            }
+        });
+    });
+</script>
