@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mADs.template.common.m_head' />
+    <style>
+    .m-upload-img {
+        max-width: 100%;
+        min-width: 300px;
+        overflow: hidden;
+        max-height: 300px;
+        margin-left: 112px;
+        margin-bottom: 20px;
+    }
+    
+    .m-upload-img img {
+        max-width: 100%;
+        max-height: 300px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <template source='SRC:extensions.mADs.template.common.m_nav' />
+        <div>
+            <form class="layui-form layui-form-pane" action="">
+                <fieldset class="layui-elem-field">
+                    <legend>新增广告</legend>
+                    <div class="layui-field-box">
+                        <!-- 广告类型 -->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">类型</label>
+                            <div class="layui-input-block">
+                                <select name="type_id" lay-verify="required">
+                                    <option value="">请先选择广告类型</option>
+                                    <!--# foreach($types as $type){ #-->
+                                    <option value="{$type['id']}">{$type['name']}-{$types_option[$type['type']]}-{$open_types[$type['open_type']]}</option>
+                                    <!--# } #-->
+                                </select>
+                            </div>
+                        </div>
+                        <!-- 广告类型 end -->
+                        <!-- 广告标题 -->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-block">
+                                <input name="title" lay-verify="required" type="text" class="layui-input" />
+                            </div>
+                        </div>
+                        <!-- 广告标题 end -->
+                        <!--# if($type_id){ #-->
+
+                            <!--# if($selected_type['type']==4){ #-->
+                                <!-- 脚本代码 -->
+                                <div class="layui-form-item m-manage-script">
+                                    <label class="layui-form-label">脚本代码</label>
+                                    <div class="layui-input-block">
+                                        <textarea name="script" placeholder="请输入脚本代码" class="layui-textarea"></textarea>
+                                    </div>
+                                </div>
+                                <!-- 脚本代码end -->
+                            <!--# } #-->
+
+                            <!--# if($selected_type['type']==2||$selected_type['type']==3){ #-->
+                                <!-- 窗口标题 -->
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">窗口标题</label>
+                                    <div class="layui-input-block">
+                                        <input placeholder="请输入窗口标题 " lay-verify="required" name="window_title" type="text" class="layui-input" />
+                                    </div>
+                                </div>
+                                <!-- 窗口标题 end -->
+                            <!--# } #-->
+
+                            <!--# if($selected_type['type']==3){ #-->
+                                <!-- 简介 -->
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">简介</label>
+                                    <div class="layui-input-block">
+                                        <textarea name="description" placeholder="请输入简介" class="layui-textarea"></textarea>
+                                    </div>
+                                </div>
+                                <!-- 简介end -->
+                            <!--# } #-->
+
+                            <!--# if($selected_type['type']!=4){ #-->
+                                <!-- 广告链接 -->
+                                <div class="layui-form-item m-manage-link">
+                                    <label class="layui-form-label">链接</label>
+                                    <div class="layui-input-block">
+                                        <input value="http://" lay-verify="url"  name="link" type="text" class="layui-input" />
+                                    </div>
+                                </div>
+                                <!-- 广告链接 end -->
+                                <!-- 广告图片 -->
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">上传</label>
+                                    <div class="layui-input-block">
+                                        <input type="file" lay-type="images" lay-title="请上传一张图片吧亲" name="img" class="layui-upload-file">
+                                    </div>
+                                </div>
+                                <!-- 广告图片 end -->
+                                <!-- 广告图片展示 -->
+                                <div class="m-upload-img">
+                                    <img src="" alt="">
+                                    <input type="hidden" lay-verify="required" name="path" />
+                                </div>
+                                <!-- 展示end -->
+                            <!--# } #-->
+
+                        <!--# } #-->
+                        <!-- 提交按钮 -->
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
+                            </div>
+                        </div>
+                        <!-- 提交按钮 end-->
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script>
+    var type_id = <!--# echo ($type_id ? $type_id : 0 ); #--> ;
+        $('select option').removeAttr("selected");
+    $('select option[value="' + type_id + '"]').attr("selected", "");
+    layui.use(['form', 'upload'], function() {
+        var form = layui.form();
+
+        form.on('select', function(data) {
+            layer.load();
+            location.href="?m=app&app=mADs&c=manage&a=add&type_id="+data.value;
+        });
+
+        //文件上传
+        var load;
+        layui.upload({
+            url: '{@url:app/mADs/upload/upload}',
+            before: function() {
+                load = layer.load();
+            },
+            success: function(res) {
+                layer.close(load);
+                if (res.status == 0) {
+                    layer.msg(res.msg, {
+                        icon: 2
+                    });
+                } else {
+                    layer.msg(res.msg, {
+                        icon: 1
+                    });
+                    var path = res.data.path;
+                    $('input[name="path"]').val(path);
+                    $('.m-upload-img img').attr('src', path);
+                }
+                console.log(res); //上传成功返回值，必须为json格式
+            }
+        });
+
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            console.log(data.field);
+            layer.load();
+            $.post("{@url:app/mADs/manage/add}", data.field, function(res) {
+                res = JSON.parse(res);
+                layer.msg(res.msg);
+                if(res.status){
+                    location.href="{@url:app/mADs/manage/run?type_id=$type_id}";
+                }
+            });
+            return false;
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -4,35 +4,122 @@
 <head>
     <template source='TPL:admin.common.head' />
     <template source='SRC:extensions.mADs.template.common.m_head' />
+    <style>
+    .m-type-select {
+        max-width: 1200px;
+    }
+    
+    .m-type-select>div {
+        float: left;
+        width: calc( 80% - 36px);
+    }
+    
+    .m-type-select>a {
+        float: left;
+    }
+
+    .m-manage-img{
+        max-height: 100px;
+        max-width: 200px;
+    }
+    </style>
 </head>
 
 <body>
-
     <div class="wrap">
-    <template source='SRC:extensions.mADs.template.common.m_nav' />
-
+        <template source='SRC:extensions.mADs.template.common.m_nav' />
+        <!-- 类型选择 -->
         <div>
-            <form class="layui-form layui-form-pane" action="">
+            <form class="layui-form layui-form-pane m-type-select" action="">
                 <div class="layui-form-item">
                     <label class="layui-form-label">类型</label>
                     <div class="layui-input-block">
                         <select lay-verify="required">
                             <option value="">请先选择广告类型</option>
                             <!--# foreach($types as $type){ #-->
-                                <option value="{$type['id']}">{$type['name']}</option>
+                            <option value="{$type['id']}">{$type['name']}-{$types_option[$type['type']]}-{$open_types[$type['open_type']]}</option>
                             <!--# } #-->
                         </select>
                     </div>
                 </div>
+                <a href="{@url:app/mADs/manage/add?type_id=$type_id}" class="layui-btn">新增</a>
             </form>
         </div>
+        <!-- 类型选择end -->
+        <!--# if($type_id){ #-->
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>标题</th>
+                    <!--# if($selected_type['type']==4){ #-->
+                    <th>脚本代码</th>
+                    <!--# } #-->
+                    <!--# if($selected_type['type']==2||$selected_type['type']==3){ #-->
+                    <th>窗口标题</th>
+                    <!--# } #-->
+                    <!--# if($selected_type['type']==3){ #-->
+                    <th>简介</th>
+                    <!--# } #-->
+                    <!--# if($selected_type['type']!=4){ #-->
+                    <th>链接</th>
+                    <th>图片</th>
+                    <!--# } #-->
+                    <th>点击次数</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--# foreach($data as $v){ #-->
+                <tr>
+                    <td>{$v['title']}</td>
+                    <!--# if($selected_type['type']==4){ #-->
+                    <td>{$v['script']}</td>
+                    <!--# } #-->
+                    <!--# if($selected_type['type']==2||$selected_type['type']==3){ #-->
+                    <td>{$v['window_title']}</td>
+                    <!--# } #-->
+                    <!--# if($selected_type['type']==3){ #-->
+                    <td>{$v['description']}</td>
+                    <!--# } #-->
+                    <!--# if($selected_type['type']!=4){ #-->
+                    <td><a href="{$v['link']}" target="_blank">{$v['link']}</a></td>
+                    <td><img class="m-manage-img" src="{$v['imgpath']}" alt=""></td>
+                    <!--# } #-->
+                    <td>{$v['click']}</td>
+                    <td>
+                        <a href="{@url:app/mADs/manage/edit?id=$v['id']}" class="layui-btn edit">编辑</a>
+                        <a href="{@url:app/mADs/manage/delete?id=$v['id']}" class="layui-btn layui-btn-danger delete">删除</a>
+                    </td>
+                </tr>
+                <!--# } #-->
+            </tbody>
+        </table>
+        <!--# } #-->
     </div>
     <template source='TPL:admin.common.footer' />
     <script type="text/javascript">
-    
-    var type_id= <!--# echo ($type_id ? $type_id : 0 ); #--> ;
+    var type_id = <!--# echo ($type_id ? $type_id : 0 ); #--> ;
     $('select option').removeAttr("selected");
-    $('select option[value="'+type_id+'"]').attr("selected","");
+    $('select option[value="' + type_id + '"]').attr("selected", "");
+
+    $(".delete").click(function() {
+        var url = $(this).attr("href");
+        layui.use('layer', function() {
+            layer.confirm('确认删除？', {
+                btn: ['确认', '取消'] //按钮
+            }, function() {
+                layer.msg('删除中，请稍候', {icon: 2,time:0});
+                $.post(url, '', function(res) {
+                    res = JSON.parse(res);
+                    layer.msg(res.msg,{icon:1});
+                    if (res.status) {
+                        location.href = "{@url:app/mADs/manage/run?type_id=$type_id}";
+                    }
+                });
+            }, function() {});
+        });
+        return false;
+    })
 
     layui.use('form', function() {
         var form = layui.form();
@@ -40,7 +127,7 @@
         //监听提交
         form.on('select', function(data) {
             layer.load();
-            location.href="?m=app&app=mADs&c=manage&a=run&type_id="+data.value;
+            location.href = "?m=app&app=mADs&c=manage&a=run&type_id=" + data.value;
         });
     });
     </script>

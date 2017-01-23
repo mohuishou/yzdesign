@@ -34,6 +34,12 @@ class App_MADs_TypeDao extends PwBaseDao {
         return $smt->getValue(array());
     }
 
+    public function getAll(){
+        $sql = $this->_bindSql('SELECT * FROM %s  ORDER BY id desc', $this->getTable());
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->queryAll(array());
+    }
+
     public function getList($limit, $offset ,$where=""){
         $sql = $this->_bindSql('SELECT * FROM %s WHERE 1 %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
         $smt = $this->getConnection()->createStatement($sql);

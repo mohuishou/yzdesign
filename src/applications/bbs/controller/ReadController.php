@@ -228,7 +228,7 @@ class ReadController extends PwBaseController {
 		Wind::import('SRV:design.bo.PwDesignPageBo');
     	$bo = new PwDesignPageBo();
     	$pageid = $bo->getPageId('bbs/read/run', '帖子阅读页', $fid);
-		$pageid && $this->forward->getWindView()->compileDir = 'DATA:compile.design.'.$pageid;
+		if($pageid) $this->forward->getWindView()->compileDir ='DATA:compile.design.'.$pageid;
 		return true;
 	}
 

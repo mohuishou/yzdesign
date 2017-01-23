@@ -21,10 +21,10 @@ class App_MADs_ItemDao extends PwBaseDao {
 	/**
 	 * table fields
 	 */
-	protected $_dataStruct = array('id',"title","link","imgpath","description","window_title","click","script","created_time");
+	protected $_dataStruct = array('id',"title","link","imgpath",'type_id',"description","window_title","click","script","created_time");
 
     public function getList($where, $limit, $offset){
-        $sql = $this->_bindSql('SELECT * FROM %s WHERE 1 %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
         $smt = $this->getConnection()->createStatement($sql);
         return $smt->queryAll(array());
     }
@@ -36,6 +36,8 @@ class App_MADs_ItemDao extends PwBaseDao {
     }
 
 	public function add($fields) {
+        isset($fields['click']) || $fields['click']=0;
+        isset($fields['created_time']) || $fields['created_time']=time();
 		return $this->_add($fields, true);
 	}
 	
