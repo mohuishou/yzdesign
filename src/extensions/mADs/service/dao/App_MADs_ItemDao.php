@@ -29,8 +29,14 @@ class App_MADs_ItemDao extends PwBaseDao {
         return $smt->queryAll(array());
     }
 
+    public function getByTypeId($type_id){
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE type_id = %s  ORDER BY id desc', $this->getTable(), $type_id);
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->queryAll(array());
+    }
+
     public function countByWhere($where){
-        $sql = $this->_bindSql('SELECT COUNT(*) AS count FROM %s WHERE 1 %s ', $this->getTable(), $where);
+        $sql = $this->_bindSql('SELECT COUNT(*) AS count FROM %s WHERE  %s ', $this->getTable(), $where);
         $smt = $this->getConnection()->createStatement($sql);
         return $smt->getValue(array());
     }

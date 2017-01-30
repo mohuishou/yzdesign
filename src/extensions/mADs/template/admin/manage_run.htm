@@ -79,7 +79,7 @@
                     <td>{$v['window_title']}</td>
                     <!--# } #-->
                     <!--# if($selected_type['type']==3){ #-->
-                    <td>{$v['description']}</td>
+                    <td style="max-width: 300px;overflow: hidden;max-height: 100px;">{$v['description']}</td>
                     <!--# } #-->
                     <!--# if($selected_type['type']!=4){ #-->
                     <td><a href="{$v['link']}" target="_blank">{$v['link']}</a></td>
@@ -87,7 +87,7 @@
                     <!--# } #-->
                     <td>{$v['click']}</td>
                     <td>
-                        <a href="{@url:app/mADs/manage/edit?id=$v['id']}" class="layui-btn edit">编辑</a>
+                        <a href="{@url:app/mADs/manage/edit?ad_id=$v['id']}" class="layui-btn edit">编辑</a>
                         <a href="{@url:app/mADs/manage/delete?id=$v['id']}" class="layui-btn layui-btn-danger delete">删除</a>
                     </td>
                 </tr>

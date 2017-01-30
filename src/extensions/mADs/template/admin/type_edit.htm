@@ -12,8 +12,8 @@
                 <fieldset class="layui-elem-field">
                     <legend>编辑广告类型</legend>
                     <div class="layui-field-box">
-                        <div class="layui-form-item">
-                            <label  class="layui-form-label">类型名称</label>
+                        <div onclick="disabledInput()" class="layui-form-item">
+                            <label   class="layui-form-label">类型名称</label>
                             <div class="layui-input-block">
                                 <input id="name123"  disabled type="text" name="name" required  lay-verify="required" placeholder="请输入类型名称" value="{$data['name']}" autocomplete="off" class="layui-input">
                             </div>
@@ -49,7 +49,12 @@
     </div>
     <script>
         init({$data['type']},{$data['open_type']});
-        
+        function disabledInput(){
+            layer.msg("类型名称禁止修改！",{
+                icon:2,
+                time:1000
+            });
+        }
         function init(type,open_type) {
             $("#m-type input").removeAttr("checked");
             $('#m-type input[value="'+type+'"]').attr("checked",true);

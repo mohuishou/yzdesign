@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:admin.common.head' />
+</head>
+<body>
+<div class="wrap">
+	<div class="nav">
+		<ul class="cc">
+			<li><a href="{@WindUrlHelper::createUrl('app/yunqian/manage/run')}">签到设置</a></li>
+			<li ><a href="{@WindUrlHelper::createUrl('app/yunqian/level/run')}">签到等级</a></li>
+			<li class="current"><a href="{@WindUrlHelper::createUrl('app/yunqian/log/run')}">签到日志</a></li>
+			<li><a href="{@WindUrlHelper::createUrl('app/yunqian/cache/run')}">缓存管理</a></li>
+		</ul>
+	</div>
+	 <SCRIPT>
+	 function SelAll(theForm){
+		for ( i = 0 ; i < theForm.elements.length ; i ++ )
+		{
+			if ( theForm.elements[i].type == "checkbox" && theForm.elements[i].name != "SELALL" )
+			{
+				theForm.elements[i].checked = ! theForm.elements[i].checked ;
+			}
+		}
+}
+</SCRIPT>
+	<div class="h_a">签到记录</div>
+	<form class="J_ajaxForm" action="{@WindUrlHelper::createUrl('app/yunqian/log/del')}" method="post">
+  	<div class="table_full">
+  		<table width="100%" style="margin-bottom:5px;">
+											<tr>
+												<td width="20"><input type="checkbox" name="SELALL" value="1" onClick="SelAll(this.form)"  title="全选"></td>
+												<td width="51">ID</td>
+												<td width="78">用户名</td>
+												<td width="83">用户ID</td>
+												<td width="400">签到内容</td>
+												<td width="190">签到日期</td>
+												<td width="191">签到奖励(<font color="#FF0000">{$credit_name}</font>)</td>
+											    <td width="162">&nbsp;</td>
+											</tr>
+    <!--# foreach($list as $k => $v){
+	$content=$v[content]?"$v[content]":"这人真懒什么都没写";
+	 #-->
+										<tr>
+				                            <td><input type="checkbox" class="J_check" name="idll[]" value="{$v[id]}" ></td>
+											<td>{$v[id]}</td>
+											<td>{$v[author]}</td>
+											<td>{$v[uid]}</td>
+											<td>{$content}</td>
+											<td>{@Pw::time2str($v[times])}</td>
+											<td>{$v[money]}{$credit_unit}</td>
+										    <td>&nbsp;</td>
+										</tr>
+	<!--# } #-->
+  		</table>
+        <page tpl="TPL:common.page" page="$page" per="$perpage" count="$total" url="app/yunqian/log/run"/> 
+  	</div>
+	<div class="">
+		<div class="btn_wrap_pd">
+			<button class="btn btn_submit J_ajax_submit_btn" type="submit" >删除</button>
+		</div>
+	</div>
+	</form>
+</div>
+<template source='TPL:admin.common.footer' />
+</body>
+</html>

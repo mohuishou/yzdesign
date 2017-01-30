@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mdemand.template.common.m_head' />
+    <style type="text/css">
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+    
+   
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 筛选 -->
+        <div>
+            <form class="layui-form layui-form-pane m-select" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">筛选</label>
+                    <div class="layui-input-block">
+                        <select name="status" lay-verify="required">
+                            <option value="">请选择状态</option>
+                            <option value="-1">已撤销</option>
+                            <option value="0">联系中</option>
+                            <option value="1">对接成功</option>
+                        </select>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        <!-- 筛选 -->
+        <table class="layui-table">
+            <thead>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>qq</th>
+                <th>空间性质&面积</th>
+                <th>状态</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a href="http://www.layui.com" class="layui-btn  layui-btn-small layui-btn-warm">撤销</a>
+                        <!-- <a href="http://www.layui.com" class="layui-btn layui-btn-danger">删除</a> -->
+                        <a href="http://www.layui.com" class="layui-btn layui-btn-primary layui-btn-small">联系中</a>
+                        <a href="http://www.layui.com" class="layui-btn layui-btn-small">对接成功</a>
+                        <a href="http://www.layui.com" class="layui-btn layui-btn-normal layui-btn-small">查看详情</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+    layui.use('form', function() {
+        var form = layui.form();
+
+        //监听提交
+        form.on('select', function(data) {
+            layer.load();
+            location.href = "?m=app&app=mADs&c=manage&a=run&type_id=" + data.value;
+        });
+    });
+    </script>
+</body>
+
+</html>

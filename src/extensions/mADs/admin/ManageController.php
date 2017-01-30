@@ -114,25 +114,53 @@ class ManageController extends AdminBaseController {
         $this->setTemplate("");
     }
 
-//    public function editAction(){
-//        $token=$this->getInput("csrf_token");
-//        $id=$this->getInput("id");
-//        if(!$token){
-//            $data=$this->_typeDao()->get($id);
-//            $this->setOutput($data,"data");
-//            $this->setTemplate("type_edit");
-//        }else{
-//            $data['name']=$this->getInput('name');
-//            $data['type']=$this->getInput('type');
-//            $data['open_type']=$this->getInput('open_type');
-//            $res=$this->_typeDao()->add($data);
-//            if($res){
-//                $this->success("新增成功!",$data);
-//            }else{
-//                $this->error("新增失败！");
-//            }
-//        }
-//    }
+    public function editAction(){
+        $token=$this->getInput("csrf_token");
+        $type_id=$this->getInput("type_id");
+        $ad_id=$this->getInput("ad_id");
+        if(!$token){
+            $ad_data=$this->_itemDao()->get($ad_id);
+            $this->setOutput($ad_data,'data');
+            $type_id || $type_id=$ad_data['type_id'];
+            $types=$this->_typeDao();
+            $this->setOutput($type_id,"type_id");
+            if($type_id){
+                $type=$this->_typeDao()->get($type_id);
+            }else{
+                $type='';
+            }
+            $this->setOutput($type,"selected_type");
+            $type_data=$types->getAll();
+            $this->setOutput($type_data,"types");
+            $this->setOutput([
+                1=>"图片广告",
+                2=>"中央弹窗广告",
+                3=>"右下角弹窗广告",
+                4=>"广告代码"
+            ],"types_option");
+            $this->setOutput([
+                1=>"新窗口",
+                2=>"当前窗口"
+            ],"open_types");
+
+
+            $this->setTemplate("manage_edit");
+        }else{
+            $this->setTemplate('');
+            $data['link']=$this->getInput('link');
+            $data['imgpath']=$this->getInput('path');
+            $data['type_id']=$type_id;
+            $data['description']=$this->getInput('description');
+            $data['window_title']=$this->getInput('window_title');
+            $data['script']=$this->getInput('script');
+            $res=$this->_itemDao()->update($ad_id,$data);
+            if($res){
+                $this->success("更新成功!",$data);
+            }else{
+                $this->error("更新失败！");
+            }
+        }
+    }
 
 
 }

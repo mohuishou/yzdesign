@@ -1,10 +1,11 @@
 <!--.main-wrap,#main End-->
-<div class="tac">
-<advertisement id='Site.Footer1' sys='1'/><br />
-<advertisement id='Site.Footer2' sys='1'/>
-</div>
 <div class="footer_wrap">
 	<div class="footer">
+    <!-- 全局footer图片广告 -->
+    <div style="width: 100%;max-height: 200px;">
+      <component class='EXT:mADs.service.srv.ADHook' method='ads' args='4'/>
+    </div>
+    <!-- 全局footer图片广告 -->
 		<pw-drag id="footer_segment"/>
 		<div class="bottom">
 		<!--#
@@ -18,12 +19,12 @@
 		<p>技术支持 <a href="http://www.lailin.xyz/" target="_blank" rel="nofollow">Mohuishou</a> &copy;20015-<!--#echo date('Y');#--> <a href="#" target="_blank" rel="nofollow">{@G:seo.title}</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">{@Wekit::C('site','info.icp')}</a></p>
 		<p>{@Wekit::C('site','statisticscode')|html}</p>
 	</div>
-	<advertisement id='Site.FloatLeft' sys='1'/>
-	<advertisement id='Site.FloatRight' sys='1'/>
-	<advertisement id='Site.PopupNotice' sys='1'/>
 	<div id="cloudwind_common_bottom"></div>
 	<hook name="footer"/>
 </div>
+
+<!-- 全局右下角广告 -->
+<component class='EXT:mADs.service.srv.ADHook' method='ads' args='2'/>
 
 <!--返回顶部-->
 <a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>

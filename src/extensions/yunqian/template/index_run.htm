@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:common.head' load='true' />
+<link rel="stylesheet" type="text/css" href="{@G:url.extres}/yunqian/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="{@G:url.extres}/yunqian/css/come.css"/>
+<meta charset="utf-8">
+</head>
+<body>
+<!--# 
+  $punchService = Wekit::load('EXT:yunqian.service.srv.PwPunchService');
+  list($punchOpen,$punchFriendOpen) = $punchService->getPunchConfig();
+  //if ($punchOpen) {
+      list($punchStatus,$punchButton,$punchData) = $punchService->getPunch();
+      $punchStatus = $punchStatus ? '' : 'punch_widget_disabled';
+      list($monthDay,$weekDay) = $punchService->formatWeekDay(Pw::getTime());
+      $punchStatusTips = !$punchStatus ? '今日还未签到' : '今日已签到，记得明天再来哦';
+#-->
+<div class="wrap">
+	<template source='TPL:common.header' load='true' />
+	<div class="main_wrap">
+<div id="th-subheader">
+    <div class="custom cc">
+        <div class="subheader-content">
+            <p class="subheader-text cc">
+                <span class="fl"> 签到统计  </span>
+                <span class="fr">
+                     今日签到之星：{$infos['newmember']} &nbsp; 历史签到最高人数：{$infos['higholnum']}人
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="body_content">
+    <div class="lineB cc">
+        <div id="J_punch_main_tip" class="fl dn qbtn">
+		<!--# if ($punchData) { #-->
+			<div class="tips">
+				<div class="core_arrow_top"><em></em><span></span></div>
+				{$punchData['username']}已帮你领取<span class="red">{$punchData['cNum']}</span>{$punchData['cUnit']}{$punchData['cType']}
+			</div>
+		<!--# } #-->
+		</div>
+        <div class="qdleft" id="J_punch_widget">
+            <!--# if (!$punchStatus) { #-->
+            <a class="vibtn" href="javascript:" data-tips="{@url:app/yunqian/punch/punchtip}"  data-uri="{@url:app/yunqian/punch/punch}" id="J_punch_yunqian" ></a>
+            <!--# } else { #-->
+            <span class="vibtn btnvisted"></span>
+            <!--# } #-->
+                    <div class="paiming cc">
+                        <!--# if (!$punchStatus) { #-->
+                        <div class="font" id="qdfonts"> <a href="{@url:space/index/run?uid=$loginUser->uid}" class="author">{$loginUser->username}</a> , 您今日尚未签到 </div>
+                        <!--# } else { #-->
+                        <div class="font"> 今日签到排名: </div>
+                            <div class="pics J_numpic clearfix J_animation">
+                                <span class="snum">{$qduser['dtop']}</span>
+                            </div>
+                        <!--# } #-->
+                    </div>
+        </div>
+        <div class="qdright">
+            <div class="content" <!--# if ($punchStatus) { #-->style="padding-top: 25px !important; padding-left:0px !important"<!--# } #-->>
+                <!--# if (!$punchStatus) { #-->
+                <ul class="sn-face"> 
+                <!--# foreach ($leidb as $value) { #-->   
+                    <li class="q" id="{$value['id']}" onMouseOver="showMenu({'ctrlid':this.id, 'pos':'21'});">
+                    <a href="javascript:"><img src="{@G:url.extres}/yunqian/images/2/{$value['id']}.gif"><input id="{$value['id']}_s" type="radio" name="qdxq" value="{$value['id']}" style="display:none"></a></li>
+                <!--# } #-->
+                </ul>
+            <div class="ml10 shuo">
+                <span id="qddiary1" class="fl"><span class="mr10">今天我想说</span>
+                <input type="text" name="qddiary" class="input input_wb mr20" value=""/>最多100个中文字数</span>
+                <span id="qddiary2" class="fl" style="display:none;" >
+                <span class="mr10">今天我想说</span>
+                <select id="diary_input2" name="lrqddiary" class="mr10">
+                <option value=''>懒人快速选择</option>
+                    <!--# foreach ($lrbdb as $value) { #-->
+                          <option value="{$value}">{$value}</option>
+                    <!--# } #-->
+                </select>
+                </span>
+                <span id="qddiary3" class="fl" style="display:none;" >我什么都不想说！</span>
+                <div class="shuo_radio">
+                <label><input type="radio" name="qdmode" value="1" checked="checked">自己填写</label>
+                <label><input type="radio" name="qdmode" value="2" >快速选择</label>
+                <label><input type="radio" name="qdmode" value="3" >我不想说</label>
+              </div>
+          </div>
+                <div class="weather_p" style="right: 3px !important;">
+                    <div class="con">
+                        {$infos['dqian']} <span> 人 </span>
+                    </div>
+                </div>           
+                <!--# } else { #-->
+                <h3 class="mainCon">
+                    <div class="user">
+                        <img class="J_avatar" src="{@Pw::getAvatar($loginUser->uid, 'small')}">
+                        <a href="{@url:space/index/run?uid=$loginUser->uid}" class="author">{$loginUser->username}</a>
+                        {$punchStatusTips}
+                    </div>
+                    <div class="jingju J_xyline">
+                        <span id="bigpower" class="xyart J_xyfont"></span>
+                    </div>
+                </h3>                
+                <ul class="countqian cc">
+                    <li>
+                        <h4> 本月签到 </h4>
+                        <p>
+                           <b class="pics" style="height:25px;"><span class="snum">{$qduser['mday']}</span></b>  
+                           <b> 天 </b>
+                        </p>
+                    </li>
+                    <li>
+                        <h4> 签到等级 </h4>
+                        <p class="lvgrade">
+                           <input type="hidden" class="hidnum" id="lxlevel" value="1">
+                           <b class="pics" style="height:25px;"> <span class="snum">{$qduser['dj']}</span></b> 
+                        </p>
+                    </li>
+                    <li>
+                        <h4> 积分奖励 </h4>
+                        <p>
+                           <input type="hidden" class="hidnum" id="lxreward" value="4">
+                           <b class="pics" style="height:25px;"><span class="snum">{$qduser['money']}</span></b>
+                           <b> {$creditBo->cType[$config[credit]]} </b>
+                        </p>
+                    </li>
+                    <li>
+                        <h4> 总天数 </h4>
+                        <p>
+                            <input type="hidden" class="hidnum" id="lxtdays" value="2">
+                            <b class="pics" style="height:25px;"><span class="snum">{$qduser['day']}</span></b>
+                            <b> 天 </b>
+                        </p>
+                    </li>
+                </ul>
+                <div class="weather_p">
+                    <div class="con">
+                        {$infos['dqian']} <span> 人 </span>
+                    </div>
+                </div> 
+                <!--# } #-->               
+            </div>
+        </div>
+    </div>
+    <div class="lineC cc">
+        <div class="lineC_left">
+            <div class="left_tit">
+                <ul class="paihang J_phbtn cl" id="rankselect">
+                    <li class="<!--#if(!$args['type']){ echo 'active'; }#-->" ><a href="{@url:app/yunqian/index/run}">今日排行</a></li>
+                    <li class="<!--#if($args['type']=='month'){ echo 'active'; }#-->"><a href="{@url:app/yunqian/index/run?type=month}">本月排行</a></li>
+                    <li class="<!--#if($args['type']=='zong'){ echo 'active'; }#-->"><a href="{@url:app/yunqian/index/run?type=zong}">总天数排行</a></li>
+                    <li class="level-tip"><a href="javascript:" class="J_levelts">签到等级说明</a></li>
+                </ul>
+            </div>
+            <div class="arr_detail dis">
+            <table>
+                  <tr>
+                                <th>用户名</th>
+                                <th>今日心情</th>
+                                <th>总天数</th>
+                                <th>月天数</th>
+                                <th>目前等级</th>
+                                <th>总奖励[{$creditBo->cType[$config[credit]]}]</th>
+                                <th>签到内容</th>
+                            </tr>
+<!--#
+$i=0;
+foreach($list as $k=>$value){
+$i++;
+if($i<4){ $is='top d'.$i;} else {$is='';}
+#-->
+                                 <tr>
+                                    <td>
+                                        <a href="{@url:space/index/run?uid=$value['uid']}" target="_blank">{$value['author']}</a>
+                                    </td>
+                                    <td style="text-align:center"><img style="width: 28px; display: inline-block;" src="{@G:url.extres}/yunqian/images/2/{@Pw::stripWindCode($value['qdxq'])}.gif"/></td>
+                                    <td>{$value['day']}</td>
+                                    <td>{$value['mday']}</td>
+                                    <td>[LV.{$value['dj']}]</td>
+                                    <td>{$value['money']}</td>
+                                    <td>{@Pw::substrs(Pw::stripWindCode($value['content'],true),15)}</td>
+                                </tr><!--# } #-->  
+            </table>
+            </div>
+        </div>
+        <div class="lineC_right">
+        <h3 class="tit">签到公告</h3>
+        <div style="padding:15px;">
+            1、每日奖励：会员每日签到奖励<font color="#FF0000">{$config[money]}</font>{$creditBo->cType[$config[credit]]}{$creditBo->cUnit[$config[credit]]}，
+            每月满勤签到<span class="red">{$config['sum']}天</span>额外赠送<font color="#FF0000">{$config[sum_money]}</font>{$creditBo->cType[$config[credit]]}{$creditBo->cUnit[$config[credit]]}。<br />
+            2、签到时间：{$config[time_sta]}：00－{$config[time_end]}：00　（每天只能签到<span class="red">1</span>次）。<br />
+            3、操作方法：选择今日心情选项，填写心情日记（可选），最后给点击 开始签到 按钮即可。<br />  
+        </div>
+        </div>        
+        <div class="lineC_right" style="margin-top:10px;">
+        <h3 class="tit">今日心情TOP</h3>
+        <div class="face-rank">
+            <ul>
+            <!--# foreach ($leiCount as $va) { #-->   
+            <li><em>{$leidb[$va['qdxq']]['title']}</em><i>{$va['count']} 人</i></li>
+            <!--# } #-->   
+            </ul>
+        </div>
+        </div>        
+    </div>
+</div>
+</div> 
+</div>
+<div class="core_pop_wrap" id="J_level_pop" style="display:none;">
+<div class="core_pop">
+	<div style="width:570px;">
+	<div class="pop_top J_drag_handle">
+		<a href="#" class="pop_close" id="J_level_pop_close">关闭</a>
+		<strong>签到等级说明</strong>
+	</div>
+	<div class="pop_cont" style="padding:3px 15px 18px;">
+		<table class="list" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr width="50%">
+            	<td>签到名冠</td>
+            	<td>签到等级</td>
+           	 	<td class="time" width="30%">签到天数要求</td>
+            </tr>
+        </thead>
+        <tbody>
+<!--#
+foreach($Leveldb as $key=>$val){
+#-->
+    <tr><td>{$val['title']}</td><td>[LV.{$val['dj']}]</td><td class="time">≥{$val['hits']} 天</td></tr>
+<!--# }#-->	
+        </tbody>
+        </table>
+	</div>
+	</div>
+</div>
+</div>
+<template source='TPL:common.footer' load='true' />
+</div>
+<script>
+//var initialized= '';
+Wind.use('jquery', 'global', 'draggable', 'dialog',function(){
+	var snface=$('.sn-face');
+	snface.find("li.q").on('click',function(){
+		var sId = $(this).attr('id');
+   	 	var oImg = document.getElementsByTagName('li');
+   	 	$("li.q").each(function(){
+     		if ($(this).attr('id') == sId ) {
+				$("#"+$(this).attr('id')+'_s').attr("checked",true);
+				$(this).addClass('active');
+		 	 } else {
+				 $(this).removeClass('active');
+				 $("#"+$(this).attr('id')+'_s').attr("checked",false);
+		  	}
+  		});
+	});
+	var shuo_radio=$(".shuo_radio");
+	shuo_radio.on('click', 'input[name=qdmode]', function(){
+		var $this=$(this),modeId=$this.val();
+		$("input[name='qddiary']").val('');
+		$("input[name='qdmode']").each(function(){
+     		if ($(this).val() == modeId ) {
+				$(this).attr("checked",true);
+				$("#qddiary"+$(this).val()).show();
+		 	 } else {
+				$(this).attr("checked",false);
+				$("#qddiary"+$(this).val()).hide();
+		  	}
+  		});
+	});
+	//查看登记
+	var level_pop = $('#J_level_pop');
+	$('.paihang').on('click', 'a.J_levelts', function(e){
+		e.preventDefault();
+		var $this = $(this),
+				icon = $this.children('img');
+		//common.js
+		popPos(level_pop);
+
+		level_pop.draggable( { handle : '.J_drag_handle'} );
+
+	});
+	//关闭
+	$('#J_level_pop_close').on('click', function(e){
+		e.preventDefault();
+		level_pop.hide();
+	});
+	Wind.js('{@G:url.extres}/yunqian/js/common.js?PAu', '{@G:url.extres}/yunqian/js/yunpunch.js?PAu');
+});
+function popPos(wrap){
+	var ie6 = false,
+			pos = 'fixed',
+			top,
+			win_height = $(window).height(),
+			wrap_height = wrap.outerHeight();
+
+	if($.browser.msie && $.browser.version < 7) {
+		ie6 = true;
+		pos = 'absolute';
+	}
+
+	if(win_height < wrap_height) {
+		top = 0;
+	}else{
+		top = ($(window).height() - wrap.outerHeight())/2;
+	}
+
+	wrap.css({
+		position : pos,
+		top : top + (ie6 ? $(document).scrollTop() : 0),
+		left : ($(window).width() - wrap.innerWidth())/2
+	}).show();
+}
+</script>
+</body>
+</html>

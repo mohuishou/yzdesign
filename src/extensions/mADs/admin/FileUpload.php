@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * 文件上传类
+ * Class FileUpload
+ * @author mohuishou <1@lailin.xyz>
+ */
 class FileUpload{
     private $path = "./uploads";          //上传文件保存的路径
     private $allowtype = array('jpg','gif','png'); //设置限制上传文件的类型

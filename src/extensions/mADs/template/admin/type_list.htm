@@ -84,9 +84,11 @@
                 layer.msg('删除中，请稍候', {icon: 2,time:0});
                 $.post(url, '', function(res) {
                     res = JSON.parse(res);
-                    layer.msg(res.msg,{icon:1});
                     if (res.status) {
+                        layer.msg(res.msg,{icon:1});
                         location.href = "{@url:app/mADs/type/run}";
+                    }else{
+                        layer.msg(res.msg,{icon:2});
                     }
                 });
             }, function() {});

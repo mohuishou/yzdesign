@@ -8,12 +8,14 @@
 </head>
 
 <body>
+    <!--首页中央弹窗广告-->
+    <component class='EXT:mADs.service.srv.ADHook' method='ads' args='1'/>
     <pw-start/>
     <div class="wrap">
         <template source='TPL:common.header' load='true' />
         <div class="main_wrap">
             <div class="m-catelist">
-            <!--# 
+                <!--# 
             $j=0;
             foreach($cateList as $cate_id => $cate){ 
             if($j>=4) break;
@@ -29,17 +31,20 @@
                             $i=0;
                             foreach($forums as $v) {
                         #-->
-                                <!--#if($i==5 && count($forums)>6){#-->
-                                <a href="{@url:bbs/thread/run?fid=$v['fid']}">更多</a>
-                                <!--# break;}else{ #-->
-                                <a title="{$v['name']}" href="{@url:bbs/thread/run?fid=$v['fid']}">{$v['name']}</a>
-                                <!--# } #-->
+                        <!--#if($i==5 && count($forums)>6){#-->
+                        <a href="{@url:bbs/thread/run?fid=$v['fid']}">更多</a>
+                        <!--# break;}else{ #-->
+                        <a title="{$v['name']}" href="{@url:bbs/thread/run?fid=$v['fid']}">{$v['name']}</a>
+                        <!--# } #-->
                         <!--# $i++; } #-->
                     </div>
                 </div>
                 <!--# } #-->
             </div>
             <pw-tpl id="main_segment" />
+            
+
+
             <div class="forum_page">
                 <div class="bbs_info_box">
                     <span>今日：{$todayposts}</span><i></i><span>昨日：{$bbsinfo['yposts']}</span><i></i><span>最高日：{$bbsinfo['hposts']}</span><i></i><span>帖子：{$article}</span><i></i><span>会员：{$bbsinfo['totalmember']}</span><i></i><span>新会员：<a href="{@url:space/index/run?username=$bbsinfo['newmember']}" target="_blank">{$bbsinfo['newmember']}</a></span>

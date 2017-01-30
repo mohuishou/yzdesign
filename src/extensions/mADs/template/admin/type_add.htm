@@ -53,9 +53,12 @@
             //监听提交
             form.on('submit(formDemo)', function(data){
                 layer.load();
-                $.post("{@url:app/mADs/manage/add}",data.field,function (res) {
+                $.post("{@url:app/mADs/type/add}",data.field,function (res) {
                     res=JSON.parse(res);
                     layer.msg(res.msg);
+                    if(res.status){
+                        location.href="{@url:app/mADs/type/run}";
+                    }
                 });
                 return false;
             });

@@ -9,6 +9,12 @@ defined('WEKIT_VERSION') or exit(403);
 Wind::import('ADMIN:library.AdminBaseController');
 Wind::import('SRC:extensions.mADs.admin.FileUpload');
 Wind::import('SRC:extensions.mADs.admin.tJsonReturn');
+
+/**
+ * 图片上传控制器
+ * Class UploadController
+ * @author mohuishou <1@lailin.xyz>
+ */
 class UploadController extends AdminBaseController {
     use tJsonReturn;
 

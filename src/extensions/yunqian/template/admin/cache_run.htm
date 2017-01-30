@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:admin.common.head' />
+</head>
+<body>
+<div class="wrap">
+	<div class="nav">
+		<ul class="cc">
+			<li><a href="{@url:app/yunqian/manage/run}">签到设置</a></li>
+			<li><a href="{@url:app/yunqian/level/run}">签到等级</a></li>
+			<li ><a href="{@url:app/yunqian/log/run}">签到日志</a></li>
+			<li class="current"><a href="{@url:app/yunqian/cache/run}">缓存管理</a></li>
+		</ul>
+	</div>
+
+	<div class="h_a">缓存管理</div>
+  	<div class="table_full">
+  		<table width="100%" style=" margin-bottom:5px;">
+              <tr>
+                  <td width="139">签到等级</td>
+                  <td width="1446"><a href="{@url:app/yunqian/cache/doCache?act=hy&n=level}">还原</a></td>
+              </tr>       
+  		</table>
+  	</div>
+</div>
+
+<template source='TPL:admin.common.footer' />
+</body>
+</html>

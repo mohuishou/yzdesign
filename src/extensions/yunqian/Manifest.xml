@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>每日一签</name>                  			<!-- 必填 应用名称，将显示在应用列表中 -->
+		<alias>yunqian</alias>	                <!-- 必填 不可重复 应用别名，和目录包名保持一致， 用于系统唯一标识该应用，
+                                                             格式为(公司或个人名_英文别名)，例如phpwind_bank-->
+		<version>1.5.0</version>	                  		<!-- 必填 应用版本信息 -->
+		<pw-version>9.0</pw-version>                	<!-- 必填 支持的PW版本信息，多个版本用逗号分割 -->
+		<description>为了统计用户访问量和签到次数，促进社区的人与人关系。</description><!-- 可选 应用描述信息，将显示在应用列表，用来描述应用特点、案例、使用方式等 -->
+		<logo>images/icon.jpg</logo>					<!-- 可选 应用的图标地址 -->
+		<type>app</type>								<!-- 必填 应用类型，应用=>app,风格=>style -->
+		<charset>UTF-8</charset>		          		<!-- 必填 应用编码信息，标识该应用包的编码类型 -->
+		<website>http://www.huasituo.com</website>	  	<!-- 可选 应用主页信息 -->
+		<author-name>华思拓网络科技有限公司</author-name>		          		<!-- 可选 作者名称 -->
+		<author-email>89652519@qq.com</author-email>		<!-- 可选 作者email -->
+		<author-icon></author-icon>	                  	<!-- 可选 作者头像 -->
+	</application>
+	<res>res</res>
+	<inject-services>
+		<hook-name name="s_admin_menu">
+			<alias name="yunqian">
+				<class>EXT:yunqian.service.srv.PwYunQianConfigDo</class>
+				<loadway>load</loadway>
+				<method>getAdminMenu</method>
+				<description>每日一签后台菜单扩展</description>
+			</alias>
+		</hook-name>
+		<hook-name name="s_permissionCategoryConfig">
+		<alias name="yunqian">
+			<class>EXT:yunqian.service.srv.PwYunQianConfigDo</class>
+			<loadway>load</loadway>
+			<method>getPermissionCategoryConfig</method>
+			<expression></expression>
+			<description>用户组权限设置</description>
+		</alias>
+	</hook-name>
+	<hook-name name="s_permissionConfig">
+		<alias name="yunqian">
+			<class>EXT:yunqian.service.srv.PwYunQianConfigDo</class>
+			<method>getPermissionConfig</method>                 
+			<loadway>load</loadway>                 
+			<expression></expression>
+			<description>用户组权限设置</description>             
+		</alias>
+	</hook-name>
+	<hook-name name="s_PwCreditOperationConfig">
+			<alias name="yunqian">
+				<class>EXT:yunqian.service.srv.PwYunQianConfigDo</class>
+				<loadway>load</loadway>
+				<method>getCreditConfig</method>
+				<description>每日一签积分扩展</description>
+			</alias>
+		</hook-name>
+		<hook-name name="c_read_run">
+			<alias name="yunqian">
+				<class>EXT:yunqian.service.srv.threadDisplay.injector.PwThreadDisplayDoYunQianInjector</class>
+				<loadway></loadway>
+				<method>run</method>
+				<description>用户信息下</description>
+			</alias>
+		</hook-name>
+	</inject-services>
+</manifest>

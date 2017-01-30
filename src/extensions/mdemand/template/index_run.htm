@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <template source='TPL:common.head' load='true' />
+    <link rel="stylesheet" href="{@G:url.base}/src/extensions/mdemand/res/css/layui.css">
+    <style>
+    .m-mdemand {
+        height: 600px;
+    }
+    
+    .m-mdemand-title {
+        text-align: center;
+        /*background: #fff;*/
+        color: #333;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+    
+    .m-mdemand-title h2 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .m-mdemand-form {
+        width: 530px;
+        float: left;
+    }
+    
+    .m-mdemand-result {
+        width: 530px;
+        float: right;
+    }
+    
+    #m-mdemand-all {
+        height: 365px;
+    }
+    
+    #m-mdemand-all li {
+        margin-top: 5px;
+    }
+    
+    #m-mdemand-all a {
+        font-size: 17px;
+    }
+    </style>
+</head>
+
+<body>
+    <pw-start/>
+    <div class="wrap">
+        <template source='TPL:common.header' load='true' />
+        <div class="main_wrap">
+            <div class="m-mdemand">
+                <div class="m-mdemand-title">
+                    <h2>
+            			{@G:seo.title} | 设计需求提交入口
+            		</h2>
+                </div>
+                <div class="m-mdemand-form">
+                    <fieldset class="layui-elem-field">
+                        <legend>快速提交设计需求</legend>
+                        <div class="layui-field-box">
+                            <form class="layui-form layui-form-pane">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">姓名</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">手机号</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="phone" required lay-verify="phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">qq</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="qq" required lay-verify="required" placeholder="请输入qq号" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">性质&面积</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="category" required lay-verify="required" placeholder="如：家具 150平米" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">具体需求</label>
+                                    <div class="layui-input-block">
+                                        <textarea name="detail" placeholder="请输入具体需求" class="layui-textarea"></textarea>
+                                    </div>
+                                </div>
+                                <button lay-submit style="display: block;width: 100%;" type="submit" class="layui-btn layui-btn-primary">提交</button>
+                            </form>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="m-mdemand-result">
+                    <fieldset class="layui-elem-field">
+                        <legend>24小时设计成交信息</legend>
+                        <div class="layui-field-box" id="m-mdemand-all">
+                            <ul>
+                                <li>
+                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
+                                </li>
+                                <li>
+                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
+                                </li>
+                                <li>
+                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
+                                </li>
+                                <li>
+                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
+                                </li>
+                                <li>
+                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计 啦啦啦啦啦啦啦啦啦啦啦啦啦啦</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <script src="{@G:url.base}/src/extensions/mdemand/res/jquery.min.js"></script>
+        <script src="{@G:url.base}/src/extensions/mdemand/res/layui.js"></script>
+        <script type="text/javascript">
+        layui.use('form', function() {
+            var form = layui.form();
+
+            //监听提交
+            form.on('submit', function(data) {
+                var load = layer.load();
+                $.post("{@url:app/mdemand/index/add}", data.field, function(req) {
+                	req=JSON.parse(req);
+                    if(req.status){
+                        layer.msg("提交成功", {
+                            icon: 1
+                        });
+                        location.href = "{@url:app/mdemand/index/run}";
+                    }else{
+                        layer.msg("提交失败", {
+                            icon: 2
+                        });
+                        layer.close(load);
+                    }
+                    console.log(req);
+                });
+                return false;
+            });
+        })
+        $(function() {
+            var $this = $("#m-mdemand-all");
+
+            var box_h = $this.height();
+            var ul_h = $this.find("ul").height();
+
+            if ((box_h - ul_h) > 20) {
+                console.log("尚未达到滚动条件");
+                return;
+            }
+
+            var scrollTimer;
+            $this.hover(function() {
+                clearInterval(scrollTimer);
+            }, function() {
+                scrollTimer = setInterval(function() {
+                    scrollNews($this);
+                }, 2000);
+            }).trigger("mouseleave");
+
+            function scrollNews(obj) {
+                var $self = obj.find("ul");
+                var lineHeight = $self.find("li:first").height();
+                $self.animate({
+                    "marginTop": -lineHeight + "px"
+                }, 600, function() {
+                    $self.css({
+                        marginTop: 0
+                    }).find("li:first").appendTo($self);
+                })
+            }
+        })
+        </script>
+        <template source='TPL:common.footer' load='true' />
+    </div>
+    <pw-end/>
+</body>
+
+</html>

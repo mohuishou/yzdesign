@@ -218,6 +218,7 @@ a:hover {
 }
 .m-footer {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .m-footer a:hover {
   text-decoration: none;

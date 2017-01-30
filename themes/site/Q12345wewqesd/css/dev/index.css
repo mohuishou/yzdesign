@@ -29,23 +29,21 @@
   background: #ddd;
   padding-right: 3px;
   border: 1px solid #ccc;
-  border-radius: 3px;
   width: 100%;
-  height: 110px;
+  height: 90px;
   margin-bottom: 10px;
 }
 .m-catelist > div {
   width: 300px;
-  height: 90px;
+  height: 70px;
   margin: 5px 0 5px 5px;
   background: #eee;
   padding-left: 10px;
-  padding-top: 8px;
-  border-radius: 5px;
+  padding-top: 6px;
   float: left;
 }
 .m-cate-title {
-  font-size: 28px;
+  font-size: 22px;
   width: 30px;
   float: left;
   font-family: "楷体";
@@ -56,9 +54,13 @@
 	padding-left: 8px;
 	padding-top: 9px;
 }*/
+.m-forum {
+  height: 64px;
+  margin-top: 3px;
+}
 .m-forum a {
   font-size: 15px;
-  margin-top: 13px;
+  margin-top: 5px;
   color: #333;
   display: block;
   float: left;
@@ -68,5 +70,5 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  margin-left: 15px;
+  margin-left: 10px;
 }
