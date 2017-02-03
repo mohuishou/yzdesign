@@ -16,8 +16,8 @@ class IndexController extends PwBaseController {
 	
 	public function run() {
 		//获取最近20条数据
-
-        
+        $data=$this->_mdemandDao()->getNew();
+        $this->setOutput($data,'data');
 	}
 
 	public function addAction(){

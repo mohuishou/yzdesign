@@ -64,17 +64,26 @@ EOD;
     }
 
     public function createAdHtml2($ad,$ad_type){
+        $ads_open=$_COOKIE["ads_open"];
+        if($ads_open=="true"){
+            return "";
+        }
+
+        setcookie("ads_open","true",(time()+3600*7));
         return $html=<<<EOD
                     <!-- 中央弹窗 -->
                     <link rel="stylesheet" href="src/extensions/mADs/res/layer/skin/default/layer.css">
                     <script type="text/javascript">
-                    Wind.js("src/extensions/mADs/res/jquery.min.js", "src/extensions/mADs/res/layer/layer.js", function() {
-                        layer.open({
-                            type: 1,
-                            area: ['800px', '480px'],
-                            title:"{$ad['window_title']}",
-                            content: '<a style="max-width:100%;max-height:100%;overflow:hidden;display:block;" href="{$ad['link']}" target="{$this->open_type[$ad_type['open_type']]}"><img style="max-width:100%;" src="{$ad['imgpath']}" alt="{$ad['title']}"></a>'
-                        });
+                    Wind.use("jquery",function(){
+                        Wind.js("src/extensions/mADs/res/layer/layer.js", function() {
+                            layer.open({
+                                type: 1,
+                                area: ['800px', '480px'],
+                                title:"{$ad['window_title']}",
+                                content: '<a style="max-width:100%;max-height:100%;overflow:hidden;display:block;" href="{$ad['link']}" target="{$this->open_type[$ad_type['open_type']]}"><img style="max-width:100%;" src="{$ad['imgpath']}" alt="{$ad['title']}"></a>'
+                            });
+                    })
+                    
 
                     });
                     </script>
@@ -128,7 +137,8 @@ EOD;
                         }
                     </style>
                     <script>
-                        Wind.js("src/extensions/mADs/res/jquery.min.js", "src/extensions/mADs/res/layer/layer.js", function() {
+                    Wind.use("jquery",function(){
+                        Wind.js("src/extensions/mADs/res/layer/layer.js", function() {
                             layer.open({
                                 type: 1,
                                 area: ['300px', '200px'],
@@ -140,6 +150,8 @@ EOD;
                             });
 
                         });
+                    })
+                        
                     </script>
                 <!-- 右下角弹窗广告 end-->
 EOD;

@@ -10,7 +10,25 @@
         text-decoration: none;
     }
     
-   
+    .m-mdemand-icon {
+        width: 20px;
+    }
+    .m-mdemand-form{
+        display: none;
+    }
+    .m-mdemand-form button{
+        display: block;
+        width: 100%;
+    }
+
+    table{
+        text-align: center;
+    }
+
+    table.layui-table th {
+        text-align: center;
+        font-weight: bold;
+    }
     </style>
 </head>
 
@@ -29,7 +47,6 @@
                             <option value="1">对接成功</option>
                         </select>
                     </div>
-                    
                 </div>
             </form>
         </div>
@@ -41,36 +58,201 @@
                 <th>手机号</th>
                 <th>qq</th>
                 <th>空间性质&面积</th>
+                <th>设计师</th>
                 <th>状态</th>
                 <th>操作</th>
             </thead>
             <tbody>
+                <!--# foreach($data as $v){ #-->
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{$v["id"]}</td>
+                    <td>{$v["name"]}</td>
+                    <td>{$v["phone"]}</td>
+                    <td>{$v["qq"]}</td>
+                    <td>{$v["category"]}</td>
+                    <td>{$v['design_name']}</td>
+                    <td><img class="m-mdemand-icon" src="{@G:url.extres}/mdemand/images/{$v[status]}.png" alt=""></td>
                     <td>
-                        <a href="http://www.layui.com" class="layui-btn  layui-btn-small layui-btn-warm">撤销</a>
-                        <!-- <a href="http://www.layui.com" class="layui-btn layui-btn-danger">删除</a> -->
-                        <a href="http://www.layui.com" class="layui-btn layui-btn-primary layui-btn-small">联系中</a>
-                        <a href="http://www.layui.com" class="layui-btn layui-btn-small">对接成功</a>
-                        <a href="http://www.layui.com" class="layui-btn layui-btn-normal layui-btn-small">查看详情</a>
+                        <a onclick="changeStatus(-1,{$v['id']});" class="layui-btn  layui-btn-small layui-btn-warm">撤销</a>
+                        <a onclick="changeStatus(0,{$v['id']});" class="layui-btn layui-btn-primary layui-btn-small">联系中</a>
+                        <a onclick="changeStatus(1,{$v['id']});" class="layui-btn layui-btn-small">对接成功</a>
+                        <a href="{@url:app/mdemand/manage/delete?id=$v['id']}" class="layui-btn delete layui-btn-small layui-btn-danger">删除</a>
+                        <a href="{@url:app/mdemand/manage/show?id=$v['id']}" class="layui-btn layui-btn-normal layui-btn-small">查看详情</a>
                     </td>
                 </tr>
+                <!--# } #-->
             </tbody>
         </table>
+        <div id="page"></div>
+        <form class="layui-form m-mdemand-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="design_name" required lay-verify="required" placeholder="请输入设计师(公司)名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="design_type" value="1" title="设计公司">
+                    <input type="radio" name="design_type" value="2" title="设计师" checked>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="男" title="男">
+                    <input type="radio" name="sex" value="女" title="女" checked>
+                </div>
+            </div>
+            <input type="hidden" name="id" >
+            <button class="layui-btn " lay-submit lay-filter="checkedForm">立即提交</button>
+        </form>
     </div>
     <script type="text/javascript">
+    function changeStatus(status, id) {
+        if (isNaN(status) || status > 1 || status < -1) {
+            layer.msg("参数错误！", {
+                icon: 2
+            });
+            return false;
+        }
+
+        var s = status;
+        if (status == -1) {
+            s = 2;
+        }
+        var msg_status = {
+            2: "撤销",
+            0: "联系中",
+            1: "对接成功"
+        };
+
+        var msg = "您确认" + msg_status[s] + "?";
+
+        var url = "{@url:app/mdemand/manage/status}";
+
+        var param = {
+            "status": status,
+            "id": id
+        }
+
+        if (status == 1) {
+            $('.m-mdemand-form input[name="id"]').val(id);
+            layer.open({
+              type: 1,
+              shade: false,
+              title: "请完善资料", //不显示标题
+              content: $('.m-mdemand-form'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+            });
+            return;
+        }
+
+
+
+
+        layer.confirm(msg, {
+            btn: ['确认', '取消'] //按钮
+        }, function() {
+            layer.msg(msg_status[s] + '，请稍候', {
+                icon: 2,
+                time: 0
+            });
+            $.get(url, param, function(res) {
+                res = JSON.parse(res);
+                if (res.status) {
+                    layer.msg(res.msg, {
+                        icon: 1
+                    });
+                    location.href = "{@url:app/mdemand/manage/run}";
+                } else {
+                    layer.msg(res.msg, {
+                        icon: 2
+                    });
+                }
+            });
+        }, function() {});
+
+    }
+
+    $(".delete").click(function() {
+        var url = $(this).attr("href");
+        layui.use('layer', function() {
+            layer.confirm('确认删除？', {
+                btn: ['确认', '取消'] //按钮
+            }, function() {
+                layer.msg('删除中，请稍候', {
+                    icon: 2,
+                    time: 0
+                });
+                $.post(url, '', function(res) {
+                    res = JSON.parse(res);
+                    if (res.status) {
+                        layer.msg(res.msg, {
+                            icon: 1
+                        });
+                        location.href = "{@url:app/mdemand/manage/run}";
+                    } else {
+                        layer.msg(res.msg, {
+                            icon: 2
+                        });
+                    }
+                });
+            }, function() {});
+        });
+        return false;
+    })
+
+
     layui.use('form', function() {
         var form = layui.form();
+
+        var url = "{@url:app/mdemand/manage/status}";
+        form.on('submit(checkedForm)', function(data) {
+            var load=layer.load();
+            var param = data.field;
+            param.status = 1;
+            $.post(url, param, function(res) {
+                res = JSON.parse(res);
+                layer.close(load);
+                if (res.status) {
+                    layer.msg(res.msg, {
+                        icon: 1
+                    });
+                    location.href = "{@url:app/mdemand/manage/run}";
+                } else {
+                    layer.msg(res.msg, {
+                        icon: 2
+                    });
+                }
+            })
+
+            return false;
+        });
 
         //监听提交
         form.on('select', function(data) {
             layer.load();
-            location.href = "?m=app&app=mADs&c=manage&a=run&type_id=" + data.value;
+            location.href = "?m=app&app=mdemand&c=manage&a=run&status=" + data.value;
+        });
+    });
+
+    layui.use(['laypage', 'layer'], function() {
+        var laypage = layui.laypage,
+            layer = layui.layer;
+
+        laypage({
+            cont: 'page',
+            pages: "{$pages}",
+            skip: true,
+            curr: "{$curr}",
+            jump: function(obj, first) {
+                if (!first) {
+                    layer.load();
+                    url = "?m=app&app=mdemand&c=manage&a=run&page=" + obj.curr;
+                    location.href = url;
+                }
+            }
         });
     });
     </script>

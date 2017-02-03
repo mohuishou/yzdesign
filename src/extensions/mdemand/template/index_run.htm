@@ -43,7 +43,7 @@
     }
     
     #m-mdemand-all a {
-        font-size: 17px;
+        font-size: 15px;
     }
     </style>
 </head>
@@ -56,8 +56,8 @@
             <div class="m-mdemand">
                 <div class="m-mdemand-title">
                     <h2>
-            			{@G:seo.title} | 设计需求提交入口
-            		</h2>
+                        {@G:seo.title} | 设计需求提交入口
+                    </h2>
                 </div>
                 <div class="m-mdemand-form">
                     <fieldset class="layui-elem-field">
@@ -104,21 +104,29 @@
                         <legend>24小时设计成交信息</legend>
                         <div class="layui-field-box" id="m-mdemand-all">
                             <ul>
+                            <!--# foreach($data as $v){ 
+                                $des=date('Y-m-d',$v["updated_time"]);
+                                $des .=" {$v["name"]}";
+                                
+                                if($v["sex"]){
+                                    $des .="先生";
+                                }else{
+                                    $des .="女士";
+                                }
+                                if($v["design_type"]){
+                                    $des .=" 与 设计师：";
+                                }else{
+                                    $des .=" 与 设计公司：";
+                                    
+                                }
+                                $des .=$v['design_name']." 对接成功 已开始设计";
+                                
+                            #-->
                                 <li>
-                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
+                                    <a title="{$des}">{$des}</a>
                                 </li>
-                                <li>
-                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
-                                </li>
-                                <li>
-                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
-                                </li>
-                                <li>
-                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计</a>
-                                </li>
-                                <li>
-                                    <a title="aaaaaaaaaaaaaaa">2016-6-20 段先生 与 设计师：xxx 对接成功 已开使设计 啦啦啦啦啦啦啦啦啦啦啦啦啦啦</a>
-                                </li>
+                            <!--# } #-->
+                                
                             </ul>
                         </div>
                     </fieldset>
@@ -135,7 +143,7 @@
             form.on('submit', function(data) {
                 var load = layer.load();
                 $.post("{@url:app/mdemand/index/add}", data.field, function(req) {
-                	req=JSON.parse(req);
+                    req=JSON.parse(req);
                     if(req.status){
                         layer.msg("提交成功", {
                             icon: 1
