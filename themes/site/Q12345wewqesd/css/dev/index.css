@@ -29,15 +29,21 @@
   background: #ddd;
   padding-right: 3px;
   border: 1px solid #ccc;
-  width: 100%;
-  height: 90px;
+  width: 1256px;
+  height: 82px;
   margin-bottom: 10px;
 }
 .m-catelist > div {
-  width: 300px;
-  height: 70px;
-  margin: 5px 0 5px 5px;
+  width: 1150px;
   background: #eee;
+  height: 70px;
+  margin: 5px;
+  padding: 0 50px;
+}
+.m-catelist > div > div {
+  width: 265px;
+  height: 70px;
+  margin-left: 10px;
   padding-left: 10px;
   padding-top: 6px;
   float: left;
@@ -46,6 +52,7 @@
   font-size: 22px;
   width: 30px;
   float: left;
+  font-weight: bold;
   font-family: "楷体";
 }
 /* 首页版块列表  end */
@@ -70,5 +77,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  margin-left: 10px;
+  margin-left: 3px;
 }
+/* 首页设计师展示 */

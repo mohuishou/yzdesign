@@ -37,16 +37,24 @@
 	padding-right: 3px;
 	border: 1px solid #ccc;
 	// border-radius: 3px;
-	width: 100%;
-	height: (@cate-height + 20px);
+	width: @baseWidth - 4px;
+	height: (@cate-height + 12px);
 	margin-bottom: 10px;
 }
 
 .m-catelist>div{
-	width: (@baseWidth / 4)- 15px;
-	height: @cate-height;
-	margin: 5px 0 5px 5px;
+	width: @baseWidth - 110px;
 	background: #eee;
+	height: @cate-height;
+	margin: 5px;
+	padding: 0 50px;
+}
+
+.m-catelist>div>div{
+	width: (@baseWidth / 4)- 50px;
+	height: @cate-height;
+	// margin: 5px 0 5px 5px;
+	margin-left: 10px;
 	padding-left: 10px;
 	padding-top: 6px;
 	// border-radius: 5px;
@@ -57,8 +65,8 @@
 	font-size: 22px;
 	width: 30px;
 	float: left;
+	font-weight: bold;
 	font-family: "楷体";
-
 }
 
 /* 首页版块列表  end */
@@ -86,7 +94,7 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-	margin-left: 10px;
+	margin-left: 3px;
 }
 
 /* 首页设计师展示 */

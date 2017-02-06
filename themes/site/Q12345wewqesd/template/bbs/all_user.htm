@@ -20,11 +20,11 @@ $address="中国";
         <div class="m-user main_wrap">
             <div class="m-user-nav">
                 <div>
-                    <a href="{@url:bbs/allUser/run}">全部</a>
+                    <a class="<?php if(!$gid) echo 'active'; ?>" href="{@url:bbs/allUser/run}">全部</a>
                 </div>
                 <!--# foreach($groups as $group){ #-->
                 <div>
-                    <a href="{@url:bbs/allUser/run?gid=$group['gid']}">{$group['name']}</a>
+                    <a class="<?php if($gid==$group['gid']) echo 'active'; ?>" href="{@url:bbs/allUser/run?gid=$group['gid']}">{$group['name']}</a>
                 </div>
                 <!--# } #-->
             </div>

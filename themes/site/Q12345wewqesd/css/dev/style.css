@@ -42,11 +42,12 @@ $Id: style.css 28793 2013-05-24 03:55:18Z jieyin $
 body {
   color: #333;
   /*全局默认文本颜色*/
-  font: 12px/1.5 Tahoma;
+  font: 12px/1.5 "Microsoft Yahei";
   /*全局字体大小和行高*/
   background: #f4f4f4;
   /*全局背景颜色*/
   display: none;
+  font-family: "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Arial;
 }
 /*全局预留包裹，可与body组合背景效果*/
 /*全局链接*/
@@ -210,12 +211,9 @@ a:hover {
   display: block;
   width: 100%;
   z-index: 10;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 .header-2 {
   width: 100%;
-  background: #666;
-  /*导航背景*/
 }
 .header-top {
   width: 1260px;
@@ -228,10 +226,16 @@ a:hover {
   margin: auto;
   min-height: 45px;
   _height: 45px;
+  background: #666;
+  /*导航背景*/
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 /*顶部菜单效果*/
 .header_wrap .cure_menu {
   position: fixed;
+}
+.header_login {
+  margin-right: 20px;
 }
 /* 主文件样式 */
 /*主体内容结构*/

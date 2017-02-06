@@ -73,6 +73,7 @@ class AllUserController extends PwBaseController {
         $this->setOutput($this->pageNumber, 'perpage');
         $this->setOutput($count, 'count');
         $this->setOutput($users, 'users');
+        $this->setOutput($sGroup,'gid');
         $this->setOutput($groups, 'groups');
 		$this->setTemplate("all_user");
 

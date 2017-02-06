@@ -2,14 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ac199b-13e1-4635-8e99-f45af54f4d0b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/attachment/module/82/index.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpwind.zip" afterPath="$PROJECT_DIR$/phpwind.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/mADs/service/srv/ADHook.php" afterPath="$PROJECT_DIR$/src/extensions/mADs/service/srv/ADHook.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/mdemand/admin/ManageController.php" afterPath="$PROJECT_DIR$/src/extensions/mdemand/admin/ManageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/mdemand/controller/IndexController.php" afterPath="$PROJECT_DIR$/src/extensions/mdemand/controller/IndexController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/mdemand/service/dao/App_Mdemand_MdemandDao.php" afterPath="$PROJECT_DIR$/src/extensions/mdemand/service/dao/App_Mdemand_MdemandDao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/mdemand/template/admin/manage_run.htm" afterPath="$PROJECT_DIR$/src/extensions/mdemand/template/admin/manage_run.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/mdemand/template/index_run.htm" afterPath="$PROJECT_DIR$/src/extensions/mdemand/template/index_run.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/applications/bbs/controller/AllUserController.php" afterPath="$PROJECT_DIR$/src/applications/bbs/controller/AllUserController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/extensions/yunqian/template/admin/manage_run.htm" afterPath="$PROJECT_DIR$/src/extensions/yunqian/template/admin/manage_run.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/portal/local/bbs_forumlist_run/template/first_segment.htm" afterPath="$PROJECT_DIR$/themes/portal/local/bbs_forumlist_run/template/first_segment.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/allUser.css" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/allUser.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/header.css" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/header.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/index.css" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/jquery.slideBox.css" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/jquery.slideBox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/style.css" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/css/dev/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/less/header.less" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/less/header.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/less/index.less" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/less/index.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/less/style.less" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/less/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/template/bbs/all_user.htm" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/template/bbs/all_user.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/template/bbs/forum_list.htm" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/template/bbs/forum_list.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/site/Q12345wewqesd/template/common/header.htm" afterPath="$PROJECT_DIR$/themes/site/Q12345wewqesd/template/common/header.htm" />
     </list>
     <ignored path="phpwind.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,22 +49,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ADHook.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ADHook.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/extensions/mADs/service/srv/ADHook.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-              <folding>
-                <marker date="1485953933852" expanded="true" signature="2903:4493" ph="..." />
-                <marker date="1485953933852" expanded="true" signature="2942:3011" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="3051:3119" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="3161:3376" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="3427:3594" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="3643:3989" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="4031:4230" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="4266:4465" ph="{...}" />
-                <marker date="1485953933852" expanded="true" signature="4522:4555" ph="..." />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AllUserController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/applications/bbs/controller/AllUserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-639">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,7 +125,6 @@
         <option value="$PROJECT_DIR$/src/applications/space/controller/IndexController.php" />
         <option value="$PROJECT_DIR$/src/applications/bbs/controller/ForumlistController.php" />
         <option value="$PROJECT_DIR$/src/applications/bbs/controller/IndexController.php" />
-        <option value="$PROJECT_DIR$/src/applications/bbs/controller/AllUserController.php" />
         <option value="$USER_HOME$/Desktop/database.php" />
         <option value="$PROJECT_DIR$/src/extensions/mADs/service/dao/App_MADs_MADsDao.php" />
         <option value="$PROJECT_DIR$/src/extensions/mADs/template/admin/type_add_run.html" />
@@ -149,6 +157,7 @@
         <option value="$PROJECT_DIR$/src/extensions/mdemand/service/dao/App_Mdemand_MdemandDao.php" />
         <option value="$PROJECT_DIR$/src/extensions/mdemand/admin/ManageController.php" />
         <option value="$PROJECT_DIR$/src/extensions/mADs/service/srv/ADHook.php" />
+        <option value="$PROJECT_DIR$/src/applications/bbs/controller/AllUserController.php" />
       </list>
     </option>
   </component>
@@ -193,8 +202,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -505,8 +512,102 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phpwind" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -606,17 +707,18 @@
       <workItem from="1485395772340" duration="800000" />
       <workItem from="1485751761780" duration="14389000" />
       <workItem from="1485953317439" duration="667000" />
+      <workItem from="1486184971155" duration="1186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128597000" />
+    <option name="totallyTimeSpent" value="129783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18336888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18550107" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -672,13 +774,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/wekit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1709">
-          <caret line="218" column="44" selection-start-line="218" selection-start-column="44" selection-end-line="218" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/attachment/1701/m-ads/专业.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -724,13 +819,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/compile/template/Q12345wewqesd/bbs/__segment_forum_list_table.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/compile/template/Q12345wewqesd/bbs/__segment_forum_list_table.tpl" />
     <entry file="file://$PROJECT_DIR$/data/compile/template/Q12345wewqesd/bbs/forum_list.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -902,19 +991,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/extensions/mADs/service/srv/ADHook.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-          <folding>
-            <marker date="1485953933852" expanded="true" signature="2903:4493" ph="..." />
-            <marker date="1485953933852" expanded="true" signature="2942:3011" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="3051:3119" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="3161:3376" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="3427:3594" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="3643:3989" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="4031:4230" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="4266:4465" ph="{...}" />
-            <marker date="1485953933852" expanded="true" signature="4522:4555" ph="..." />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/applications/bbs/controller/AllUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-639">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
