@@ -45,6 +45,9 @@
   float: right;
   margin-left: 10px;
   margin-top: 13px;
+  width: 160px;
+  height: 90px;
+  overflow: hidden;
 }
 .m-user-thread div img {
   width: 160px;

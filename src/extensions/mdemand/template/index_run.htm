@@ -36,6 +36,7 @@
     
     #m-mdemand-all {
         height: 365px;
+        overflow: hidden;
     }
     
     #m-mdemand-all li {
@@ -166,10 +167,6 @@
             var box_h = $this.height();
             var ul_h = $this.find("ul").height();
 
-            if ((box_h - ul_h) > 20) {
-                console.log("尚未达到滚动条件");
-                return;
-            }
 
             var scrollTimer;
             $this.hover(function() {

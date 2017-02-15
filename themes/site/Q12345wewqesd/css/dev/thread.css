@@ -124,6 +124,9 @@ a:hover {
   color: #888;
   font-weight: bold;
   text-decoration: none;
+  width: 100%;
+  display: block;
+  height: 100%;
 }
 .m-panel-top,
 .m-panel-hot {
