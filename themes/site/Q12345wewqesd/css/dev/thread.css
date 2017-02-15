@@ -80,7 +80,6 @@ a:hover {
   background: #fff;
   color: #666;
   text-decoration: none;
-  border-radius: 3px;
 }
 /* 版块目录结束 */
 /* main开始 */
@@ -96,7 +95,6 @@ a:hover {
   background: #fff ;
   margin-right: 5px;
   font-weight: bold;
-  border-radius: 3px;
 }
 .m-main-header a:hover,
 .m-main-header a.active {
@@ -111,14 +109,16 @@ a:hover {
 /* mian结束 */
 /* 帖子列表开始 */
 .m-panel {
-  width: 305px;
+  width: 289px;
   background: #fff;
+  padding: 8px;
   margin-right: 10px;
   margin-top: 10px;
   float: left;
   color: #888;
   font-weight: bold;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 .m-panel a {
   color: #888;
@@ -131,7 +131,6 @@ a:hover {
 .m-panel-top,
 .m-panel-hot {
   color: #fff;
-  border-radius: 2px;
   padding: 5px;
   font-size: 10px;
 }
@@ -142,21 +141,13 @@ a:hover {
   background: #FF6666;
 }
 .m-panel .m-panel-head {
-  width: 305px;
-  height: 174.22px;
+  width: 289px;
+  height: 196.59863946px;
   overflow: hidden;
 }
 .m-panel .m-panel-head img {
-  width: 305px;
-}
-.m-panel .m-panel-head a img:hover {
-  width: 325px;
-  transition: all 1s;
-  -moz-transition: all 1s;
-  /* Firefox 4 */
-  -webkit-transition: all 1s;
-  /* Safari 和 Chrome */
-  -o-transition: all 1s;
+  width: 289px;
+  height: 202.0979021px;
 }
 .m-panel .m-panel-content {
   padding: 10px 10px 0 10px;
@@ -176,7 +167,6 @@ a:hover {
 .m-panel .m-panel-footer .m-panel-avatar img {
   width: 40px;
   height: 40px;
-  border-radius: 20px;
 }
 .m-panel .m-panel-footer .m-panel-author-name {
   margin-top: -30px;
@@ -190,7 +180,6 @@ a:hover {
   margin-top: 8px;
   background: #888;
   padding: 5px;
-  border-radius: 5px;
 }
 .m-panel .m-panel-footer .m-panel-type a {
   color: #fff;

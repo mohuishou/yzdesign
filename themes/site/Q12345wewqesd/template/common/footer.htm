@@ -42,38 +42,6 @@
                  $nav.find("ul>li.m-nav-more ul").prepend($li);
                  i++;header(i);
             }
-        }
-        $("body").fadeIn(500,function (argument) {
-        	header(0);
-        });
-        setTimeout(function () {
-        	$("#loader").fadeOut(1000,function () {
-        		$("#loader").remove();
-        	});
-        },500);
-       //  $("a").click(function () {
-       //  	if($(this).prev().attr("data-role")=="readbar" && $(this).attr("role")){
-       //  		return;
-       //  	}
-       //  	var target=$(this).attr("target");
-       //  	var aria=$(this).attr("aria-haspopup");
-       //  	var href=$(this).attr("href");
-       //  	var loader_html='<body><div style="display:none;" id="loader">'+
-							// '    <div class="loader">'+
-							// '        <div class="loading-1"></div>'+
-							// '        <div class="loading-2">Loading...</div>'+
-							// '    </div>   '+
-							// '</div></body>';
-       //  	//检查链接
-       //  	var regex =/^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?$/i
-       //  	if(regex.test(href)&& (!target || target!="_blank") && !aria){
-       //  		$("body").fadeOut(1500,function () {
-       //  		});
-       //  		// $("body").before(loader_html);
-       //  		// $("#loader").fadeIn(3000);
-       //  	}
-       //  });
-       
-       
+        }     
     });
 </script>

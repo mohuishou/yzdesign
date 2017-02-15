@@ -1,72 +1,64 @@
 @import url("config");
 
 /* 用于首页的index-panel */
-@index-panel-width: (@baseWidth / 4) - 20px;
+@index-panel-width: (@baseWidth / 4) - 36px;
 .m-index-panel{
 	width: @index-panel-width;
 	margin-left: 10px;
 	margin-right: 2px;
-	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .m-index-panel{
 	 .m-panel-head{
 		width: @index-panel-width;
-		height: (@index-panel-width * 9) / 16;
+		height: @index-panel-width / 1.47;
 		overflow: hidden;
 	}
 
 	 .m-panel-head img{
 		width: @index-panel-width;
-		border-radius: 5px;
+		height: @index-panel-width / 1.43;
 	}
 
-	 .m-panel-head a img:hover{
-		width: (@index-panel-width + 20px);
-		.transition;
-	}
 }
 
 
 /* index-panel end */
 
 /* 首页版块列表 */
-@cate-height: 70px;
+@cate-height: 56px;
 .m-catelist{
 	background: #ddd;
 	padding-right: 3px;
 	border: 1px solid #ccc;
-	// border-radius: 3px;
 	width: @baseWidth - 4px;
 	height: (@cate-height + 12px);
 	margin-bottom: 10px;
 }
 
-.m-catelist>div{
-	width: @baseWidth - 110px;
-	background: #eee;
-	height: @cate-height;
-	margin: 5px;
-	padding: 0 50px;
-}
+// .m-catelist>div{
+// 	width: @baseWidth - 110px;
+// 	background: #eee;
+// 	height: @cate-height;
+// 	margin: 5px;
+// 	padding: 0 50px;
+// }
 
-.m-catelist>div>div{
-	width: (@baseWidth / 4)- 50px;
+.m-catelist>div{
+	width: (@baseWidth / 4)- 40px;
 	height: @cate-height;
-	// margin: 5px 0 5px 5px;
-	margin-left: 10px;
+	margin-left: 20px;
 	padding-left: 10px;
-	padding-top: 6px;
-	// border-radius: 5px;
+	padding-top: 3px;
 	float: left;
 }
 
 .m-cate-title{
-	font-size: 22px;
+	font-size: 20px;
 	width: 30px;
 	float: left;
-	font-weight: bold;
-	font-family: "楷体";
+	// font-weight: bold;
 }
 
 /* 首页版块列表  end */
@@ -80,16 +72,18 @@
 .m-forum{
 	height: (@cate-height - 6x) ;
 	margin-top: 3px;
+	float: right;
+	width: 220px;
 }
 
 .m-forum  a{
-	font-size: 15px;
+	font-size: 14px;
 	margin-top: 5px;
 	color: #333;
 	display: block;
 	float: left;
 	width: 70px;
-	height: 20px;
+	height: 18px;
 	text-decoration: none;
 	text-overflow: ellipsis;
 	overflow: hidden;

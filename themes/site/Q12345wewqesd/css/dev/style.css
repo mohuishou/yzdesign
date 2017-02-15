@@ -46,7 +46,6 @@ body {
   /*全局字体大小和行高*/
   background: #f4f4f4;
   /*全局背景颜色*/
-  display: none;
   font-family: "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Arial;
 }
 /*全局预留包裹，可与body组合背景效果*/
@@ -129,7 +128,6 @@ a:hover {
 .nav ul {
   height: 45px;
   float: left;
-  padding: 0 3px 0;
 }
 .nav li {
   float: left;
@@ -153,7 +151,7 @@ a:hover {
 }
 .nav li a:hover {
   text-decoration: none;
-  background: #444;
+  background: #D81B00;
   color: #ffffff;
   transition: all 1s;
   -moz-transition: all 1s;
@@ -162,8 +160,7 @@ a:hover {
   /* Safari 和 Chrome */
   -o-transition: all 1s;
 }
-.nav li.current a,
-.nav li.current a:hover {
+.nav li.current a {
   color: #fff;
   background: #444;
 }
