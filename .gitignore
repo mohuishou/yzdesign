@@ -1,2 +1,5 @@
 data/
 attachment/
+.idea
+*.zip
+conf/database.php
