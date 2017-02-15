@@ -1295,7 +1295,7 @@ $Id: forum.css 24715 2013-02-17 03:13:14Z yanchixia $
 .reply_toolbar_wrap{
 	border:1px solid #e4e4e4;
 	margin-bottom:10px;
-	width:598px;
+	width:800px;
 }
 .reply_toolbar{
 	background:#f7f7f7;
@@ -1305,7 +1305,7 @@ $Id: forum.css 24715 2013-02-17 03:13:14Z yanchixia $
 	height:20px;
 }
 .floor_reply textarea{
-	width:590px;
+	width:810px;
 	height:90px;
 	border:0 none;
 	box-shadow:0 0 0;
