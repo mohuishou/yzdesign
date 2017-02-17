@@ -70,6 +70,10 @@ $Id: editor_content.css 24233 2013-01-23 06:36:49Z yanchixia $
 	max-width:100%;
 }
 
+.J_post_img{
+	width: 100%;
+}
+
 /*此帖已被屏蔽*/
 .editor_content .shield{
 	background:#ffffe9;
