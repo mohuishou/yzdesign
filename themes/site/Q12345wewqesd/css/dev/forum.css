@@ -1296,6 +1296,7 @@ $Id: forum.css 24715 2013-02-17 03:13:14Z yanchixia $
 	border:1px solid #e4e4e4;
 	margin-bottom:10px;
 	width:800px;
+	float: left;
 }
 .reply_toolbar{
 	background:#f7f7f7;

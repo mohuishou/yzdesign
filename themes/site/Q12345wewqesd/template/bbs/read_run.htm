@@ -11,6 +11,40 @@
 .aNext{
 	cursor:url({@theme:images}/common/next.cur),auto;right:0;
 }
+.m-icon-img img{
+	width: 16px;
+	margin: 2px 5px 0 0;
+}
+
+.m-emotion{
+	float: right;
+	width: 230px;
+	height: 190px;
+}
+
+.m-emotion ul{
+	overflow: hidden;
+    padding: 1px 0 0 1px;
+}
+.m-emotion ul li{
+	float: left;
+    border: 1px solid #e4e4e4;
+    margin-left: -1px;
+    margin-top: -1px;
+    position: relative;
+}
+
+.m-emotion ul li img{
+    max-width: 30px;
+    max-height: 30px;
+    _height: 30px;
+    _width: 30px;
+    vertical-align: middle;
+
+}
+
+
+
 </style>
 </head>
 <body>
@@ -108,8 +142,12 @@
 								<div class="reply_toolbar cc">
 									<a href="{@url:bbs/post/reply?tid=$tid}" class="reply_high">进入高级模式&gt;&gt;</a>
 									<a href="" style="display:;"  tabindex="-1" rel="nofollow" class="icon_face J_insert_emotions" data-emotiontarget="#J_reply_quick_ta">表情</a>
+									<a id="m-insert-img" href="#" class="m-icon-img" ><img src="{@theme:images}/mohuishou/img.png" alt=""></a>
 								</div>
 								<textarea name="atc_content" aria-label="快速回复" id="J_reply_quick_ta" class="J_at_user_textarea" placeholder="我也说两句"></textarea>
+							</div>
+							<div class="m-emotion">
+								<ul class="cc"><li><a href="#" class="J_emotions_item" data-sign="[s:弹]"><img src="res/images/emotion/taodoll/01.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:亲]"><img src="res/images/emotion/taodoll/15.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:委屈]"><img src="res/images/emotion/taodoll/16.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:眼镜]"><img src="res/images/emotion/taodoll/17.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:抠鼻子]"><img src="res/images/emotion/taodoll/18.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:臭美]"><img src="res/images/emotion/taodoll/19.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:无奈]"><img src="res/images/emotion/taodoll/20.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:槌子]"><img src="res/images/emotion/taodoll/21.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:哇]"><img src="res/images/emotion/taodoll/22.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:抱一抱]"><img src="res/images/emotion/taodoll/23.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:不爽]"><img src="res/images/emotion/taodoll/24.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:鼻血]"><img src="res/images/emotion/taodoll/25.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:大哭]"><img src="res/images/emotion/taodoll/14.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:吐]"><img src="res/images/emotion/taodoll/13.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:抱抱]"><img src="res/images/emotion/taodoll/02.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:晕]"><img src="res/images/emotion/taodoll/03.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:美味]"><img src="res/images/emotion/taodoll/04.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:烦]"><img src="res/images/emotion/taodoll/05.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:擦口水]"><img src="res/images/emotion/taodoll/06.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:思考]"><img src="res/images/emotion/taodoll/07.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:心跳]"><img src="res/images/emotion/taodoll/08.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:汗]"><img src="res/images/emotion/taodoll/09.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:呸]"><img src="res/images/emotion/taodoll/10.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:吐舌头]"><img src="res/images/emotion/taodoll/11.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:加油]"><img src="res/images/emotion/taodoll/12.gif"></a></li><li><a href="#" class="J_emotions_item" data-sign="[s:帅]"><img src="res/images/emotion/taodoll/26.gif"></a></li></ul>
 							</div>
 							<div class="J_reply_ft" id="J_reply_ft">
 								<button type="submit" data-tid="{$tid}" data-action="{@url:bbs/post/doreply?_getHtml=1}" class="btn btn_submit disabled" disabled="disabled" id="J_reply_quick_btn">回复</button>
@@ -160,13 +198,63 @@
 		</div>
 	</div>
 </textarea>
-
+<div style="display:none;width:300px;" class="wind_dialog core_pop_wrap" id="J_popPos_pop">
+	<div class="pop_top J_pop_handle"><strong>插入图片</strong></div>
+	<div class="pop_cont">
+		图片地址<input style="width: 100%;" type="text" placeholder="http://" id="m-insert-img-url">
+	</div>
+	<div class="pop_bottom"><button class="btn btn_submit" type="button" id="m-insert">确认</button><button class="btn btn_submit" type="button" id="J_popPos_close">关闭</button></div>
+</div>
 <script>
 var TID = '{$tid}';
 Wind.use('jquery', 'global', 'dialog', function(){
 <!--# if(!$is_design) { #-->
 	<!--# if ($loginUser->isExists()) { #-->
 	//已登录
+
+	//编辑器插入图片
+
+	//打开弹窗
+	$('#m-insert-img').on('click', function(e){
+		e.preventDefault();
+		Wind.Util.popPos($('#J_popPos_pop'));
+	});
+
+	//确认
+	$('#m-insert').on('click', function(e){
+		e.preventDefault();
+		var val=$("#m-insert-img-url").val();
+		if(!isValidURL(val)){
+			alert("请输入正确的链接地址！");
+			return
+		}
+		val=" [img]"+val+"[/img] ";
+		$("#J_reply_quick_ta").append(val)
+		$('#J_popPos_pop').hide();
+	});
+
+	//关闭弹窗
+	$('#J_popPos_close').on('click', function(e){
+		e.preventDefault();
+		
+		$('#J_popPos_pop').hide();
+	});
+
+	$(".m-emotion ul li a").click(function(e){
+		e.preventDefault();
+		var emo=$(this).attr("data-sign");
+		$("#J_reply_quick_ta").append(" "+emo+" ");
+	})
+
+	//检测链接格式
+	function isValidURL(url){
+		var urlRegExp=/^((https|http|ftp|rtsp|mms)?:\/\/)+[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
+		if(urlRegExp.test(url)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	//管理操作
 	Wind.js(GV.JS_ROOT +'pages/bbs/threadManage.js?v='+ GV.JS_VERSION);
