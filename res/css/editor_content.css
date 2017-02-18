@@ -67,12 +67,12 @@ $Id: editor_content.css 24233 2013-01-23 06:36:49Z yanchixia $
 }
 /*帖内图片*/
 .editor_content img{
-	max-width:100%;
+	max-width:100% !important;
 }
 
-.J_post_img{
+/*.J_post_img{
 	width: 100%;
-}
+}*/
 
 /*此帖已被屏蔽*/
 .editor_content .shield{
