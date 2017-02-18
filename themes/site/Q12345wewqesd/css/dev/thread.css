@@ -92,7 +92,7 @@ a:hover {
   border: 1px solid #888;
   color: #666;
   text-decoration: none;
-  background: #fff ;
+  background: #fff;
   margin-right: 5px;
   font-weight: bold;
 }
@@ -154,6 +154,10 @@ a:hover {
 }
 .m-panel .m-panel-content .m-panel-title {
   float: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 140px;
 }
 .m-panel .m-panel-content .m-panel-icon div {
   margin-left: 10px;

@@ -1,280 +1,272 @@
 @import url("config");
-.m-hr{
-	width: 100%;
-	height: 1px;
-	border-top: 2px solid #888;
-	margin-top: 10px;
+.m-hr {
+    width: 100%;
+    height: 1px;
+    border-top: 2px solid #888;
+    margin-top: 10px;
 }
 
-a:hover{
-	.transition;
+a:hover {
+    .transition;
 }
+
 
 /* 面包屑导航开始 */
-.m-guide{
-	margin-bottom: 15px;
+
+.m-guide {
+    margin-bottom: 15px;
 }
 
-.m-guide a{
-	font-size: 15px;
-	color: #888;
-	font-weight: bold;
-	text-decoration: none;
+.m-guide a {
+    font-size: 15px;
+    color: #888;
+    font-weight: bold;
+    text-decoration: none;
 }
+
+
 /* 面包屑导航结束 */
 
 
 /* 版块标题 */
-.m-head{
-	color: #777;
-	width: 100%;
-	height: 40px;
-	font-size: 16px;
 
+.m-head {
+    color: #777;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
 }
 
-.m-head-title{
-	color: #444;
-	font-size: 17px;
-	margin-right: 10px;
-	font-weight: bold;
+.m-head-title {
+    color: #444;
+    font-size: 17px;
+    margin-right: 10px;
+    font-weight: bold;
 }
 
 .m-head-title,
 .m-head-num,
-.m-head-num div{
-	float: left;
+.m-head-num div {
+    float: left;
 }
 
-.m-head-num div{
-	margin-left: 8px;
-	font-size: 12px;
-	margin-top: 4px;
+.m-head-num div {
+    margin-left: 8px;
+    font-size: 12px;
+    margin-top: 4px;
 }
+
+
 /* 版块结束 */
 
 
 /* 版块目录开始 */
 
-#m-nav{
-	width: calc( 100% -17px );
-	height: 80px;
-	border: 1px solid #ccc;
-	padding-left: 15px;
+#m-nav {
+    width: calc( 100% -17px);
+    height: 80px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
 }
 
-#m-nav .m-nav-des{
-	float: left;
-	width: 60px;
-	color: #888;
-	font-weight: bold;
+#m-nav .m-nav-des {
+    float: left;
+    width: 60px;
+    color: #888;
+    font-weight: bold;
 }
 
-.m-cate{
-	margin-top: 15px;
-	font-weight: bold;
+.m-cate {
+    margin-top: 15px;
+    font-weight: bold;
 }
 
-.m-cate li{
-	display: inline;
+.m-cate li {
+    display: inline;
 }
 
-.m-cate li a.active , .m-cate li a:hover{
-	background: #aaa;
-	color: #fff;
-	border: 1px solid #eee;
-	text-decoration: none;
+.m-cate li a.active,
+.m-cate li a:hover {
+    background: #aaa;
+    color: #fff;
+    border: 1px solid #eee;
+    text-decoration: none;
 }
 
-.m-cate li a{
-	padding: 5px 10px;
-	border: 1px solid #888;
-	background: #fff;
-	color: #666;
-	text-decoration: none;
+.m-cate li a {
+    padding: 5px 10px;
+    border: 1px solid #888;
+    background: #fff;
+    color: #666;
+    text-decoration: none;
 }
+
+
 /* 版块目录结束 */
+
 
 /* main开始 */
 
-.m-main-header{
-	margin-top: 20px;
-	margin-bottom: 10px;
+.m-main-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.m-main-header a{
-	padding: 5px 10px;
-	border: 1px solid #888;
-	color: #666;
-	text-decoration: none;
-	background: #fff ;
-	margin-right: 5px;
-	font-weight: bold;
+.m-main-header a {
+    padding: 5px 10px;
+    border: 1px solid #888;
+    color: #666;
+    text-decoration: none;
+    background: #fff;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
-.m-main-header a:hover,.m-main-header a.active{
-	background: #aaa;
-	color: #fff;
-	border: 1px solid #eee;
-	text-decoration: none;
+.m-main-header a:hover,
+.m-main-header a.active {
+    background: #aaa;
+    color: #fff;
+    border: 1px solid #eee;
+    text-decoration: none;
 }
 
-.m-main-content{
-	width: 100%;
+.m-main-content {
+    width: 100%;
 }
+
 
 /* mian结束 */
+
 
 /* 帖子列表开始 */
 
 @panel-width: (@baseWidth / 4) - 26px;
-
-
-.m-panel{
-	width: @panel-width;
-	background: #fff;
-	padding: 8px;
-	margin-right: 10px;
-	margin-top: 10px;
-	float: left;
-	color: #888;
-	font-weight: bold;
-	overflow: hidden;
-	box-shadow:0 1px 3px rgba(0,0,0,0.3);
-
+.m-panel {
+    width: @panel-width;
+    background: #fff;
+    padding: 8px;
+    margin-right: 10px;
+    margin-top: 10px;
+    float: left;
+    color: #888;
+    font-weight: bold;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-
-.m-panel a{
-	color: #888;
-	font-weight: bold;
-	text-decoration: none;
-	width: 100%;
-	display: block;
-	height: 100%;
+.m-panel a {
+    color: #888;
+    font-weight: bold;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    height: 100%;
 }
 
-.m-panel-top,.m-panel-hot{
-	color: #fff;
-	padding: 5px;
-	font-size: 10px;
-
+.m-panel-top,
+.m-panel-hot {
+    color: #fff;
+    padding: 5px;
+    font-size: 10px;
 }
 
-.m-panel-top{
-	background: #99cc66;
+.m-panel-top {
+    background: #99cc66;
 }
 
-.m-panel-hot{
-	background: #FF6666;
+.m-panel-hot {
+    background: #FF6666;
 }
 
 .m-panel {
-	.m-panel-head{
-		width: @panel-width;
-		height: @panel-width / 1.47;
-		overflow: hidden;
-	}
-
-	.m-panel-head img{
-		width: @panel-width;
-		height: @panel-width / 1.43;
-	}
-
-
-	.m-panel-content{
-		padding: 10px 10px 0 10px;
-
-	}
-
-	.m-panel-content .m-panel-title{
-		float: left;
-	}
-
-	.m-panel-content .m-panel-icon div{
-		margin-left: 10px;
-		float: right;
-	}
-
-	.m-panel-footer{
-		padding: 5px 10px;
-		margin-top: 30px;
-		height: 40px;
-
-	}
-
-	.m-panel-footer{
-		.m-panel-avatar img{
-			width: 40px;
-			height: 40px;
-		}
-
-		.m-panel-author-name{
-			margin-top: -30px;
-			margin-left: 50px;
-		}
-
-		.m-panel-author{
-			float: left;
-		}
-
-		.m-panel-type{
-			float: right;
-			margin-top: 8px;
-			background: #888;
-			padding: 5px;
-		}
-		.m-panel-type a{
-			color: #fff;
-		}
-	}
-
+    .m-panel-head {
+        width: @panel-width;
+        height: @panel-width / 1.47;
+        overflow: hidden;
+    }
+    .m-panel-head img {
+        width: @panel-width;
+        height: @panel-width / 1.43;
+    }
+    .m-panel-content {
+        padding: 10px 10px 0 10px;
+    }
+    .m-panel-content .m-panel-title {
+        float: left;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 140px;
+    }
+    .m-panel-content .m-panel-icon div {
+        margin-left: 10px;
+        float: right;
+    }
+    .m-panel-footer {
+        padding: 5px 10px;
+        margin-top: 30px;
+        height: 40px;
+    }
+    .m-panel-footer {
+        .m-panel-avatar img {
+            width: 40px;
+            height: 40px;
+        }
+        .m-panel-author-name {
+            margin-top: -30px;
+            margin-left: 50px;
+        }
+        .m-panel-author {
+            float: left;
+        }
+        .m-panel-type {
+            float: right;
+            margin-top: 8px;
+            background: #888;
+            padding: 5px;
+        }
+        .m-panel-type a {
+            color: #fff;
+        }
+    }
 }
 
-
-
-.icon{
-	vertical-align: text-bottom;
-	width: 15px;
-	margin-right: 5px;
+.icon {
+    vertical-align: text-bottom;
+    width: 15px;
+    margin-right: 5px;
 }
 
-
-
-
-.m-no-content{
-	color: #666;
-	font-size: 20px;
-	font-weight: bold;
-	text-align: center;
-	margin-top: 20px;
-	width: 100%;
-	height: 120px;
-	padding-top: 80px;
-	background: #efefef;
+.m-no-content {
+    color: #666;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    height: 120px;
+    padding-top: 80px;
+    background: #efefef;
 }
-	
+
 
 /* 帖子列表结束 */
 
-.m-footer a{
-	padding: 7px 20px;
-	color: #666;
-	border: 1px solid #999;
-	text-decoration: none;
-	border-radius: 3px;
+.m-footer a {
+    padding: 7px 20px;
+    color: #666;
+    border: 1px solid #999;
+    text-decoration: none;
+    border-radius: 3px;
 }
 
-.m-footer{
-	margin-top: 20px;
-	margin-bottom: 20px;
-
+.m-footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.m-footer a:hover{
-	text-decoration: none;
-	border: 1px solid #333;
-	color: #333;
+.m-footer a:hover {
+    text-decoration: none;
+    border: 1px solid #333;
+    color: #333;
 }
-
-

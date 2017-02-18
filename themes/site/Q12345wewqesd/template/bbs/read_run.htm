@@ -212,6 +212,14 @@ Wind.use('jquery', 'global', 'dialog', function(){
 	<!--# if ($loginUser->isExists()) { #-->
 	//已登录
 
+	//替换帖内图片为原图
+	$(".J_post_img").each(function(){
+		//提取原图地址
+		var reg=/[a-zA-z]+:\/\/[^\s]*\.[jpg|png|jpeg|gif|bmp]+/
+		var s=$(this).attr("onclick");
+		var  path=s.match(reg);
+		$(this).attr("src",path)
+	})
 	//编辑器插入图片
 
 	//打开弹窗
