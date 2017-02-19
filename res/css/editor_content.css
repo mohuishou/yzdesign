@@ -427,7 +427,7 @@ $Id: editor_content.css 24233 2013-01-23 06:36:49Z yanchixia $
 	margin:0;
 }
 .read_attach_pic .big_img li img{
-	max-width:100%;
+	max-width:100% !important;
 }
 
 
