@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mTopNav.template.common.m_head' />
+    <style>
+        .m-upload-img {
+            max-width: 100%;
+            min-width: 300px;
+            overflow: hidden;
+            max-height: 300px;
+            margin-left: 112px;
+            margin-bottom: 20px;
+        }
+        
+        .m-upload-img img {
+            max-width: 100%;
+            max-height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <template source='SRC:extensions.mTopNav.template.common.m_nav' />
+        <div>
+            <form class="layui-form layui-form-pane" action="">
+                <fieldset class="layui-elem-field">
+                    <legend>新增导航</legend>
+                    <div class="layui-field-box">
+                        <!-- 导航标题 -->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-block">
+                                <input name="title" lay-verify="required" type="text" class="layui-input" />
+                            </div>
+                        </div>
+                        <!-- 导航标题 end -->
+
+                        <!-- 导航链接 -->
+                        <div class="layui-form-item m-manage-link">
+                            <label class="layui-form-label">链接</label>
+                            <div class="layui-input-block">
+                                <input value="http://" lay-verify="url" name="link" type="text" class="layui-input" />
+                            </div>
+                        </div>
+                        <!-- 导航链接 end -->
+
+                        <!--样式设置-->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">标题颜色</label>
+                            <div class="layui-input-block">
+                                <input name="color" placeholder="（不填为默认黑色）请输入 #333333或者rgb(22,22,22)格式" type="text" class="layui-input" />
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">字体格式</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="font[0]" title="加粗">
+                                <input type="checkbox" name="font[1]" title="斜体">
+                                <input type="checkbox" name="font[2]" title="下划线">
+                            </div>
+                        </div>
+                        <!--样式设置end-->
+
+
+                        <!-- 提交按钮 -->
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
+                            </div>
+                        </div>
+                        <!-- 提交按钮 end-->
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script>
+        layui.use(['form', 'upload'], function () {
+            var form = layui.form();
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var data=data.field;
+                var style='';
+                if(data.color){
+                    style+="color: "+data.color+";";
+                }
+                if(data.font[1]){
+                    style+="font-weight: blod;";
+                }
+                console.log(style);
+                // layer.load();
+                // $.post("{@url:app/mTopNav/manage/add}", data.field, function (res) {
+                //     res = JSON.parse(res);
+                //     layer.msg(res.msg);
+                //     if (res.status) {
+                //         location.href = "{@url:app/mTopNav/manage/run?type_id=$type_id}";
+                //     }
+                // });
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

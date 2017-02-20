@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mADs.template.common.m_head' />
+</head>
+<body>
+    <div class="wrap">
+    <template source='SRC:extensions.mADs.template.common.m_nav' />
+        <div>
+            <form class="layui-form layui-form-pane" action="">
+                <fieldset class="layui-elem-field">
+                    <legend>新增广告类型</legend>
+                    <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">类型名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" required  lay-verify="required" placeholder="请输入类型名称" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告类别</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="type" value="1" title="图片广告" checked>
+                                <input type="radio" name="type" value="2" title="中央弹窗广告" >
+                                <input type="radio" name="type" value="3" title="右下角弹窗广告" >
+                                <input type="radio" name="type" value="4" title="广告代码" >
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">打开方式</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="open_type" value="1" title="新窗口" checked >
+                                <input type="radio" name="open_type" value="2" title="当前窗口" >
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+    <script>
+        layui.use('form', function(){
+            var form = layui.form();
+
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                layer.load();
+                $.post("{@url:app/mADs/type/add}",data.field,function (res) {
+                    res=JSON.parse(res);
+                    layer.msg(res.msg);
+                    if(res.status){
+                        location.href="{@url:app/mADs/type/run}";
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

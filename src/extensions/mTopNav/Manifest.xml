@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>顶部导航</name>                  
+		<alias>mTopNav</alias>
+		<version>1.0</version>	 
+		<pw-version>9.0.1</pw-version>       
+		<description>用于生成顶部小导航</description>   
+		<logo>images/logo.jpg</logo>		
+		<type>app</type>					
+		<charset>UTF-8</charset>		 
+		<website>http://lailin.xyz</website>	 
+		<author-name>莫回首</author-name>		     
+		<author-email></author-email>		  	
+		<author-icon>your icon</author-icon>	         
+	</application>
+
+	<res>res</res>
+
+	<installation-service></installation-service>
+	<inject-services>
+<s_admin_menu>
+	<app_mTopNav>
+	<class>EXT:mTopNav.service.srv.App_MTopNav_ConfigDo</class>
+	<loadway>load</loadway>
+	<method>getAdminMenu</method>
+	<description>顶部导航admin menu</description>
+	</app_mTopNav>
+	</s_admin_menu>
+</inject-services>
+</manifest>

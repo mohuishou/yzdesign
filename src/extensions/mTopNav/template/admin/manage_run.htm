@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mTopNav.template.common.m_head' />
+    <style>
+    .m-type-select {
+        max-width: 1200px;
+    }
+    
+    .m-type-select>div {
+        float: left;
+        width: calc( 80% - 36px);
+    }
+    
+    .m-type-select>a {
+        float: left;
+    }
+
+    .m-manage-img{
+        max-height: 100px;
+        max-width: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <template source='SRC:extensions.mTopNav.template.common.m_nav' />
+        <!-- 类型选择 -->
+        <div>
+            <a href="{@url:app/mTopNav/manage/add}" class="layui-btn">新增</a>
+        </div>
+        <!-- 类型选择end -->
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>链接</th>
+                    <th>示例</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>标题</td>
+                    <td>链接</td>
+                    <td>示例</td>
+                    <td>
+                        <a href="{@url:app/mTopNav/manage/edit?ad_id=$v['id']}" class="layui-btn edit">编辑</a>
+                        <a href="{@url:app/mTopNav/manage/delete?id=$v['id']}" class="layui-btn layui-btn-danger delete">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <template source='TPL:admin.common.footer' />
+    <script type="text/javascript">
+
+    $(".delete").click(function() {
+        var url = $(this).attr("href");
+        layui.use('layer', function() {
+            layer.confirm('确认删除？', {
+                btn: ['确认', '取消'] //按钮
+            }, function() {
+                layer.msg('删除中，请稍候', {icon: 2,time:0});
+                $.post(url, '', function(res) {
+                    res = JSON.parse(res);
+                    layer.msg(res.msg,{icon:1});
+                    if (res.status) {
+                        location.href = "{@url:app/mTopNav/manage/run}";
+                    }
+                });
+            }, function() {});
+        });
+        return false;
+    });
+
+    layui.use('form', function() {
+        var form = layui.form();
+    });
+    </script>
+</body>
+
+</html>

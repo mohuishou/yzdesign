@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mADs.template.common.m_head' />
+    <style>
+    table {
+        max-width: 1000px;
+        text-align: center;
+    }
+    
+    table.layui-table th {
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!--# $index=2 #-->
+        <template source='SRC:extensions.mADs.template.common.m_nav' args="$index"/>
+        <div>
+            <a href="{@url:app/mADs/type/add}" class="layui-btn layui-btn-primary">新增</a>
+        </div>
+        <table class="layui-table">
+            <colgroup>
+                <col width="100">
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="350">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>类型名</th>
+                    <th>类别</th>
+                    <th>打开方式</th>
+                    <th>点击次数</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--# foreach($data as $v){ #-->
+                <tr>
+                    <td>{$v['id']}</td>
+                    <td>{$v['name']}</td>
+                    <td>{$types[$v["type"]]}</td>
+                    <td>{$open_types[$v['open_type']]}</td>
+                    <td>{$v['click']}</td>
+                    <td>
+                        <a href="{@url:app/mADs/manage/run?type_id=$v['id']}" class="layui-btn layui-btn-normal view">查看</a>
+                        <a href="{@url:app/mADs/type/edit?id=$v['id']}" class="layui-btn edit">编辑</a>
+                        <a href="{@url:app/mADs/type/delete?id=$v['id']}" class="layui-btn layui-btn-danger delete">删除</a>
+                    </td>
+                </tr>
+                <!--# } #-->
+            </tbody>
+        </table>
+        <div id="page"></div>
+    </div>
+
+    <script>
+
+    $(".edit").click(function(){
+        layer.load();
+    });
+    $(".view").click(function(){
+        layer.load();
+    });
+    $(".delete").click(function() {
+        var url = $(this).attr("href");
+        layui.use('layer', function() {
+            layer.confirm('确认删除？', {
+                btn: ['确认', '取消'] //按钮
+            }, function() {
+                layer.msg('删除中，请稍候', {icon: 2,time:0});
+                $.post(url, '', function(res) {
+                    res = JSON.parse(res);
+                    if (res.status) {
+                        layer.msg(res.msg,{icon:1});
+                        location.href = "{@url:app/mADs/type/run}";
+                    }else{
+                        layer.msg(res.msg,{icon:2});
+                    }
+                });
+            }, function() {});
+        });
+        return false;
+    })
+    
+
+    layui.use(['laypage', 'layer'], function() {
+        var laypage = layui.laypage,
+            layer = layui.layer;
+
+        laypage({
+            cont: 'page',
+            pages: {$pages},
+            skip: true,
+            curr: {$curr},
+            jump: function(obj, first) {
+                if (!first) {
+                    layer.load();
+                    url = "?m=app&app=mADs&c=type&a=run&page=" + obj.curr;
+                    location.href = url;
+                }
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
