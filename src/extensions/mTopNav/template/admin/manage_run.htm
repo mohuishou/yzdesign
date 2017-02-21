@@ -29,10 +29,7 @@
     <div class="wrap">
         <template source='SRC:extensions.mTopNav.template.common.m_nav' />
         <!-- 类型选择 -->
-        <div>
-            <a href="{@url:app/mTopNav/manage/add}" class="layui-btn">新增</a>
-        </div>
-        <!-- 类型选择end -->
+                <a href="{@url:app/mTopNav/manage/add?type_id=$type_id}" class="layui-btn">新增</a>
         <table class="layui-table">
             <thead>
                 <tr>
@@ -43,15 +40,17 @@
                 </tr>
             </thead>
             <tbody>
+                <!--# foreach($data as $v){ #-->
                 <tr>
-                    <td>标题</td>
-                    <td>链接</td>
-                    <td>示例</td>
+                    <td>{$v['title']}</td>
+                    <td>{$v['link']}</td>
+                    <td><!--# echo $v['a']; #--></td>
                     <td>
-                        <a href="{@url:app/mTopNav/manage/edit?ad_id=$v['id']}" class="layui-btn edit">编辑</a>
+                        <a href="{@url:app/mTopNav/manage/edit?id=$v['id']}" class="layui-btn edit">编辑</a>
                         <a href="{@url:app/mTopNav/manage/delete?id=$v['id']}" class="layui-btn layui-btn-danger delete">删除</a>
                     </td>
                 </tr>
+                <!--# } #-->
             </tbody>
         </table>
     </div>
@@ -75,10 +74,10 @@
             }, function() {});
         });
         return false;
-    });
+    })
 
     layui.use('form', function() {
-        var form = layui.form();
+        var form = layui.form()
     });
     </script>
 </body>

@@ -12,7 +12,7 @@ class App_MTopNav_MTopNavDao extends PwBaseDao {
 	/**
 	 * table name
 	 */
-	protected $_table = 'app_m_topnav_table';
+	protected $_table = 'app_m_topnav';
 	/**
 	 * primary key
 	 */
