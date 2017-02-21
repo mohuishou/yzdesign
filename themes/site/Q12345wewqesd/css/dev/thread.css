@@ -147,7 +147,7 @@ a:hover {
 }
 .m-panel .m-panel-head img {
   width: 289px;
-  height: 202.0979021px;
+  min-height: 202.0979021px;
 }
 .m-panel .m-panel-content {
   padding: 10px 10px 0 10px;

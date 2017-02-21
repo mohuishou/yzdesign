@@ -98,8 +98,8 @@
 	                    <!--# foreach($threaddb as $value){ #-->
 	                    <div class="m-panel">
 	                        <div class="m-panel-head">
-	                            <a href="{@url:bbs/read/run?tid=$value['tid']&fid=$value['fid']}">
-	                                <img src="{$value['thumb']}" alt="">
+	                            <a style="background: url({$value['thumb']}) 50% 50%;" href="{@url:bbs/read/run?tid=$value['tid']&fid=$value['fid']}">
+	                                <!--<img src="{$value['thumb']}" alt="">-->
 	                            </a>
 	                        </div>
 	                        <div class="m-panel-content">
