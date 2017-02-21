@@ -35,6 +35,8 @@
                 <tr>
                     <th>标题</th>
                     <th>链接</th>
+                    <th>位置</th>
+                    <th>排序</th>
                     <th>示例</th>
                     <th>操作</th>
                 </tr>
@@ -44,6 +46,8 @@
                 <tr>
                     <td>{$v['title']}</td>
                     <td>{$v['link']}</td>
+                    <td><!--# if($v['float_tpye'] - 1) { echo  '右'; }else{ echo '左'; } #--></td>
+                    <td>{$v['sort']}</td>
                     <td><!--# echo $v['a']; #--></td>
                     <td>
                         <a href="{@url:app/mTopNav/manage/edit?id=$v['id']}" class="layui-btn edit">编辑</a>

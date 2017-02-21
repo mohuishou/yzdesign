@@ -28,6 +28,8 @@ class ManageController extends AdminBaseController {
             $data['link']=$this->getInput('link');
             $data['style']=$this->getInput('style');
             $data['title']=$this->getInput('title');
+            $data['sort']=$this->getInput('sort');
+            $data['float_type']=$this->getInput('float_type');
             $res=$this->_navDao()->add($data);
             if($res){
                 $this->success("新增成功!",$data);
@@ -48,6 +50,8 @@ class ManageController extends AdminBaseController {
             $data['link']=$this->getInput('link');
             $data['style']=$this->getInput('style');
             $data['title']=$this->getInput('title');
+            $data['sort']=$this->getInput('sort');
+            $data['float_type']=$this->getInput('float_type');
             $res=$this->_navDao()->update($id,$data);
             if($res){
                 $this->success("更新成功!",$data);

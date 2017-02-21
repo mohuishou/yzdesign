@@ -20,7 +20,7 @@ class App_MTopNav_MTopNavDao extends PwBaseDao {
 	/**
 	 * table fields
 	 */
-	protected $_dataStruct = array('id' ,'title','link','style','a','created_time');
+	protected $_dataStruct = array('id' ,'title','link','style','a','float_type','sort','created_time');
 	
 	public function add($fields) {
 		isset($fields['created_time']) || $fields['created_time']=time();
@@ -28,7 +28,7 @@ class App_MTopNav_MTopNavDao extends PwBaseDao {
 	}
 
 	public function getList($limit, $offset ,$where=1){
-        $sql = $this->_bindSql('SELECT * FROM %s WHERE %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE %s  ORDER BY sort ASC,id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
         $smt = $this->getConnection()->createStatement($sql);
         return $smt->queryAll(array());
     }
