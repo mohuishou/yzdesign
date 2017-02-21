@@ -68,7 +68,7 @@
                 btn: ['确认', '取消'] //按钮
             }, function() {
                 layer.msg('删除中，请稍候', {icon: 2,time:0});
-                $.post(url, '', function(res) {
+                $.get(url,function(res) {
                     res = JSON.parse(res);
                     layer.msg(res.msg,{icon:1});
                     if (res.status) {

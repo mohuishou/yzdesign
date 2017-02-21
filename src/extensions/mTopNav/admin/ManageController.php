@@ -66,7 +66,7 @@ class ManageController extends AdminBaseController {
                 foreach ($temp as $v){
                     $tmp=explode(":",$v);
                     if(count($tmp)==2){
-                        $style[$tmp[0]]=$tmp[1];
+                        $style[$tmp[0]]=trim($tmp[1]);
                     }
                 }
                 $data["style"]=$style;

@@ -61,7 +61,7 @@
                         <div class="layui-form-item m-manage-link">
                             <label class="layui-form-label">排序</label>
                             <div class="layui-input-block">
-                                <input placeholder="序号越大越靠后（左边越靠右，右边越靠左）" lay-verify="number" name="sort" type="text" class="layui-input" />
+                                <input placeholder="序号越大越靠后（越靠右）" lay-verify="number" name="sort" type="text" class="layui-input" />
                             </div>
                         </div>
                         <!--排序end-->
@@ -103,7 +103,7 @@
             form.verify({
                 color: function (value) {
                     if (value) {
-                        if (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$|^[rR][gG][Bb][Aa]?[\(]([\s]*(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),){2}[\s]*(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),?[\s]*(0\.\d{1,2}|1|0)?[\)]{1}$/.test(value)) {
+                        if (!new RegExp(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$|^[rR][gG][Bb][Aa]?[\(]([\s]*(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),){2}[\s]*(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),?[\s]*(0\.\d{1,2}|1|0)?[\)]{1}$/).test(value)) {
                             return '颜色必须为#333333或者rgb(22,22,22)格式';
                         }
                     }
@@ -129,7 +129,7 @@
                     style += "color: " + params.color + ";"
                 }
                 params.style = style;
-                params.atag = '<a href="' + params.link + ' style="' + style + '">' + params.title + '</a>'
+                params.atag = '<a href="' + params.link + '" style="' + style + '">' + params.title + '</a>'
                 layer.load();
                 $.post("{@url:app/mTopNav/manage/add}", params, function (res) {
                     res = JSON.parse(res);
