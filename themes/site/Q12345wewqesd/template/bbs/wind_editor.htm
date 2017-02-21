@@ -1,4 +1,9 @@
 <textarea name="atc_content" id="J_wind_editor" style="height:300px;width:100%;padding:0;margin:0;">{$atc_content}</textarea>
+<style>
+	.wind_icon img.m-icon{
+		width: 17px;
+	}
+</style>
 <script>
 	/*
 	* 编辑器中与NextWind相关的业务配置的全局变量（注意必须是全局），这些配置变量在编辑器的插件中会调用到
@@ -116,6 +121,22 @@
 					}
 				}
 			});
+
+			var icons={
+				"insertEmoticons":"emotion",
+				"insertPhoto":"img",
+				"insertFile":"file",
+				"insertVideo":"vedio",
+				"insertMusic":"music",
+				"underline":"underline",
+				"bold":"bold"
+			}
+			setTimeout(function(){
+				for(k in icons){
+					$('.wind_icon[data-control="'+k+'"]').html('<img class="m-icon" src="{@theme:site.images}/mohuishou/editor/'+icons[k]+'.png" />');
+				}
+				
+			},1000)
 		});
 	});
 </script>
