@@ -1,47 +1,65 @@
 <!--.main-wrap,#main End-->
 <div class="footer_wrap">
-	<div class="footer">
-    <!-- 全局footer图片广告 -->
-    <div style="width: 100%;max-height: 200px;">
-      <component class='EXT:mADs.service.srv.ADHook' method='ads' args='4'/>
-    </div>
-    <!-- 全局footer图片广告 -->
-		<pw-drag id="footer_segment"/>
-		<div class="bottom">
-		<!--#
+    <div class="footer">
+        <!-- 全局footer图片广告 -->
+        <div style="width: 100%;max-height: 200px;">
+            <component class='EXT:mADs.service.srv.ADHook' method='ads' args='4' />
+        </div>
+        <!-- 全局footer图片广告 -->
+        <pw-drag id="footer_segment" />
+        <div class="bottom">
+            <!--#
 			$nav = Wekit::load('SRV:nav.bo.PwNavBo');
 			$bottom = $nav->getNavFromConfig('bottom');
 			foreach($bottom as $key=>$value){
 		#-->
-			{$value['name']|html}
-		<!--# } #-->
-		</div>
-		<p>技术支持 <a href="http://www.lailin.xyz/" target="_blank" rel="nofollow">Mohuishou</a> &copy;2015-<!--#echo date('Y');#--> <a href="#" target="_blank" rel="nofollow">{@G:seo.title}</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">{@Wekit::C('site','info.icp')}</a></p>
-		<p>{@Wekit::C('site','statisticscode')|html}</p>
-	</div>
-	<div id="cloudwind_common_bottom"></div>
-	<hook name="footer"/>
+            {$value['name']|html}
+            <!--# } #-->
+        </div>
+        <p>技术支持 <a href="http://www.lailin.xyz/" target="_blank" rel="nofollow">Mohuishou</a> &copy;2015-
+            <!--#echo date('Y');#--><a href="#" target="_blank" rel="nofollow">{@G:seo.title}</a>
+            <a href="http://www.miitbeian.gov.cn" target="_blank"
+                rel="nofollow">{@Wekit::C('site','info.icp')}</a>
+        </p>
+        <p>{@Wekit::C('site','statisticscode')|html}</p>
+    </div>
+    <div id="cloudwind_common_bottom"></div>
+    <hook name="footer" />
 </div>
 
 <!-- 全局右下角广告 -->
-<component class='EXT:mADs.service.srv.ADHook' method='ads' args='2'/>
+<component class='EXT:mADs.service.srv.ADHook' method='ads' args='2' />
 
 <!--返回顶部-->
 <a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>
 
 <script>
-    Wind.use("jquery",function () {
+    Wind.use("jquery", function () {
         function header(i) {
-            if(i>5) return;
-            var $nav=$(".header-2 #J_header div.nav");
-            var nav_l=$nav.width();
-            var baseWidth=$(".header-top").width();
-            if((baseWidth-nav_l)<230){
-                if(i==0)$nav.find("ul>li.m-nav-more").css("display","block");
-                 var $li=$nav.find("ul:first>li:last").prev();
-                 $nav.find("ul>li.m-nav-more ul").prepend($li);
-                 i++;header(i);
+            if (i > 5) return;
+            var $nav = $(".header-2 #J_header div.nav");
+            var nav_l = $nav.width();
+            var baseWidth = $(".header-top").width();
+            if ((baseWidth - nav_l) < 230) {
+                if (i == 0) $nav.find("ul>li.m-nav-more").css("display", "block");
+                var $li = $nav.find("ul:first>li:last").prev();
+                $nav.find("ul>li.m-nav-more ul").prepend($li);
+                i++; header(i);
             }
-        }     
+        }
+
+
+        //图标更换
+
+        var icons = {
+            "icon_highlight": "hot.gif"
+        }
+        for (k in icons) {
+            $("i."+k).after('<img src="{@theme:site.images}/mohuishou/'+icons[k]+'" />');
+            $("i."+k).remove();
+        }
+
+
     });
+
 </script>
