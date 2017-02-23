@@ -92,13 +92,11 @@ div.slideBox div.tips div.nums {
 
 div.slideBox div.tips div.nums a {
     display: inline-block;
-    >float: left/*For IE.ADD.JENA.201206300844*/
-    ;
     width: 30px;
-    height: 10px;
+    height: 7px;
     background-color: #FFF;
     text-indent: -99999px;
-    margin: 15px 10px 0px 0px;
+    margin: 25px 5px 0px 0px;
 }
 
 div.slideBox div.tips div.nums a.active {

@@ -36,7 +36,8 @@ class ManageController extends AdminBaseController {
             1=>"图片广告",
             2=>"中央弹窗广告",
             3=>"右下角弹窗广告",
-            4=>"广告代码"
+            4=>"广告代码",
+            5=>"图片画廊"
         ],"types_option");
         $this->setOutput([
             1=>"新窗口",
@@ -78,7 +79,8 @@ class ManageController extends AdminBaseController {
                 1=>"图片广告",
                 2=>"中央弹窗广告",
                 3=>"右下角弹窗广告",
-                4=>"广告代码"
+                4=>"广告代码",
+                5=>"图片画廊"
             ],"types_option");
             $this->setOutput([
                 1=>"新窗口",
@@ -136,7 +138,8 @@ class ManageController extends AdminBaseController {
                 1=>"图片广告",
                 2=>"中央弹窗广告",
                 3=>"右下角弹窗广告",
-                4=>"广告代码"
+                4=>"广告代码",
+                5=>"图片画廊"
             ],"types_option");
             $this->setOutput([
                 1=>"新窗口",

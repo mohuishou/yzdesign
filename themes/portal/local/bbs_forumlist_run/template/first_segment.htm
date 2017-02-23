@@ -1,69 +1,78 @@
 <link href="{@theme:css}/jquery.slideBox.css" rel="stylesheet" />
 <style type="text/css">
-    	/*tab 标题*/
-
-        .box_wrap .design_layout_hd{
-            border: none;
-        }
-
-    	.design_layout_tab li a{
-			text-decoration: none;
-			font-size: 12px;
-            font-weight: bold;
-            border-radius: 3px;
-            border: 1px solid #ccc;
-            margin-right: 5px;
-    	}
-        .design_layout_tab li.current a,
-    	.design_layout_tab li a:hover{
-			text-decoration: none;
-			background: #aaa;
-            color: #fff;
-            /*border: none;*/
-			transition: all 1s;
-			-moz-transition: all 1s;	/* Firefox 4 */
-			-webkit-transition: all 1s;	/* Safari 和 Chrome */
-			-o-transition: all 1s;
-    	}
-    	/*tab内容*/
-    	ul.m-list{
-    		font-size: 14px;
-    		line-height: 200%;
-    		margin-top: 12px;
-    		margin-left: 12px;
-    	}
-
-    	ul.m-list a {
-    		padding-left: 2px;
-    	}
-
-    	ul.m-list a,
-    	ul.m-list a:hover{
-    		text-decoration: none;
-    	}
-
-   /*     #m-slider{
+    /*tab 标题*/
+    
+    .box_wrap .design_layout_hd {
+        border: none;
+    }
+    
+    .design_layout_tab li a {
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+    }
+    
+    .design_layout_tab li.current a,
+    .design_layout_tab li a:hover {
+        text-decoration: none;
+        background: #aaa;
+        color: #fff;
+        /*border: none;*/
+        transition: all 1s;
+        -moz-transition: all 1s;
+        /* Firefox 4 */
+        -webkit-transition: all 1s;
+        /* Safari 和 Chrome */
+        -o-transition: all 1s;
+    }
+    /*tab内容*/
+    
+    ul.m-list {
+        font-size: 14px;
+        line-height: 200%;
+        margin-top: 12px;
+        margin-left: 12px;
+    }
+    
+    ul.m-list a {
+        padding-left: 2px;
+    }
+    
+    ul.m-list a,
+    ul.m-list a:hover {
+        text-decoration: none;
+    }
+    
+    ul.m-list span {
+        float: right;
+        margin-right: 20px;
+        color: #aaa;
+    }
+    /*     #m-slider{
             width: 500px !important;
             height: 281px !important;
         }*/
-    </style>
-<pw-drag id="first_segment"/>
+</style>
+<pw-drag id="first_segment" />
 <script>
-Wind.use('jquery', 'global', function() {
-    Wind.js('{@theme:js}/jquery.slideBox.min.js', function() {
-        $("#m-slider").slideBox({
-            direction: 'left', //left,top
-            duration: 1, //unit:seconds
-            easing: 'swing', //swing,linear
-            delay: 3, //unit:seconds
-            startIndex: 0,
-            hideClickBar: false,
-            clickBarRadius: 0, //unit:px
-            hideBottomBar: false,
-            // width: 500,
-            height: 340
-        });
-            
+    Wind.use('jquery', 'global', function () {
+        Wind.js('{@theme:js}/jquery.slideBox.min.js', function () {
+            $("#m-slider").slideBox({
+                direction: 'left', //left,top
+                duration: 1, //unit:seconds
+                easing: 'swing', //swing,linear
+                delay: 3, //unit:seconds
+                startIndex: 0,
+                hideClickBar: false,
+                clickBarRadius: 0, //unit:px
+                hideBottomBar: false,
+                // width: 500,
+                height: 340
+            });
+
             // if(tab_wrap2.length) {
             //     Wind.use('tabs', function(){
             //         tab_wrap2.each(function(){
@@ -71,15 +80,15 @@ Wind.use('jquery', 'global', function() {
             //         });
             //     });
             // }
-        
-        // tab页面切换
-        var $tab_wrap = $('.J_tab_wrap:eq(0)');
-        // $tab_wrap.each(function () {
+
+            // tab页面切换
+            var $tab_wrap = $('.J_tab_wrap:eq(0)');
+            // $tab_wrap.each(function () {
             // var _this = this;
             $tab_wrap.find('li[role="tab"]').mouseover(function (t) {
 
                 //已经在选中状态下，直接返回
-                if($(this).hasClass("current")){
+                if ($(this).hasClass("current")) {
                     return;
                 }
 
@@ -88,17 +97,18 @@ Wind.use('jquery', 'global', function() {
                 $(this).addClass("current");
 
                 //展示区域切换
-                var data_id=$(this).find("a").attr("data-id");
-                $tab_wrap.find('.J_tabs_ct>div').fadeOut(1000,function(){
-                    $(this).attr("aria-hidden","true");
+                var data_id = $(this).find("a").attr("data-id");
+                $tab_wrap.find('.J_tabs_ct>div').fadeOut(1000, function () {
+                    $(this).attr("aria-hidden", "true");
                 });
-                var $tab=$tab_wrap.find('.J_tabs_ct div[tabid="'+data_id+'"]');
-                $tab.fadeIn(1200,function(){
-                    $(this).attr("aria-hidden","false");
+                var $tab = $tab_wrap.find('.J_tabs_ct div[tabid="' + data_id + '"]');
+                $tab.fadeIn(1200, function () {
+                    $(this).attr("aria-hidden", "false");
                 });
             });
-        // });
-        
+            // });
+
+        });
     });
-});
+
 </script>

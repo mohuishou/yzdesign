@@ -40,7 +40,8 @@ class TypeController extends AdminBaseController {
             1=>"图片广告",
             2=>"中央弹窗广告",
             3=>"右下角弹窗广告",
-            4=>"广告代码"
+            4=>"广告代码",
+            5=>"图片画廊"
         ],"types");
         $this->setOutput([
             1=>"新窗口",
@@ -60,6 +61,13 @@ class TypeController extends AdminBaseController {
         $token=$this->getInput("csrf_token");
         $id=$this->getInput("id");
         if(!$token){
+            $this->setOutput([
+                1=>"图片广告",
+                2=>"中央弹窗广告",
+                3=>"右下角弹窗广告",
+                4=>"广告代码",
+                5=>"图片画廊"
+            ],"types");
             $data=$this->_typeDao()->get($id);
             $this->setOutput($data,"data");
             $this->setTemplate("type_edit");
@@ -78,6 +86,13 @@ class TypeController extends AdminBaseController {
     public function addAction(){
 	    $token=$this->getInput("csrf_token");
         if(!$token){
+            $this->setOutput([
+                1=>"图片广告",
+                2=>"中央弹窗广告",
+                3=>"右下角弹窗广告",
+                4=>"广告代码",
+                5=>"图片画廊"
+            ],"types");
             $this->setTemplate("type_add");
         }else{
             $data['name']=$this->getInput('name');

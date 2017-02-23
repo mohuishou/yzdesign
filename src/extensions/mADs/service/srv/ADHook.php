@@ -21,38 +21,29 @@ class ADHook {
         }
         $func="createAdHtml".$ad_type['type'];
 
+        $html=$this->style();
+
         foreach ($ads as $ad){
-            echo $this->$func($ad,$ad_type);
+            $html .=$this->$func($ad,$ad_type);
 
             //弹窗类型广告只允许出现一个
             if($ad_type['type']==2||$ad_type['type']==3){
-                return;
+                break;
             }
         }
-
-
+        echo $html;
     }
 
+    /**
+     * 生成图片广告html
+     * @author mohuishou<1@lailin.xyz>
+     * @param $ad
+     * @param $ad_type
+     * @return string
+     */
     public function createAdHtml1($ad,$ad_type){
          return $html=<<<EOD
             <!-- 图片广告 -->
-            <style>
-                .m-ads-type-1 {
-                    max-width: 100%;
-                    max-height: 100%;
-                    overflow: hidden;
-                }
-                
-                .m-ads-type-1 a{
-                    width: 100%;
-                    display: block;
-                }
-                
-                .m-ads-type-1 a img {
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            </style>
             <div class="m-ads-type-1">
                 <a href="{$ad['link']}" target="{$this->open_type[$ad_type['open_type']]}">
                     <img src="{$ad['imgpath']}" alt="{$ad['title']}">
@@ -63,6 +54,13 @@ EOD;
 
     }
 
+    /**
+     * 生成中央弹窗广告
+     * @author mohuishou<1@lailin.xyz>
+     * @param $ad
+     * @param $ad_type
+     * @return string
+     */
     public function createAdHtml2($ad,$ad_type){
         $ads_open=$_COOKIE["ads_open"];
         if($ads_open=="true"){
@@ -92,50 +90,17 @@ EOD;
 
     }
 
+    /**
+     * 生成右下角弹窗广告
+     * @author mohuishou<1@lailin.xyz>
+     * @param $ad
+     * @param $ad_type
+     * @return string
+     */
     public function createAdHtml3($ad,$ad_type){
         return $html=<<<EOD
                 <!-- 右下角弹窗广告 -->
                     <link rel="stylesheet" href="src/extensions/mADs/res/layer/skin/default/layer.css">
-                    <style>
-                        .m-ads-type-3{
-                            padding: 5px;
-                        }
-                        .m-ads-type-3 a{
-                            color: #333;
-                        }
-                        .m-ads-type-3>div{
-                            display: block;
-                            height: 115px;
-                            width: 100%;
-                            border-bottom: 2px dotted #ddd;
-                        }
-                        .m-ads-type-3 .m-ads-title{
-                            font-size: 15px;
-                            font-weight: bold;
-                            margin-bottom: 5px;
-                        }
-                        .m-ads-type-3 .m-ads-des{
-                            margin-left: 10px;
-                            float: left;
-                            width: 180px;
-                            height: 75px;
-                            text-decoration: none;
-	                        text-overflow: ellipsis;
-                            overflow: hidden;
-                        }
-                        .m-ads-type-3 img{
-                            width: 80px;
-                            height: 80px;
-                            float: left;
-                            border-radius: 5px;
-                        }
-                        .m-ads-view{
-                            margin-top: 5px;
-                            width: 60px;
-                            display: block;
-                            float: right;
-                        }
-                    </style>
                     <script>
                     Wind.use("jquery",function(){
                         Wind.js("src/extensions/mADs/res/layer/layer.js", function() {
@@ -157,6 +122,13 @@ EOD;
 EOD;
     }
 
+    /**
+     * 生成script广告脚本
+     * @author mohuishou<1@lailin.xyz>
+     * @param $ad
+     * @param $ad_type
+     * @return string
+     */
     public function createAdHtml4($ad,$ad_type){
         return $html=<<<EOD
             <script>
@@ -164,6 +136,108 @@ EOD;
             </script>
 EOD;
 
+
+    }
+
+    public function createAdHtml5($ad,$ad_type){
+        return $html=<<<EOD
+        <!--图片画廊广告-->
+            <div class="m-ads-images">
+                <div>
+                    <a title="{$ad['title']}" href="{$ad['link']}" target="{$this->open_type[$ad_type['open_type']]}" style="background-image: url({$ad['imgpath']});" class="m-ads-bg"></a>
+                    <p>{$ad['title']}</p>
+                </div>
+            </div>
+            <!--图片画廊广告 end-->
+EOD;
+
+    }
+
+    private function style(){
+
+        return $html=<<<EOD
+            <style>
+                /*图片广告*/
+.m-ads-type-1 {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.m-ads-type-1 a{
+    width: 100%;
+    display: block;
+}
+
+.m-ads-type-1 a img {
+    max-width: 100%;
+    max-height: 100%;
+}
+/*图片广告end*/
+
+/*右下角弹窗广告*/
+.m-ads-type-3{
+    padding: 5px;
+}
+.m-ads-type-3 a{
+    color: #333;
+}
+.m-ads-type-3>div{
+    display: block;
+    height: 115px;
+    width: 100%;
+    border-bottom: 2px dotted #ddd;
+}
+.m-ads-type-3 .m-ads-title{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.m-ads-type-3 .m-ads-des{
+    margin-left: 10px;
+    float: left;
+    width: 180px;
+    height: 75px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.m-ads-type-3 img{
+    width: 80px;
+    height: 80px;
+    float: left;
+    border-radius: 5px;
+}
+.m-ads-view{
+    margin-top: 5px;
+    width: 60px;
+    display: block;
+    float: right;
+}
+/*右下角弹窗广告 end*/
+
+/*图片画廊广告*/
+.m-ads-images {
+    border: 1px solid #ccc;
+}
+
+.m-ads-images>div {
+    width: 236px;
+    height: 190px;
+    text-align: center;
+    margin: 5px;
+}
+
+.m-ads-images>div a {
+    width: 100%;
+    display: block;
+    height: 166px;
+    background-size: cover;
+    background-position: center;
+}
+/*图片画廊广告 end*/
+            </style>
+EOD;
 
     }
 

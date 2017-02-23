@@ -209,13 +209,14 @@ class FileUpload{
             return false;
         }
         if (!file_exists($this->path) || !is_writable($this->path)) {
-            if (!@mkdir($this->path, 0755)) {
+            if (!@mkdir($this->path, 0755,true)) {
                 $this->setOption('errorNum', -4);
                 return false;
             }
         }
         return true;
     }
+
 
     /* 设置随机文件名 */
     private function proRandName() {

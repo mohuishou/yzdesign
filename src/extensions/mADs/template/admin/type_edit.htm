@@ -21,10 +21,13 @@
                         <div id="m-type" class="layui-form-item">
                             <label class="layui-form-label">广告类别</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="type" value="1" title="图片广告" checked>
-                                <input type="radio" name="type" value="2" title="中央弹窗广告" >
-                                <input type="radio" name="type" value="3" title="右下角弹窗广告" >
-                                <input type="radio" name="type" value="4" title="广告代码" >
+                                <!--# foreach($types as $k=>$v){ #-->
+                                <!--# if($k==1){ #-->
+                                <input type="radio" name="type" value="{$k}" title="{$v}" checked>
+                                <!--# }else{ #-->
+                                <input type="radio" name="type" value="{$k}" title="{$v}">
+                                <!--# } #-->
+                                <!--# } #-->
                             </div>
                         </div>
                         <div id="m-open-type" class="layui-form-item">
