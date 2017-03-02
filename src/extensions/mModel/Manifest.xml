@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>模型</name>                  
+		<alias>mModel</alias>
+		<version>1.0</version>	 
+		<pw-version>9.0.1</pw-version>       
+		<description>包含贴图、模型的创建以及分享</description>   
+		<logo>images/logo.jpg</logo>		
+		<type>app</type>					
+		<charset>UTF-8</charset>		 
+		<website>http://lailin.xyz</website>	 
+		<author-name>莫回首</author-name>		     
+		<author-email>1@lailin.xyz</author-email>		  	
+		<author-icon>your icon</author-icon>	         
+	</application>
+
+	<res>res</res>
+
+	<installation-service>nav_main,nav_my</installation-service>
+	<inject-services>
+<s_admin_menu>
+	<app_mModel>
+	<class>EXT:mModel.service.srv.App_MModel_ConfigDo</class>
+	<loadway>load</loadway>
+	<method>getAdminMenu</method>
+	<description>模型admin menu</description>
+	</app_mModel>
+	</s_admin_menu>
+</inject-services>
+</manifest>
