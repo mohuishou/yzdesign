@@ -142,12 +142,10 @@ EOD;
     public function createAdHtml5($ad,$ad_type){
         return $html=<<<EOD
         <!--图片画廊广告-->
-            <div class="m-ads-images">
                 <div>
                     <a title="{$ad['title']}" href="{$ad['link']}" target="{$this->open_type[$ad_type['open_type']]}" style="background-image: url({$ad['imgpath']});" class="m-ads-bg"></a>
                     <p>{$ad['title']}</p>
                 </div>
-            </div>
             <!--图片画廊广告 end-->
 EOD;
 
@@ -219,11 +217,13 @@ EOD;
 /*图片画廊广告*/
 .m-ads-images {
     border: 1px solid #ccc;
+    height: 195px;
 }
 
 .m-ads-images>div {
     width: 236px;
     height: 190px;
+    float: left;
     text-align: center;
     margin: 5px;
 }
