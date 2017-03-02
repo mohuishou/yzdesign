@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mModel.template.common.head' />
+</head>
+
+<body>
+    <div class="wrap">
+        <fieldset class="layui-elem-field">
+            <legend>添加模型类型</legend>
+            <div class="layui-field-box">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">类型名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" required lay-verify="required" placeholder="类型名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">风格</label>
+                        <div class="layui-input-block">
+                            <textarea name="style" placeholder="风格设置，每行一个" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">版本</label>
+                        <div class="layui-input-block">
+                            <textarea name="version" placeholder="版本设置，每行一个" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">贴图材质</label>
+                        <div class="layui-input-block">
+                            <textarea name="img_path" placeholder="贴图材质设置，每行一个" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">灯光</label>
+                        <div class="layui-input-block">
+                            <textarea name="img_path" placeholder="灯光设置，每行一个" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form();
+
+            //监听提交
+            form.on('submit(submit)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
