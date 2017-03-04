@@ -9,28 +9,15 @@
 <body>
     <div class="wrap">
         <fieldset class="layui-elem-field">
-            <legend>模型类型 <a class="layui-btn  layui-btn-primary layui-btn-small" href="{@url:app/mModel/type/add}">新增</a></legend>
+            <legend>模型分类设置 <a class="layui-btn  layui-btn-primary layui-btn-small" href="{@url:app/mModel/category/add}">新增</a></legend>
             <div class="layui-field-box">
                 <table class="layui-table" lay-even>
-                    <colgroup>
-                        <col width="50">
-                        <col width="80">
-                        <col width="100">
-                        <col width="100">
-                        <col width="100">
-                        <col width="100">
-                        <col width="100">
-                        <col width="150">
-                    </colgroup>
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>类型名</th>
-                            <th>风格</th>
-                            <th>版本</th>
-                            <th>贴图类型</th>
-                            <th>灯光</th>
-                            <th>更新时间</th>
+                            <th>属于类型</th>
+                            <th>上级类别</th>
+                            <th>类别名</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -41,14 +28,9 @@
                             <td>{$data["name"]}</td>
                             <td>{$data["style"]}</td>
                             <td>{$data["version"]}</td>
-                            <td>{$data["img_type"]}</td>
-                            <td>{$data["light"]}</td>
                             <td>
-                                <!--#echo date("Y-m-d H:i:s",$data["updated_time"]);#-->
-                            </td>
-                            <td>
-                                <a href="{@url:app/mModel/type/edit?id=$data['id']}" class="layui-btn edit">编辑</a>
-                                <a href="{@url:app/mModel/type/delete?id=$data['id']}" class="layui-btn layui-btn-danger delete">删除</a>
+                                <a href="{@url:app/mModel/category/edit?id=$data['id']}" class="layui-btn edit">编辑</a>
+                                <a href="{@url:app/mModel/category/delete?id=$data['id']}" class="layui-btn layui-btn-danger delete">删除</a>
                             </td>
                         </tr>
                         <!--#}#-->
@@ -57,7 +39,6 @@
             </div>
         </fieldset>
     </div>
-
     <script>
         $(".delete").click(function () {
             var url = $(this).attr("href");
@@ -76,7 +57,7 @@
                         });
                         if (res.status) {
                             location.href =
-                                "{@url:app/mModel/type/run}";
+                                "{@url:app/mModel/category/run}";
                         }
                     });
                 }, function () {});
@@ -84,7 +65,6 @@
             return false;
         })
     </script>
-
 </body>
 
 </html>

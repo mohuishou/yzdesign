@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mModel.template.common.head' />
+</head>
+
+<body>
+    <div class="wrap">
+        <fieldset class="layui-elem-field">
+            <legend>添加模型类别</legend>
+            <div class="layui-field-box">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">类别名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" required lay-verify="required" placeholder="类别名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">属于类型</label>
+                        <div class="layui-input-block">
+                            <select name="tid" lay-verify="required">
+                                <option value=""></option>
+                                <option value="0">北京</option>
+                                <option value="1">上海</option>
+                                <option value="2">广州</option>
+                                <option value="3">深圳</option>
+                                <option value="4">杭州</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上级类别</label>
+                        <div class="layui-input-block">
+                            <select name="pid" lay-verify="required">
+                                <option value=""></option>
+                                <option value="0">北京</option>
+                                <option value="1">上海</option>
+                                <option value="2">广州</option>
+                                <option value="3">深圳</option>
+                                <option value="4">杭州</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
+                            <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form();
+
+            //监听提交
+            form.on('submit(submit)', function (data) {
+                var load = layer.load();
+
+                var params = data.field;
+
+                $.post("{@url:app/mModel/category/add}", params, function (res) {
+                    layer.close(load)
+                    res = JSON.parse(res);
+                    layer.msg(res.msg, {
+                        icon: res.status
+                    });
+
+                    //添加成功跳转到主页面
+                    if (res.status) {
+                        location.href = "{@url:app/mModel/category/run}";
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

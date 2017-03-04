@@ -1,7 +1,52 @@
 <?php
+defined('WEKIT_VERSION') or exit(403);
 /**
- * Created by PhpStorm.
- * User: lxl
- * Date: 2017/3/4
- * Time: 15:44
+ * collectionBoxDao
+ * 收藏夹管理
+ *
+ * @author 莫回首 <1@lailin.xyz>
+ * @copyright http://lailin.xyz
+ * @license http://lailin.xyz
  */
+class CollectionBoxDao extends PwBaseDao {
+
+    /**
+     * table name
+     */
+    protected $_table = 'app_m_model_category';
+    /**
+     * primary key
+     */
+    protected $_pk = 'id';
+    /**
+     * table fields
+     */
+    protected $_dataStruct = array('id','name','pid','tid','created_time','updated_time');
+
+    public function getList($where=1, $limit=10, $offset=0){
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->queryAll(array());
+    }
+
+    public function add($fields) {
+        $fields['created_time']=time();
+        $fields['updated_time']=time();
+        return $this->_add($fields, true);
+    }
+
+    public function update($id, $fields) {
+        $fields['updated_time']=time();
+        return $this->_update($id, $fields);
+    }
+
+    public function delete($id) {
+        return $this->_delete($id);
+    }
+
+    public function get($id) {
+        return $this->_get($id);
+    }
+}
+
+?>

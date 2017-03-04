@@ -22,6 +22,12 @@ class TypeDao extends PwBaseDao {
 	 * table fields
 	 */
 	protected $_dataStruct = array('id','name','style','version','img_type','light','created_time','updated_time');
+
+    public function getList($where=1, $limit=10, $offset=0){
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->queryAll(array());
+    }
 	
 	public function add($fields) {
 		$fields['created_time']=time();
@@ -30,7 +36,7 @@ class TypeDao extends PwBaseDao {
 	}
 	
 	public function update($id, $fields) {
-		$fields['updated_time']=time();
+        $fields['updated_time']=time();
 		return $this->_update($id, $fields);
 	}
 	

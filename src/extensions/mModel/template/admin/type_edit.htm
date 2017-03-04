@@ -9,27 +9,28 @@
 <body>
     <div class="wrap">
         <fieldset class="layui-elem-field">
-            <legend>添加模型类型</legend>
+            <legend>编辑模型类型</legend>
             <div class="layui-field-box">
                 <form class="layui-form">
                     <div class="layui-form-item">
                         <label class="layui-form-label">类型名</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" required lay-verify="required" placeholder="类型名" autocomplete="off" class="layui-input">
+                            <input type="text" name="name" required lay-verify="required" placeholder="类型名" value="{$data['name']}" autocomplete="off"
+                                class="layui-input">
                         </div>
                     </div>
 
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">风格</label>
                         <div class="layui-input-block">
-                            <textarea name="style" placeholder="风格设置，每行一个" class="layui-textarea"></textarea>
+                            <textarea name="style" placeholder="风格设置，每行一个" class="layui-textarea"><!--#echo str_replace(",","\n",$data["style"]);#--></textarea>
                         </div>
                     </div>
 
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">版本</label>
                         <div class="layui-input-block">
-                            <textarea name="version" placeholder="版本设置，每行一个" class="layui-textarea"></textarea>
+                            <textarea name="version" placeholder="版本设置，每行一个" class="layui-textarea"><!--#echo str_replace(",","\n",$data["version"]);#--></textarea>
                         </div>
                     </div>
 
@@ -37,16 +38,18 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">贴图材质</label>
                         <div class="layui-input-block">
-                            <textarea name="img_type" placeholder="贴图材质设置，每行一个" class="layui-textarea"></textarea>
+                            <textarea name="img_type" placeholder="贴图材质设置，每行一个" class="layui-textarea"><!--#echo str_replace(",","\n",$data["img_type"]);#--></textarea>
                         </div>
                     </div>
 
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">灯光</label>
                         <div class="layui-input-block">
-                            <textarea name="light" placeholder="灯光设置，每行一个" class="layui-textarea"></textarea>
+                            <textarea name="light" placeholder="灯光设置，每行一个" class="layui-textarea"><!--#echo str_replace(",","\n",$data["light"]);#--></textarea>
                         </div>
                     </div>
+
+                    <input type="hidden" name="id" value="{$data['id']}">
 
                     <div class="layui-form-item">
                         <div class="layui-input-block">
@@ -76,7 +79,7 @@
                     params[x] = str.replace(/\n/, ",");
                 }
 
-                $.post("{@url:app/mModel/type/add}", params, function (res) {
+                $.post("{@url:app/mModel/type/edit}", params, function (res) {
                     layer.close(load)
                     res = JSON.parse(res);
                     layer.msg(res.msg, {
@@ -85,7 +88,7 @@
 
                     //添加成功跳转到主页面
                     if (res.status) {
-                        location.href ="{@url:app/mModel/type/run}";
+                        location.href = "{@url:app/mModel/type/run}";
                     }
                 });
 
