@@ -8,6 +8,7 @@
 
 <body>
     <div class="wrap">
+        <template source='SRC:extensions.mModel.template.common.nav' />
         <fieldset class="layui-elem-field">
             <legend>模型类型 <a class="layui-btn  layui-btn-primary layui-btn-small" href="{@url:app/mModel/type/add}">新增</a></legend>
             <div class="layui-field-box">
@@ -47,8 +48,8 @@
                                 <!--#echo date("Y-m-d H:i:s",$data["updated_time"]);#-->
                             </td>
                             <td>
-                                <a href="{@url:app/mModel/type/edit?id=$data['id']}" class="layui-btn edit">编辑</a>
-                                <a href="{@url:app/mModel/type/delete?id=$data['id']}" class="layui-btn layui-btn-danger delete">删除</a>
+                                <a href="{@url:app/mModel/type/edit?id=$data['id']}" class="layui-btn layui-btn-small edit">编辑</a>
+                                <a href="{@url:app/mModel/type/delete?id=$data['id']}" class="layui-btn layui-btn-small layui-btn-danger delete">删除</a>
                             </td>
                         </tr>
                         <!--#}#-->

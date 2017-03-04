@@ -8,6 +8,7 @@
 
 <body>
     <div class="wrap">
+        <template source='SRC:extensions.mModel.template.common.nav' />
         <fieldset class="layui-elem-field">
             <legend>模型分类设置 <a class="layui-btn  layui-btn-primary layui-btn-small" href="{@url:app/mModel/category/add}">新增</a></legend>
             <div class="layui-field-box">
@@ -29,8 +30,8 @@
                             <td><component class='EXT:mModel.service.srv.Helper' method='cateName' args='$data["pid"]' /></td>
                             <td>{$data["name"]}</td>
                             <td>
-                                <a href="{@url:app/mModel/category/edit?id=$data['id']}" class="layui-btn edit">编辑</a>
-                                <a href="{@url:app/mModel/category/delete?id=$data['id']}" class="layui-btn layui-btn-danger delete">删除</a>
+                                <a href="{@url:app/mModel/category/edit?id=$data['id']}" class="layui-btn layui-btn-small edit">编辑</a>
+                                <a href="{@url:app/mModel/category/delete?id=$data['id']}" class="layui-btn layui-btn-small layui-btn-danger delete">删除</a>
                             </td>
                         </tr>
                         <!--#}#-->

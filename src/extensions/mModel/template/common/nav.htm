@@ -1,0 +1,40 @@
+<div class="layui-tab layui-tab-brief" lay-filter="demo">
+    <ul class="layui-tab-title">
+        <li class="manage" url="{@url:app/mModel/manage/run}">模型管理</li>
+        <li class="download" url="{@url:app/mModel/download/run}">下载记录</li>
+        <li class="category" url="{@url:app/mModel/category/run}">类别管理</li>
+        <li class="type" url="{@url:app/mModel/type/run}">类型管理</li>
+    </ul>
+    <div class="layui-tab-content"></div>
+</div>
+
+<script type="text/javascript">
+
+initNav();
+function initNav() {
+    var c=getQueryString("c");
+    $(".layui-tab-title li").removeClass("layui-this");
+    $(".layui-tab-title li").each(function(){
+        if($(this).hasClass(c)){
+            $(this).addClass("layui-this");
+        }
+    });
+}
+
+function getQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+	layui.use(['element', 'layer'], function() {
+        var element = layui.element();
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            var url=$(".layui-this").attr("url");
+            layer.load();
+            location.href=url;
+        });
+    });
+</script>
