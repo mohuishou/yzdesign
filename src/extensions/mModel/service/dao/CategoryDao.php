@@ -2,13 +2,13 @@
 defined('WEKIT_VERSION') or exit(403);
 /**
  * collectionBoxDao
- * 收藏夹管理
+ * 目录
  *
  * @author 莫回首 <1@lailin.xyz>
  * @copyright http://lailin.xyz
  * @license http://lailin.xyz
  */
-class CollectionBoxDao extends PwBaseDao {
+class CategoryDao extends PwBaseDao {
 
     /**
      * table name
@@ -22,6 +22,17 @@ class CollectionBoxDao extends PwBaseDao {
      * table fields
      */
     protected $_dataStruct = array('id','name','pid','tid','created_time','updated_time');
+
+    /**
+     * 获取总条数
+     * @author mohuishou<1@lailin.xyz>
+     * @return string
+     */
+    public function getCount(){
+        $sql = $this->_bindSql('SELECT COUNT(*) AS count FROM %s', $this->getTable());
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->getValue(array());
+    }
 
     public function getList($where=1, $limit=10, $offset=0){
         $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));

@@ -15,7 +15,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">类别名</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" required lay-verify="required" placeholder="类别名" autocomplete="off" class="layui-input">
+                            <input type="text" name="name" required lay-verify="required" placeholder="类别名" value="{$data['name']}" autocomplete="off" class="layui-input">
                         </div>
                     </div>
 
@@ -26,8 +26,11 @@
                             <select name="tid" lay-verify="required">
                                 <option value=""></option>
                                 <!--#foreach($type_data  as $v){#-->
-                                <option value="{$v['id']}">{$v['name']}</option>
-                                <!--#}#-->
+                                <!--#if($data['tid']==$v['id']){#-->
+                                    <option value="{$v['id']}" selected>{$v['name']}</option>
+                                <!--#}else{#-->
+                                    <option value="{$v['id']}">{$v['name']}</option>
+                                <!--#}}#-->
                             </select>
                         </div>
                     </div>
@@ -35,12 +38,20 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">上级类别</label>
                         <div class="layui-input-block">
-                            <select name="pid" lay-verify="required">
+                            <select  name="pid" lay-verify="required">
                                 <option value=""></option>
-                                <option value="0">顶级类别</option>
-                                <!--#foreach($cate_data as $v){#-->
-                                <option value="{$v['id']}">{$v['name']}</option>
+                                <!--#if($data['pid']==0){#-->
+                                    <option selected value="0">顶级类别</option>
+                                 <!--#}else{#-->
+                                    <option value="0">顶级类别</option>
                                 <!--#}#-->
+                                <!--#foreach($cate_data as $v){#-->
+                                <!--#if($data['id']!=$v['id']) 
+                                if($data['pid']==$v['id']){#-->
+                                    <option value="{$v['id']}" selected>{$v['name']}</option>
+                                <!--#}else{#-->
+                                    <option value="{$v['id']}">{$v['name']}</option>
+                                <!--#}}#-->
                             </select>
                         </div>
                     </div>
@@ -51,6 +62,8 @@
                             <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
                         </div>
                     </div>
+
+                    <input type="hidden" name="id" value="{$data['id']}">
                 </form>
             </div>
         </fieldset>
@@ -66,7 +79,7 @@
 
                 var params = data.field;
 
-                $.post("{@url:app/mModel/category/add}", params, function (res) {
+                $.post("{@url:app/mModel/category/edit}", params, function (res) {
                     layer.close(load)
                     res = JSON.parse(res);
                     layer.msg(res.msg, {

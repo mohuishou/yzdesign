@@ -23,6 +23,7 @@ trait tValidate{
                     exit();
                 }
             }
+            return true;
         }
 
         foreach ($rules as $k=>$v){

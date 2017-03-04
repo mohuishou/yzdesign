@@ -25,9 +25,9 @@
                         <!--#foreach($datas as $data){#-->
                         <tr>
                             <td>{$data['id']}</td>
+                            <td><component class='EXT:mModel.service.srv.Helper' method='typeName' args='$data["tid"]' /></td>
+                            <td><component class='EXT:mModel.service.srv.Helper' method='cateName' args='$data["pid"]' /></td>
                             <td>{$data["name"]}</td>
-                            <td>{$data["style"]}</td>
-                            <td>{$data["version"]}</td>
                             <td>
                                 <a href="{@url:app/mModel/category/edit?id=$data['id']}" class="layui-btn edit">编辑</a>
                                 <a href="{@url:app/mModel/category/delete?id=$data['id']}" class="layui-btn layui-btn-danger delete">删除</a>
@@ -39,6 +39,7 @@
             </div>
         </fieldset>
     </div>
+    <div id="page"></div>
     <script>
         $(".delete").click(function () {
             var url = $(this).attr("href");
@@ -53,7 +54,7 @@
                     $.get(url, function (res) {
                         res = JSON.parse(res);
                         layer.msg(res.msg, {
-                            icon: 1
+                            icon: res.status
                         });
                         if (res.status) {
                             location.href =
@@ -64,6 +65,25 @@
             });
             return false;
         })
+
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage,
+                layer = layui.layer;
+
+            laypage({
+                cont: 'page',
+                pages: "{$pages}",
+                skip: true,
+                curr: "{$curr}",
+                jump: function (obj, first) {
+                    if (!first) {
+                        layer.load();
+                        url = "?m=app&app=mModel&c=category&a=run&page=" + obj.curr;
+                        location.href = url;
+                    }
+                }
+            });
+        });
     </script>
 </body>
 
