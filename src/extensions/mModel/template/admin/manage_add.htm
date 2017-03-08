@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mModel.template.common.head' />
+    <style>
+        .m-upload-img {
+            width: 100%;
+            height: 154px;
+            margin-bottom: 20px;
+            display: none;            
+        }
+        
+        .m-upload-img div {
+            width: 200px;
+            height: 153.75px;
+            background-size: cover;
+            background-position: center;
+            float: left;
+            margin-right: 15px;
+            display: none;   
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <template source='SRC:extensions.mModel.template.common.nav' />
+        <fieldset class="layui-elem-field ">
+            <legend>添加{$type["name"]}</legend>
+            <div class="layui-field-box">
+                <form class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{$type["name"]}名称*</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" required lay-verify="required" placeholder="{$type['name']}名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <!--#if(!empty($style)){#-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{$type["name"]}风格*</label>
+                        <div class="layui-input-block">
+                            <select name="style" lay-verify="required">
+                            <option value="">请选择{$type["name"]}风格*</option>
+                            <!--# foreach($style as $v){ #-->
+                                <option  value="{$v}">{$v}</option>
+                            <!--# } #-->
+                        </select>
+                        </div>
+                    </div>
+                    <!--# } #-->
+
+
+                    <!--#if(!empty($version)){#-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{$type["name"]}版本*</label>
+                        <div class="layui-input-block">
+                            <select name="version" lay-verify="required">
+                            <option value="">请选择{$type["name"]}版本*</option>
+                            <!--# foreach($version as $v){ #-->
+                                <option  value="{$v}">{$v}</option>
+                            <!--# } #-->
+                        </select>
+                        </div>
+                    </div>
+                    <!--# } #-->
+
+
+                    <!--#if(!empty($img_type)){#-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">材质贴图*</label>
+                        <div class="layui-input-block">
+                            <select name="img_type" lay-verify="required">
+                            <option value="">请选择材质贴图*</option>
+                            <!--# foreach($img_type as $v){ #-->
+                                <option  value="{$v}">{$v}</option>
+                            <!--# } #-->
+                        </select>
+                        </div>
+                    </div>
+                    <!--# } #-->
+
+                    <!--#if(!empty($light)){#-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">灯光*</label>
+                        <div class="layui-input-block">
+                            <select name="light" lay-verify="required">
+                            <option value="">灯光*</option>
+                            <!--# foreach($light as $v){ #-->
+                                <option  value="{$v}">{$v}</option>
+                            <!--# } #-->
+                        </select>
+                        </div>
+                    </div>
+                    <!--# } #-->
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">意向价格*</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="price" required lay-verify="required" placeholder="意向价格" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">简要说明</label>
+                        <div class="layui-input-block">
+                            <textarea name="description" placeholder="简要说明" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上传渲染图</label>
+                        <div class="layui-input-block">
+                            <input type="file" multiple="multiple" lay-type="images" lay-title="最多选择五张图片哦" lay-filter="picture" name="img[]" class="layui-upload-file">
+                        </div>
+                    </div>
+
+                    <!-- 图片展示 -->
+                    <div class="m-upload-img">
+                        <div alt=""></div>
+                        <div alt=""></div>
+                        <div alt=""></div>
+                        <div alt=""></div>
+                        <div alt=""></div>
+                        <input type="hidden" lay-verify="required" name="pictures" />
+                    </div>
+                    <!-- 展示end -->
+
+                     <div class="layui-form-item upload-file">
+                        <label class="layui-form-label">上传模型</label>
+                        <div class="layui-input-block">
+                            <input type="file" lay-ext="7z|zip|rar" lay-title="请上传压缩文件,支持zip/rar/7z格式" name="models" class="layui-upload-file">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="file">
+
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
+                            <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </fieldset>
+    </div>
+    <script>
+        layui.config({
+            base: "{@G:url.extres}/mModel/lay/modules/"
+        }).use(['uploadEx'], function () {
+            layui.uploadEx({
+                url: '{@url:app/mModel/upload/upload}',
+                size: "20",
+                before: function () {
+                    load = layer.load();
+                },
+                success: function (res) {
+                    layer.close(load);
+                    if (res.status == 0) {
+                        layer.msg(res.msg, {
+                            icon: 2
+                        });
+                    } else {
+                        layer.msg(res.msg, {
+                            icon: 1
+                        });
+                        if (res.data.pictures) {
+                            var pictures = res.data.pictures;
+                            var path = res.data.path;
+                            $('input[name="pictures"]').val(pictures);
+                            i = 0;
+                            $('.m-upload-img div').each(function () {
+                                if (!path[i]) {
+                                    return
+                                }
+                                $(".m-upload-img").css("display","block")
+                                $(this).css({
+                                    "background-image": "url(" + path[i] + ")",
+                                    "display":"block"
+                                });
+                                i++;
+                            });
+                        }
+
+                        if(res.data.filename){
+                            $(".upload-file span").text(res.data.filename);
+                            $('input[name="file"]').val(res.data.id);
+                        }
+
+                    }
+                    console.log(res); //上传成功返回值，必须为json格式
+                }
+            });
+        });
+
+        layui.use('form', function () {
+            var form = layui.form();
+
+            //监听提交
+            form.on('select', function (data) {});
+        });
+    </script>
+</body>
+
+</html>

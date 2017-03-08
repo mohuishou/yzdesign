@@ -13,7 +13,7 @@ class FileDao extends PwBaseDao {
 	/**
 	 * table name
 	 */
-	protected $_table = 'app_m_model_picture';
+	protected $_table = 'app_m_model_file';
 	/**
 	 * primary key
 	 */

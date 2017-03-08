@@ -22,7 +22,19 @@ class Helper{
         echo $cate["name"];
     }
 
+    /**
+     * 通过图片id输出图片地址
+     * @author mohuishou<1@lailin.xyz>
+     * @param $id
+     */
+    public function getPic($id){
+        $pic=$this->pictureDao()->get($id);
+        echo $pic['path'];
+    }
 
+    private function pictureDao(){
+        return Wekit::load('SRC:extensions.mModel.service.dao.PictureDao');
+    }
 
     private function typeDao(){
         return Wekit::load('SRC:extensions.mModel.service.dao.TypeDao');

@@ -77,7 +77,7 @@
                 for (x in params) {
                     if (x == "name" || x == "csrf_token") continue;
                     var str = $.trim(params[x]);
-                    params[x] = str.replace(/\n/, ",");
+                    params[x] = str.replace(/\n|\r|\r\n/g, ",");
                 }
 
                 $.post("{@url:app/mModel/type/edit}", params, function (res) {

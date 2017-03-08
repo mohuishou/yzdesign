@@ -215,16 +215,26 @@ class ImageFilter {
 		$font = empty($args['fontfamily']) ? $this->fontfamily[0] : $this->fontfamily[$args['fontfamily']];
 		$fontsize = empty($args['fontsize']) ? $this->fontsize : (int) $args['fontsize'];
 
-		$tb = imagettfbbox($fontsize, 0, $font, $text);
-		// Create some colors
-		$white = imagecolorallocate($this->image, 255, 255, 255);
-		$grey = imagecolorallocate($this->image, 128, 128, 128);
-		$black = imagecolorallocate($this->image, 0, 0, 0);
-		// Add some shadow to the text
-		imagettftext($this->image, $fontsize, 0, $this->imageWidth() - $tb[2] - 4, $this->imageHeight() - 5, $grey, $font, $text);
+        $texts=explode(",",$text);
+        foreach ($texts as $v){
+            $tbs[] = imagettfbbox($fontsize, 0, $font, $v);
+        }
 
-		// Add the text
-		imagettftext($this->image, $fontsize, 0, $this->imageWidth() - $tb[2] - 5, $this->imageHeight() - 5, $white, $font, $text);
+        $left=0;
+        foreach ($tbs as $k=>$v){
+            if ($v[2]>$left){
+                $left=$v[2];
+            }
+        }
+		// Create some colors
+		$white = imagecolorallocatealpha($this->image, 255, 255, 255,30);
+
+        foreach ($tbs as $k=>$v){
+            $fontsize+=(2*$k);
+            // Add the text
+            imagettftext($this->image, $fontsize, 0, $this->imageWidth() - ($left+$v[2])/2 - $fontsize*1, $this->imageHeight() - ($fontsize*1.4*($k+1)), $white, $font, $texts[$k]);
+        }
+
 		//imagepng($this->image);
 		return $this->image;
 	}

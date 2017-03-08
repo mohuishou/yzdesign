@@ -4,12 +4,69 @@
 <head>
     <template source='TPL:admin.common.head' />
     <template source='SRC:extensions.mModel.template.common.head' />
+    <style>
+        .m-type-select {
+            max-width: 1200px;
+        }
+        
+        .m-type-select>div {
+            float: left;
+            width: calc( 80% - 36px);
+        }
+        
+        .m-type-select>a {
+            float: left;
+        }
+        
+        .m-manage-img {
+            max-height: 100px;
+            max-width: 200px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrap">
         <template source='SRC:extensions.mModel.template.common.nav' />
+
+        <!-- 类型选择 -->
+        <div>
+            <form class="layui-form layui-form-pane m-type-select" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-block">
+                        <select lay-verify="required">
+                            <option value="">请先选择模型类型</option>
+                            <!--# foreach($types as $type){ #-->
+                                <!--#if($type['id']==$type_id){#-->
+                                <option selected value="{$type['id']}">{$type['name']}</option>
+                                <!--# }else{ #-->
+                                <option  value="{$type['id']}">{$type['name']}</option>
+                                <!--# } #-->
+                            <!--# } #-->
+                        </select>
+                    </div>
+                </div>
+                <a href="{@url:app/mModel/manage/add?type_id=$type_id}" class="layui-btn">新增</a>
+            </form>
+        </div>
+        <!-- 类型选择end -->
+
+        <!--#if($type_id){#-->
+
+        <!--#}#-->
     </div>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form();
+
+            //监听提交
+            form.on('select', function (data) {
+                layer.load();
+                location.href = "?m=app&app=mModel&c=manage&a=run&type_id=" + data.value;
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -16,11 +16,29 @@ class ManageController extends AdminBaseController {
 	}
 	
 	public function run() {
+	    $type_id=$this->getInput("type_id");
+        $type_id|| $type_id=0;
+        $types=$this->typeDao()->getList();
+        $this->setOutput($types,"types");
+        $this->setOutput($type_id,"type_id");
 
 	}
 
     public function addAction(){
+        $type_id=$this->getInput("type_id");
+        if (!$type_id){
+            $this->showError("请先选择模型类别！");
+        }
+        $type=$this->typeDao()->get($type_id);
+        $tmp=["style","version","img_type","light"];
+        foreach ($type as $k => $v){
+            if (in_array($k,$tmp)){
+                $this->setOutput(explode(",",$v),$k);
+            }
+        }
+        $this->setOutput($type,"type");
 
+//        print_r($type);
     }
 
     public function deleteAction(){

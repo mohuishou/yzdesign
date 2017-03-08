@@ -12,7 +12,7 @@
         <fieldset class="layui-elem-field">
             <legend>添加模型类型</legend>
             <div class="layui-field-box">
-                <form class="layui-form">
+                <form class="layui-form layui-form-pane">
                     <div class="layui-form-item">
                         <label class="layui-form-label">类型名</label>
                         <div class="layui-input-block">
@@ -74,7 +74,7 @@
                 for (x in params) {
                     if (x == "name" || x == "csrf_token") continue;
                     var str = $.trim(params[x]);
-                    params[x] = str.replace(/\n/, ",");
+                    params[x] = str.replace(/\n|\r|\r\n/g, ",");
                 }
 
                 $.post("{@url:app/mModel/type/add}", params, function (res) {
