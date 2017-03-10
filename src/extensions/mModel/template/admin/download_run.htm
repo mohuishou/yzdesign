@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <template source='TPL:admin.common.head' />
+    <template source='SRC:extensions.mModel.template.common.head' />
+</head>
+
+<body>
+    <div class="wrap">
+        <template source='SRC:extensions.mModel.template.common.nav' />
+        <fieldset class="layui-elem-field">
+            <legend>下载记录</legend>
+            <div class="layui-field-box layui-form-pane">
+                <table class="layui-table" lay-even>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>模型</th>
+                            <th>用户</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--#foreach($datas as $data){#-->
+                        <tr>
+                            <td>{$data['id']}</td>
+                            <td>{$data['name']}</td>
+                            <td>{$data['user']['username']}</td>
+                             <td>
+                                {$data["updated_time"]}
+                            </td>
+                            <td>
+                                <a href="{@url:app/mModel/download/delete?id=$data['id']}" class="layui-btn layui-btn-small layui-btn-danger delete">删除</a>
+                            </td>
+                        </tr>
+                        <!--#}#-->
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+    <script>
+        $(".delete").click(function () {
+            var url = $(this).attr("href");
+            layui.use('layer', function () {
+                layer.confirm('确认删除？', {
+                    btn: ['确认', '取消'] //按钮
+                }, function () {
+                    layer.msg('删除中，请稍候', {
+                        icon: 2,
+                        time: 0
+                    });
+                    $.get(url, function (res) {
+                        res = JSON.parse(res);
+                        layer.msg(res.msg, {
+                            icon: 1
+                        });
+                        if (res.status) {
+                            location.href =
+                                "{@url:app/mModel/download/run}";
+                        }
+                    });
+                }, function () {});
+            });
+            return false;
+        })
+    </script>
+
+</body>
+
+</html>

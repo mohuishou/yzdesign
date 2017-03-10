@@ -22,7 +22,24 @@ class DownloadDao extends PwBaseDao {
 	 * table fields
 	 */
 	protected $_dataStruct = array('id','mid','uid','tid','created_time','updated_time');
-	
+	 /**
+     * 获取总条数
+     * @author mohuishou<1@lailin.xyz>
+     * @return string
+     */
+    public function getCount(){
+        $sql = $this->_bindSql('SELECT COUNT(*) AS count FROM %s', $this->getTable());
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->getValue(array());
+    }
+
+    public function getList($where=1, $limit=10, $offset=0){
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->queryAll(array());
+    }
+
+
 	public function add($fields) {
 		$fields['created_time']=time();
 		$fields['updated_time']=time();
