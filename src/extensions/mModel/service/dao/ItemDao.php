@@ -13,7 +13,7 @@ class ItemDao extends PwBaseDao {
 	/**
 	 * table name
 	 */
-	protected $_table = 'app_m_model_picture';
+	protected $_table = 'app_m_model_item';
 	/**
 	 * primary key
 	 */
@@ -21,7 +21,7 @@ class ItemDao extends PwBaseDao {
 	/**
 	 * table fields
 	 */
-	protected $_dataStruct = array('id','cid','uid','name','style','version','pictures','img_type','light','tags','price','file','description','liked','collection' ,'created_time','updated_time');
+	protected $_dataStruct = array('id','cid','uid','tid','name','style','version','pictures','img_type','light','tags','price','file','description','liked','collection','status' ,'created_time','updated_time');
 	
 	public function add($fields) {
 		$fields['created_time']=time();

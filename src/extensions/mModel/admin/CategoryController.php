@@ -10,6 +10,9 @@ Wind::import('ADMIN:library.AdminBaseController');
 Wind::import('SRC:extensions.mModel.admin.tJsonReturn');
 Wind::import('SRC:extensions.mModel.admin.tValidate');
 
+/**
+ * 模型分类控制
+ */
 class CategoryController extends AdminBaseController {
     use tValidate,tJsonReturn;
 
@@ -97,6 +100,18 @@ class CategoryController extends AdminBaseController {
                 return $this->error("更新失败");
             }
         }
+    }
+
+    public function getAction(){
+        $pid=$this->getInput("pid");
+        $pid || $pid=0;
+        $data=$this->cateDao()->getList("pid=".$pid);
+        if(!empty($data)){
+            $this->success("获取成功！",$data);
+        }else{
+           $this->success("改分类无子分类，请另行选择！",$data); 
+        }
+        $this->setTemplate("");
     }
 
     private function typeDao(){
