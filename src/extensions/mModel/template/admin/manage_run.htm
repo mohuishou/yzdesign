@@ -53,10 +53,114 @@
         <!-- 类型选择end -->
 
         <!--#if($type_id){#-->
-
+        <table class="layui-table" lay-even>
+            <colgroup>
+                <col width="50">
+                <col width="80">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+                <col width="150">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>类型名</th>
+                    <th>风格</th>
+                    <th>版本</th>
+                    <th>贴图类型</th>
+                    <th>灯光</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--#foreach($datas as $data){#-->
+                <tr>
+                    <td>{$data['id']}</td>
+                    <td>{$data["name"]}</td>
+                    <td>{$data["style"]}</td>
+                    <td>{$data["version"]}</td>
+                    <td>{$data["img_type"]}</td>
+                    <td>{$data["light"]}</td>
+                    <td>
+                        <!--#
+                        $status=["待审核","已通过","未通过"];
+                        echo $status[$data["status"]];
+                        #-->
+                    </td>
+                    <td>
+                        <a href="{@url:app/mModel/manage/status?id=$data['id']}" class="layui-btn layui-btn-warm layui-btn-small changeStatus">审批</a>
+                        <a href="{@url:app/mModel/manage/edit?type_id=$type_id&id=$data['id']}" class="layui-btn layui-btn-small edit">编辑</a>
+                        <a href="{@url:app/mModel/manage/delete?id=$data['id']}" class="layui-btn layui-btn-small layui-btn-danger delete">删除</a>
+                    </td>
+                </tr>
+                <!--#}#-->
+            </tbody>
+        </table>
         <!--#}#-->
     </div>
     <script>
+        $(".changeStatus").click(function () {
+            var url = $(this).attr("href");
+            layui.use('layer', function () {
+                layer.confirm('请选择审批状态', {
+                    btn: ['待审核', '已通过',"未通过"] //按钮
+                }, function () {
+                    changeStatus(url,0);
+                }, function () {
+                    changeStatus(url,1);
+                }, function () {
+                    changeStatus(url,2);
+                });
+            });
+            return false;
+        })
+
+        function changeStatus(url,status){
+            layer.msg('提交中，请稍候', {
+                icon: 1,
+                time: 0
+            });
+            url=url+"&status="+status;
+            $.get(url, function (res) {
+                res = JSON.parse(res);
+                layer.msg(res.msg, {
+                    icon: 1
+                });
+                if (res.status) {
+                    location.href =
+                        "{@url:app/mModel/manage/run?type_id=$type_id}";
+                }
+            });
+        }
+
+        $(".delete").click(function () {
+            var url = $(this).attr("href");
+            layui.use('layer', function () {
+                layer.confirm('确认删除？', {
+                    btn: ['确认', '取消'] //按钮
+                }, function () {
+                    layer.msg('删除中，请稍候', {
+                        icon: 2,
+                        time: 0
+                    });
+                    $.get(url, function (res) {
+                        res = JSON.parse(res);
+                        layer.msg(res.msg, {
+                            icon: 1
+                        });
+                        if (res.status) {
+                            location.href =
+                                "{@url:app/mModel/manage/run?type_id=$type_id}";
+                        }
+                    });
+                }, function () {});
+            });
+            return false;
+        })
         layui.use('form', function () {
             var form = layui.form();
 

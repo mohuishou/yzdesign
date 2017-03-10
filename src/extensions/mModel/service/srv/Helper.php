@@ -32,6 +32,20 @@ class Helper{
         echo $pic['path'];
     }
 
+    /**
+     * 通过文件id输出文件地址
+     * @author mohuishou<1@lailin.xyz>
+     * @param $id
+     */
+    public function getFile($id){
+        $file=$this->fileDao()->get($id);
+        echo $file['path'];
+    }
+
+    private function fileDao(){
+        return Wekit::load('SRC:extensions.mModel.service.dao.FileDao');
+    }
+
     private function pictureDao(){
         return Wekit::load('SRC:extensions.mModel.service.dao.PictureDao');
     }

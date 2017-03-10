@@ -28,11 +28,14 @@ class ManageController extends AdminBaseController {
         if($type_id){
             $page || $page=1;
             $perpage=10;
-            $this->itemDao()->getList("tid=".$type_id,$page*$perpage,($page-1)*$perpage);
-
+            $datas=$this->itemDao()->getList("tid=".$type_id,$page*$perpage,($page-1)*$perpage);
+            $type=$this->typeDao()->get($type_id);
+            $this->setOutput($datas,"datas");
+            $this->setOutput($datas,"datas");
+            $this->setOutput($perpage,"perpage");
+            $this->setOutput($page,"curr");
+            $this->setOutput(ceil($this->cateDao()->getCount() / $perpage),"pages");
         }
-        
-        
     }
     
     /**
@@ -43,6 +46,7 @@ class ManageController extends AdminBaseController {
         if (!$type_id){
             $this->showError("请先选择模型类别！");
         }
+        $this->setOutput($type_id,"type_id");
         $token=$this->getInput("csrf_token");
         if(!$token){
             $type=$this->typeDao()->get($type_id);
@@ -69,19 +73,81 @@ class ManageController extends AdminBaseController {
             }
         }
     }
-    
-    public function uploadAction(){
+
+     public function editAction(){
+        $type_id=$this->getInput("type_id");
+        if (!$type_id){
+            $this->showError("请先选择模型类别！");
+        }
+        $this->setOutput($type_id,"type_id");
         
+        $id=$this->getInput("id");
+        $token=$this->getInput("csrf_token");
+         if (!$token){
+             //已有的数据
+            $data=$this->itemDao()->get($id);
+
+            //获取所属类型以及相关设置
+            $type=$this->typeDao()->get($type_id);
+            $tmp=["style","version","img_type","light"];
+            foreach ($type as $k => $v){
+                if (in_array($k,$tmp)){
+                    $this->setOutput(explode(",",$v),$k);
+                }
+            }
+            $this->setOutput($type,"type");
+
+            //顶级分类列表
+            $cate=$this->cateDao()->getList("pid=0");
+            $this->setOutput($cate,"cate");
+
+            //顶级分类信息
+            $category=$this->cateDao()->get($data['cid']);
+            $data["pid"]=$category['pid'];
+
+            //二级分类列表
+            $cate2=$this->cateDao()->getList("pid=".$data["pid"]);
+            $this->setOutput($cate2,"cate2");
+
+            $this->setOutput($data,"data");            
+            $this->setTemplate("manage_edit");
+        }else{
+            $this->setTemplate("");
+            $field=['cid','name','style','version','img_type','light','price','description'];
+            $data=$this->getInput($field,"POST",true);
+            if($this->itemDao()->update($id,$data)){
+                return $this->success("更新成功");
+            }else{
+                return $this->error("更新失败");
+            }
+        }
+    }
+    
+    public function statusAction(){
+        $this->setTemplate("");
+        $status=$this->getInput("status");
+        $id=$this->getInput("id");
+        if(isset($status) && $id){
+            if($this->itemDao()->update($id,['status'=>$status])){
+                $this->success("修改成功！");
+                return;
+            }
+        }
+        $this->error("参数错误！");
     }
     
     
     public function deleteAction(){
-        
+        $this->setTemplate("");
+        $id=$this->getInput("id");
+        if ($this->itemDao()->delete($id)){
+            $this->success("删除成功");
+        }else{
+            $this->error("删除失败");
+        }
     }
     
-    public function editAction(){
-        
-    }
+   
     
     private function typeDao(){
         return Wekit::load('SRC:extensions.mModel.service.dao.TypeDao');
