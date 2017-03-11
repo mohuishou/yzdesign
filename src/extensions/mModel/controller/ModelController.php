@@ -31,9 +31,8 @@ class ModelController extends PwBaseController {
     public function editAction(){
         $type_id=$this->getInput("type_id");
         $types=$this->typeDao()->getList();
-        //获取分类信息，如果没有指定分类，默认为第一个
         if (!$type_id){
-            $type_id=$types[0]['id'];
+            $this->showError("请先选择模型类别！");
         }
         $this->setOutput($type_id,"type_id");
         
@@ -85,9 +84,10 @@ class ModelController extends PwBaseController {
     
     public function addAction(){
         $type_id=$this->getInput("type_id");
-		if (!$type_id){
-            $this->showError("请先选择模型类别！");
+        if (!$type_id){
+            $type_id=$types[0]['id'];
         }
+        
         $types=$this->typeDao()->getList();
         //获取分类信息，如果没有指定分类，默认为第一个
         if (!$type_id){
@@ -135,8 +135,22 @@ class ModelController extends PwBaseController {
     //列表展示页面
     public function showAction(){
         $type_id=$this->getInput("type_id");
-		$types=$this->typeDao()->getList();
-		$this->setOutput($types,"types");
+        if (!$type_id){
+            $this->showError("请先选择模型类别！");
+        }
+        $types=$this->typeDao()->getList();
+        $this->setOutput($types,"types");
+        $page=$this->getInput("page");
+        $this->setOutput($type_id,"type_id");
+        $page || $page=1;
+        $perpage=10;
+        $datas=$this->itemDao()->getList("tid={$type_id} AND uid={$this->uid}",$page*$perpage,($page-1)*$perpage);
+        $type=$this->typeDao()->get($type_id);
+        $this->setOutput($datas,"datas");
+        $this->setOutput($datas,"datas");
+        $this->setOutput($perpage,"perpage");
+        $this->setOutput($page,"curr");
+        $this->setOutput(ceil($this->cateDao()->getCount() / $perpage),"pages");
     }
     
     //删除
@@ -152,8 +166,11 @@ class ModelController extends PwBaseController {
     
     //下载记录
     public function downloadAction(){
-		$type_id=$this->getInput("type_id");
-		$types=$this->typeDao()->getList();
+        $type_id=$this->getInput("type_id");
+        if (!$type_id){
+            $this->showError("请先选择模型类别！");
+        }
+        $types=$this->typeDao()->getList();
         $page=$this->getInput("page");
         $page || $page=1;
         $perpage=10;
@@ -163,7 +180,7 @@ class ModelController extends PwBaseController {
             $v["updated_time"]=date("Y-m-d H:i:s",$v["updated_time"]);
             $v["name"]=$this->getItemById($v["mid"]);
         }
-		$this->setOutput($types,"types");
+        $this->setOutput($types,"types");
         $this->setOutput($datas,"datas");
         $this->setOutput($datas,"datas");
         $this->setOutput($perpage,"perpage");
