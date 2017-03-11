@@ -30,7 +30,7 @@ class ModelController extends PwBaseController {
     //编辑页面
     public function editAction(){
         $type_id=$this->getInput("type_id");
-        $types=$this->typeDao()->getList();
+        $types=$this->typeDao()->getList("admin_only=0");
         if (!$type_id){
             $this->showError("请先选择模型类别！");
         }
@@ -88,7 +88,7 @@ class ModelController extends PwBaseController {
             $type_id=$types[0]['id'];
         }
         
-        $types=$this->typeDao()->getList();
+        $types=$this->typeDao()->getList("admin_only=0");
         //获取分类信息，如果没有指定分类，默认为第一个
         if (!$type_id){
             $type_id=$types[0]['id'];
@@ -138,7 +138,7 @@ class ModelController extends PwBaseController {
         if (!$type_id){
             $this->showError("请先选择模型类别！");
         }
-        $types=$this->typeDao()->getList();
+        $types=$this->typeDao()->getList("admin_only=0");
         $this->setOutput($types,"types");
         $page=$this->getInput("page");
         $this->setOutput($type_id,"type_id");
@@ -170,7 +170,7 @@ class ModelController extends PwBaseController {
         if (!$type_id){
             $this->showError("请先选择模型类别！");
         }
-        $types=$this->typeDao()->getList();
+        $types=$this->typeDao()->getList("admin_only=0");
         $page=$this->getInput("page");
         $page || $page=1;
         $perpage=10;

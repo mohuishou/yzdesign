@@ -50,6 +50,19 @@
                         </div>
                     </div>
 
+                     <div class="layui-form-item">
+                        <label class="layui-form-label">仅后台用户</label>
+                        <div class="layui-input-block">
+                            <!--# if($data['admin_only']==1){ #-->
+                            <input type="radio" name="admin_only" value="1" title="是" checked>
+                            <input type="radio" name="admin_only" value="0" title="否" >
+                            <!--#}else{#-->
+                            <input type="radio" name="admin_only" value="1" title="是">
+                            <input type="radio" name="admin_only" value="0" title="否" checked>
+                            <!--#}#-->
+                        </div>
+                    </div>
+
                     <input type="hidden" name="id" value="{$data['id']}">
 
                     <div class="layui-form-item">

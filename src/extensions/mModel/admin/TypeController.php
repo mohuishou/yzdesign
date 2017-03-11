@@ -22,7 +22,7 @@ class TypeController extends AdminBaseController {
 	}
 
 	public function addAction(){
-        $datas=$this->getInput(["name","style","version","img_type","light"],"POST",true);
+        $datas=$this->getInput(["name","style","version","img_type","light","admin_only"],"POST",true);
         $token=$this->getInput("csrf_token");
         if (!$token){
             $this->setTemplate("type_add");
@@ -42,7 +42,7 @@ class TypeController extends AdminBaseController {
 	public function editAction(){
 		$id=$this->getInput("id");
         $token=$this->getInput("csrf_token");
-        $datas=$this->getInput(["name","style","version","img_type","light"],"POST",true);
+        $datas=$this->getInput(["name","style","version","img_type","light","admin_only"],"POST",true);
         if (!$token){
             $data=$this->typeDao()->get($id);
             $this->setOutput($data,"data");

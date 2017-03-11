@@ -50,6 +50,14 @@
                     </div>
 
                     <div class="layui-form-item">
+                        <label class="layui-form-label">仅后台用户</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="admin_only" value="1" title="是">
+                            <input type="radio" name="admin_only" value="0" title="否" checked>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
                             <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>
@@ -86,7 +94,7 @@
 
                     //添加成功跳转到主页面
                     if (res.status) {
-                        location.href ="{@url:app/mModel/type/run}";
+                        location.href = "{@url:app/mModel/type/run}";
                     }
                 });
 
