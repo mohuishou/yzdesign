@@ -53,11 +53,12 @@ class ManageController extends AdminBaseController {
             $tmp=["style","version","img_type","light"];
             foreach ($type as $k => $v){
                 if (in_array($k,$tmp)){
-                    $this->setOutput(explode(",",$v),$k);
+                    if(!empty($v))
+                        $this->setOutput(explode(",",$v),$k);
                 }
             }
             $this->setOutput($type,"type");
-            $cate=$this->cateDao()->getList("pid=0");
+            $cate=$this->cateDao()->getList("pid=0 AND tid=".$type_id);
             $this->setOutput($cate,"cate");
             $this->setTemplate("manage_add");
         }else{
@@ -92,13 +93,14 @@ class ManageController extends AdminBaseController {
             $tmp=["style","version","img_type","light"];
             foreach ($type as $k => $v){
                 if (in_array($k,$tmp)){
-                    $this->setOutput(explode(",",$v),$k);
+                    if(!empty($v))
+                        $this->setOutput(explode(",",$v),$k);
                 }
             }
             $this->setOutput($type,"type");
 
             //顶级分类列表
-            $cate=$this->cateDao()->getList("pid=0");
+            $cate=$this->cateDao()->getList("pid=0 AND tid=".$type_id);
             $this->setOutput($cate,"cate");
 
             //顶级分类信息

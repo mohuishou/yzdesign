@@ -9,7 +9,8 @@ class IndexController extends PwBaseController {
 	
 	public function beforeAction($handlerAdapter) {
 		parent::beforeAction($handlerAdapter);
-		//TODO do something before all the action
+		//判断是否登录
+		$this->loginUser;
 	}
 	
 	public function run() {

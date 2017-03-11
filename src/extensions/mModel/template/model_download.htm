@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <template source='TPL:common.head' load='true' />
+    <template source='SRC:extensions.mModel.template.common.indexHead' />
+    <style>
+        
+
+    </style>
+</head>
+
+<body>
+    <pw-start />
+    <div class="wrap">
+        <template source='TPL:common.header' load='true' />
+        <div class="main_wrap">
+            <template source='SRC:extensions.mModel.template.common.slider' />
+            <div class="m-main">
+                <table class="layui-table" lay-even>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>模型</th>
+                            <th>用户</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--#foreach($datas as $data){#-->
+                        <tr>
+                            <td>{$data['id']}</td>
+                            <td>{$data['name']}</td>
+                            <td>{$data['user']['username']}</td>
+                             <td>
+                                {$data["updated_time"]}
+                            </td>
+                
+                        </tr>
+                        <!--#}#-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      
+        <template source='SRC:extensions.mModel.template.common.footer' load='true' />
+    </div>
+
+    <pw-end />
+</body>
+
+</html>

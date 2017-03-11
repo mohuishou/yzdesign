@@ -1,0 +1,48 @@
+<!--前台 左侧导航栏-->
+<style>
+    ul.layui-nav{
+        float: left;
+    }
+</style>
+<ul class="layui-nav layui-nav-tree slider" lay-filter="test">
+    <!--#foreach($types as $v ){#-->
+    <li class="layui-nav-item layui-nav-itemed type-{$v['id']}">
+        <a href="javascript:;">{$v['name']}</a>
+        <dl class="layui-nav-child">
+            <dd class="add"><a href="{@url:app/mModel/model/add?type_id=$v['id']}">添加{$v['name']}</a></dd>
+            <dd class="show"><a href="{@url:app/mModel/model/show?type_id=$v['id']}">上传记录</a></dd>
+            <dd class="download"><a href="{@url:app/mModel/model/download?type_id=$v['id']}">下载记录</a></dd>
+        </dl>
+    </li>
+    <!--#}#-->
+
+</ul>
+
+<script>
+    initSlider();
+    function initSlider(){
+        var type_id="{$type_id}";
+        var action=getQueryString("a");
+        if(!action) action="add";
+        if(type_id){
+            $(".type-"+type_id+" ."+action).addClass("layui-this");
+        }else{
+            $(".layui-nav-item:eq(0)"+" ."+action).addClass("layui-this");
+        }
+        
+    }
+    //获取url参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function () {
+        var element = layui.element();
+
+        //…
+    });
+</script>
+<!--前台 左侧导航栏 end-->

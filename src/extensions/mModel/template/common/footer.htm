@@ -1,0 +1,13 @@
+<script>
+    var h1, h2, h;
+    h1 = $(".slider").height();
+    h2 = $(".m-main").height();
+    if (h1 > h2) {
+        h = h1;
+        $(".m-main").css("height", h);
+    } else {
+        h = h2;
+    }
+    $(".main_wrap").css("height", h);
+</script>
+<template source='TPL:common.footer' load='true' />
