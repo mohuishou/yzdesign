@@ -1,10 +1,17 @@
-.m-main {
-    width: 1050px;
-    display: block;
-    float: left;
-    margin-left: 10px;
+.m-index-main {
+  width: 980px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
 }
-.main_wrap{
-    margin-bottom: 20px;
-    
+.m-index-main .mdl {
+  width: 270px;
+  height: 330px;
+  float: left;
+  margin: 0px 10px 10px 0px;
+  padding: 10px;
+  border: 1px solid #c9caca;
+  display: table;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

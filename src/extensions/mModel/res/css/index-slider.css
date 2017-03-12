@@ -1,0 +1,42 @@
+.m-index-slider {
+  width: 260px;
+  display: inline-block;
+  margin-bottom: 20px ;
+}
+.m-index-slider .m-title {
+  font-size: 20px;
+  color: #e70;
+  border-bottom: 1px solid #e70;
+  margin-bottom: 15px;
+  line-height: 30px;
+}
+.m-index-slider .m-all {
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 100%;
+  min-height: 300px;
+  padding: 10px 0;
+}
+.m-index-slider .m-item {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: calc(88%);
+}
+.m-index-slider .m-item .m-item-parent a {
+  font-size: 17px;
+  color: #333;
+}
+.m-index-slider .m-item .m-item-children {
+  width: auto;
+}
+.m-index-slider .m-item .m-item-children li {
+  display: inline-block;
+  line-height: 15px;
+  margin: 10px 10px 10px 0;
+}
+.m-index-slider .m-item .m-item-children a {
+  font-size: 14px;
+  color: #aaa;
+  display: inline;
+}

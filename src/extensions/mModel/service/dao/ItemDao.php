@@ -35,8 +35,8 @@ class ItemDao extends PwBaseDao {
         return $smt->getValue(array());
     }
 
-    public function getList($where=1, $limit=10, $offset=0){
-        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+    public function getList($where=1, $limit=10, $offset=0,$order="updated_time desc"){
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc , %s  %s', $this->getTable(), $where, $order,$this->sqlLimit($limit, $offset));
         $smt = $this->getConnection()->createStatement($sql);
         return $smt->queryAll(array());
     }

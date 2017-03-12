@@ -3,3 +3,4 @@ attachment/
 .idea/
 *.zip
 conf/database.php
+*/build/

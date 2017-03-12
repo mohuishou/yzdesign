@@ -170,6 +170,7 @@ class ModelController extends PwBaseController {
         if (!$type_id){
             $this->showError("请先选择模型类别！");
         }
+        $this->setOutput($type_id,"type_id");
         $types=$this->typeDao()->getList("admin_only=0");
         $page=$this->getInput("page");
         $page || $page=1;
