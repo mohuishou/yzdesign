@@ -1,7 +1,7 @@
 .m-index-slider {
-  width: 260px;
+  width: 300px;
   display: inline-block;
-  margin-bottom: 20px ;
+  margin-bottom: 20px;
 }
 .m-index-slider .m-title {
   font-size: 20px;
@@ -15,13 +15,13 @@
   border: 1px solid #ddd;
   width: 100%;
   min-height: 300px;
-  padding: 10px 0;
+  padding: 15px 0;
 }
 .m-index-slider .m-item {
-  margin-left: 20px;
+  margin-left: 25px;
   margin-top: 10px;
-  margin-right: 10px;
-  width: calc(88%);
+  margin-right: 15px;
+  width: 260px;
 }
 .m-index-slider .m-item .m-item-parent a {
   font-size: 17px;
@@ -39,4 +39,7 @@
   font-size: 14px;
   color: #aaa;
   display: inline;
+}
+.m-index-slider .m-item .m-item-children a:hover {
+  color: #e70;
 }
