@@ -17,34 +17,37 @@
                     <div class="m-title">
                         您现在的位置：
                         <span>
-                            <a href="http://www.justeasy.cn/">建E网</a>
+                            <a href="{@url}">亚洲室内设计网</a>
                         </span> →
                         <span>
-                            <a href="http://www.justeasy.cn/tietu/index.html">贴图首页</a>
+                            <a href="#">{$type["name"]}</a>
                         </span> →
                         <span>
-                            <a href="http://www.justeasy.cn/tietu/list.html?bigclass=72">木纹</a>
+                            <a href="{@url:app/mModel/index/run?id=$cate['parent']['id']}">{$cate['parent']['name']}</a>
                         </span> →
                         <span>
-                            <a href="http://www.justeasy.cn/tietu/list.html?smallclass=381">木纹</a>
+                            <a href="{@url:app/mModel/index/run?id=$cate['child']['id']}">{$cate['child']['name']}</a>
                         </span> →
                         <span>
-                            <a href="javascript:;">原木</a>
+                            <a href="javascript:;">{$data['name']}</a>
                         </span>
                     </div>
                     <div class="m-span">
-                        <span><i class="iconfont icon-eye"></i><span id="map_num">186</span></span>
-                        <span><i class="iconfont icon-zan"></i><span id="comment_num">0</span></span>
-                        <span><i class="iconfont icon-download"></i>58</span>
+                        <span><i class="iconfont icon-eye"></i><span id="map_num">{$data["look"]}</span></span>
+                        <span><i class="iconfont icon-zan"></i><span id="comment_num">{$data["liked"]}</span></span>
+                        <span><i class="iconfont icon-download"></i>{$data["download"]}</span>
                         <div class="right">
-                            <span class="time">2017-03-10</span> 发布
+                            <span class="time">
+                                <!--#echo date("Y:m:d h:i:s",$data['created_time']);#-->
+                            </span> 发布
                         </div>
                     </div>
                 </div>
+                <!--#$pic=explode(",",$data['pictures'])[0];#-->
 
                 <!--贴图展示-->
                 <div class="m-details-img">
-                    <a href="" style="background-image: url(http://big.justeasy.cn//material/upimg_201703/20170310151521_991.jpg);"></a>
+                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" target="_blank"></a>
                 </div>
 
                 <div class="m-details-info">
@@ -98,7 +101,7 @@
                     <h3>使用权利说明</h3>
                     <div class="details">
                         <p>
-                            会员在本站下载的原创贴图后，只拥有贴图的使用权，著作权归原作者及建E网所有。未经合法授权，会员不得以任何形式发布、传播、复制、转售该贴图。特别地，不得擅自以建E网名义或使用“建E”、“建E网”（本站注册商标）名称发布、复制、转售所下载的贴图，由此给本站造成损害的，本站将依法追究其相关法律责任。
+                            会员在本站下载的原创贴图后，只拥有贴图的使用权，著作权归原作者及亚洲室内设计网所有。未经合法授权，会员不得以任何形式发布、传播、复制、转售该贴图。特别地，不得擅自以亚洲室内设计网名义或使用“亚洲室内设计”、“亚洲室内设计网”（本站注册商标）名称发布、复制、转售所下载的贴图，由此给本站造成损害的，本站将依法追究其相关法律责任。
                         </p>
                     </div>
 
@@ -108,7 +111,7 @@
             <template source='SRC:extensions.mModel.template.common.sliderDetails' />
         </div>
         <script>
-
+            //保存
         </script>
         <template source='SRC:extensions.mModel.template.common.footer' load='true' />
     </div>

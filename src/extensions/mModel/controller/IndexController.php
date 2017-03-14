@@ -47,17 +47,54 @@ class IndexController extends PwBaseController {
         $page || $page=1;
         $perpage=10;
 
+        //条目详情
         $items=$this->itemDao()->getList($where,$page*$perpage,($page-1)*$perpage,$order);
+        $this->setOutput($items,"items");
 
         //获取所有的模型类别信息
         $cates=$this->getCate($type_id);
-        
+        $this->setOutput($cates,"cates");
     }
 
     public function detailsAction(){
+        //获取id
+        $id=$this->getInput("id");
+        if(!$id){
+            $this->showError("对不起，请先选择条目");
+        }        
+
+        //获取item详情
+        $data=$this->itemDao()->get($id);
+        $this->setOutput($data,"data");
+
+        //获取分类信息
+        $cate['child']=$this->cateDao()->get($data['cid']);
+        $cate['parent']=$this->cateDao()->get($cate['child']['pid']);      
+        $this->setOutput($cate,"cate");
+
+        //获取模型分类信息
+        $type=$this->typeDao()->get($data['tid']);
+        $this->setOutput($type,"type");
+
+        //获取相关性的搜索
+        
+    }
+
+    //添加浏览量
+    public function addLookAction(){
 
     }
+
+    //添加点赞
+    public function addLikeAction(){
+
+    }
+
+    public function downloadAction(){
+        
+    }
     
+    //获取分类信息
     protected function getCate($tid){
         $parent=$this->cateDao()->getList("tid={$tid} AND pid=0");
         $data=[];
