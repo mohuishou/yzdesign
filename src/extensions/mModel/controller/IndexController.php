@@ -53,6 +53,10 @@ class IndexController extends PwBaseController {
         $cates=$this->getCate($type_id);
         
     }
+
+    public function detailsAction(){
+
+    }
     
     protected function getCate($tid){
         $parent=$this->cateDao()->getList("tid={$tid} AND pid=0");
@@ -67,7 +71,8 @@ class IndexController extends PwBaseController {
         }
         return $data;
     }
-    
+
+
     
     private function typeDao(){
         return Wekit::load('SRC:extensions.mModel.service.dao.TypeDao');
