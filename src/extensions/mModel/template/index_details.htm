@@ -47,7 +47,8 @@
 
                 <!--贴图展示-->
                 <div class="m-details-img">
-                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url( <component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);" target="_blank"></a>
+                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url( <component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);"
+                        target="_blank"></a>
                 </div>
 
                 <div class="m-details-info">
@@ -128,7 +129,7 @@
                     <div class="m-download">
                         <a class="m-download-1" href="{@url:app/mModel/index/download?id=$data['id']}" target="_blank"> <i class="iconfont icon-download"></i> 下载贴图
                         </a>
-                        <a href="http://reg.justeasy.cn//material/down.php?id=15350"> <i class="iconfont icon-zan"></i> 点赞
+                        <a href="##" onclick="addLike({$data['uid']},{$data['id']});"> <i class="iconfont icon-zan"></i> 点赞
                         </a>
                     </div>
 
@@ -158,7 +159,19 @@
             <template source='SRC:extensions.mModel.template.common.sliderDetails' />
         </div>
         <script>
-            
+            Wind.use('jquery', 'global', function () {
+                    //代码来自global.js
+                    if (!GV.U_ID) {
+                        $(document).on('click', '.m-download a', function (e) {
+                            e.preventDefault();
+                            var referer = $(this).data('referer');					//登录后跳转还是刷新
+                            Wind.Util.quickLogin(referer ? this.href : '');
+                        });
+                    }
+            });
+            function addLike(uid,mid) {
+                var url="{@url:app/mModel/index/addLike?mid="+mid+"&uid="+uid;
+            }
         </script>
         <template source='SRC:extensions.mModel.template.common.footer' load='true' />
     </div>
