@@ -66,6 +66,7 @@ class IndexController extends PwBaseController {
         //获取item详情
         $data=$this->itemDao()->get($id);
         $this->setOutput($data,"data");
+        print_r($data);
 
         //获取分类信息
         $cate['child']=$this->cateDao()->get($data['cid']);

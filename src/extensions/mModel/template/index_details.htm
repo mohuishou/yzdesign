@@ -17,7 +17,7 @@
                     <div class="m-title">
                         您现在的位置：
                         <span>
-                            <a href="{@url}">亚洲室内设计网</a>
+                            <a>亚洲室内设计网</a>
                         </span> →
                         <span>
                             <a href="#">{$type["name"]}</a>
@@ -47,34 +47,71 @@
 
                 <!--贴图展示-->
                 <div class="m-details-img">
-                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" target="_blank"></a>
+                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />"
+                        target="_blank"></a>
                 </div>
 
                 <div class="m-details-info">
                     <ul>
+                        <!--#
+                            $tmp=['style','version','img_type','light'];
+                            $data_count=0;
+                            foreach($tmp as $v){
+                                if(!isset($data[$v])||empty($data[$v])){
+                                    $data_count++;
+                                }
+                            }
+                        #-->
+
+                        <!--#if($data_count>1){#-->
                         <li>
-                            <span class="m-title">贴图分类 </span>
-                            <span>木纹</span>
+                            <span class="m-title">{$type['name']}分类 </span>
+                            <span>{$cate['child']['name']}</span>
                         </li>
+                        <!--#}#-->
+
+                        <!--#if(isset($data['style'])&&!empty($data['style'])){#-->
                         <li>
-                            <span class="m-title">贴图尺寸</span>
-                            <span>1000*998</span>
+                            <span class="m-title">{$type['name']}风格 </span>
+                            <span>{$data['style']}</span>
                         </li>
+                        <!--#}#-->
+                        <!--#if(isset($data['version'])&&!empty($data['version'])){#-->
                         <li>
-                            <span class="m-title">下载次数</span>
-                            <span>58</span>
+                            <span class="m-title">{$type['name']}版本 </span>
+                            <span>{$data['version']}</span>
                         </li>
+                        <!--#}#-->
+
+                        <!--#if(isset($data['light'])&&!empty($data['light'])){#-->
+                        <li>
+                            <span class="m-title">灯光 </span>
+                            <span>{$data['light']}</span>
+                        </li>
+                        <!--#}#-->
+
+                        <!--#if(isset($data['img_type'])&&!empty($data['img_type'])){#-->
+                        <li>
+                            <span class="m-title">贴图类型 </span>
+                            <span>{$data['img_type']}</span>
+                        </li>
+                        <!--#}#-->
+
+                        <!--#if($data_count>0){#-->
                         <li>
                             <span class="m-title">文件大小 </span>
-                            <span>1.06 MB</span>
+                            <span>{$file['size']}</span>
+                        </li>
+                        <!--#}#-->
+
+                        <!--必有的两项-->
+                        <li>
+                            <span class="m-title">下载次数</span>
+                            <span>{$data['download']}</span>
                         </li>
                         <li>
-                            <span class="m-title">文件格式</span>
-                            <span>jpg</span>
-                        </li>
-                        <li>
-                            <span class="m-title">所需金点</span>
-                            <span>免费</span>
+                            <span class="m-title">所需交易币</span>
+                            <span>{$data['price']}</span>
                         </li>
                     </ul>
                 </div>
@@ -97,6 +134,18 @@
                     </div>
 
                 </div>
+
+                <!--#if(isset($data['description'])&&!empty($data['description'])){#-->
+                <div class="m-des">
+                    <h3>模型说明</h3>
+                    <div class="details">
+                        <p>
+                            {$data['description']}
+                        </p>
+                    </div>
+                </div>
+                <!--#}#-->
+
                 <div class="m-des">
                     <h3>使用权利说明</h3>
                     <div class="details">
@@ -104,7 +153,6 @@
                             会员在本站下载的原创贴图后，只拥有贴图的使用权，著作权归原作者及亚洲室内设计网所有。未经合法授权，会员不得以任何形式发布、传播、复制、转售该贴图。特别地，不得擅自以亚洲室内设计网名义或使用“亚洲室内设计”、“亚洲室内设计网”（本站注册商标）名称发布、复制、转售所下载的贴图，由此给本站造成损害的，本站将依法追究其相关法律责任。
                         </p>
                     </div>
-
                 </div>
 
             </div>
