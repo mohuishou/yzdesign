@@ -21,7 +21,7 @@ class TypeDao extends PwBaseDao {
 	/**
 	 * table fields
 	 */
-	protected $_dataStruct = array('id','name','style','admin_only','version','img_type','light','created_time','updated_time');
+	protected $_dataStruct = array('id','name','style','pay_id','pay_name','admin_only','version','img_type','light','created_time','updated_time');
 
     public function getList($where=1, $limit=10, $offset=0){
         $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));

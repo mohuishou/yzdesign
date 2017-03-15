@@ -58,6 +58,21 @@
                     </div>
 
                     <div class="layui-form-item">
+                        <label class="layui-form-label">支付方式</label>
+                        <div class="layui-input-block">
+                            <!--#
+                            $i=0;
+                            foreach($creditBo->cType as $k=>$v){
+                            if($i==0){
+                            #-->
+                            <input type="radio" name="pay_id" value="{$k}" title="{$v} checked">
+                            <!--#}else{#-->
+                            <input type="radio" name="pay_id" value="{$k}" title="{$v} ">
+                            <!--#}}#-->
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
                             <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>

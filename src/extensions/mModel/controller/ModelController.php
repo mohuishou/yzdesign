@@ -183,7 +183,6 @@ class ModelController extends PwBaseController {
         }
         $this->setOutput($types,"types");
         $this->setOutput($datas,"datas");
-        $this->setOutput($datas,"datas");
         $this->setOutput($perpage,"perpage");
         $this->setOutput($page,"curr");
         $this->setOutput(ceil($this->downloadDao()->getCount() / $perpage),"pages");

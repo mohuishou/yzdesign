@@ -63,6 +63,18 @@
                         </div>
                     </div>
 
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">支付方式</label>
+                        <div class="layui-input-block">
+                            <!--# foreach($creditBo->cType as $k=>$v){ #-->
+                            <!--# if($k==$data['pay_id']){ #-->
+                            <input type="radio" name="pay_id" value="{$k}" title="{$v}" checked>
+                            <!--# }else{ #-->
+                            <input type="radio" name="pay_id" value="{$k}" title="{$v} ">
+                            <!--# }} #-->
+                        </div>
+                    </div>
+
                     <input type="hidden" name="id" value="{$data['id']}">
 
                     <div class="layui-form-item">

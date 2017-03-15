@@ -108,15 +108,27 @@ class IndexController extends PwBaseController {
         if(!$id){
             $this->showError("请先选择文件");
         }
+
+        //获取信息
         $item=$this->itemDao()->get($id);
         if(!isset($item)||empty($item)){
             $this->showError("文件选择错误");
         }
 
+        //获取扣费信息
+        
+        //扣费
+
+        //添加下载信息
+        $downloadData['uid']=$this->loginUser->uid;
+        $downloadData['tid']=$item['tid'];
+        $downloadData['mid']=$item['id'];
+        $this->downloadDao()->add($downloadData);
+
         //获取文件地址
         $file=$this->fileDao()->get($item['file']);
 
-
+        //输出下载地址
         echo '<meta http-equiv="refresh" content="0;url='.$file['path'].'">';
         $this->setTemplate("");
     }

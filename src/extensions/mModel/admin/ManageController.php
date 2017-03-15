@@ -3,6 +3,7 @@ defined('WEKIT_VERSION') or exit(403);
 Wind::import('ADMIN:library.AdminBaseController');
 Wind::import('SRC:extensions.mModel.admin.tJsonReturn');
 Wind::import('SRC:extensions.mModel.admin.tValidate');
+
 /**
 * 后台访问入口
 *
@@ -24,7 +25,7 @@ class ManageController extends AdminBaseController {
         $types=$this->typeDao()->getList();
         $this->setOutput($types,"types");
         $this->setOutput($type_id,"type_id");
-
+        
         if($type_id){
             $page || $page=1;
             $perpage=10;
@@ -49,12 +50,14 @@ class ManageController extends AdminBaseController {
         $this->setOutput($type_id,"type_id");
         $token=$this->getInput("csrf_token");
         if(!$token){
+
+            
             $type=$this->typeDao()->get($type_id);
             $tmp=["style","version","img_type","light"];
             foreach ($type as $k => $v){
                 if (in_array($k,$tmp)){
                     if(!empty($v))
-                        $this->setOutput(explode(",",$v),$k);
+                    $this->setOutput(explode(",",$v),$k);
                 }
             }
             $this->setOutput($type,"type");
@@ -74,8 +77,8 @@ class ManageController extends AdminBaseController {
             }
         }
     }
-
-     public function editAction(){
+    
+    public function editAction(){
         $type_id=$this->getInput("type_id");
         if (!$type_id){
             $this->showError("请先选择模型类别！");
@@ -84,34 +87,34 @@ class ManageController extends AdminBaseController {
         
         $id=$this->getInput("id");
         $token=$this->getInput("csrf_token");
-         if (!$token){
-             //已有的数据
+        if (!$token){
+            //已有的数据
             $data=$this->itemDao()->get($id);
-
+            
             //获取所属类型以及相关设置
             $type=$this->typeDao()->get($type_id);
             $tmp=["style","version","img_type","light"];
             foreach ($type as $k => $v){
                 if (in_array($k,$tmp)){
                     if(!empty($v))
-                        $this->setOutput(explode(",",$v),$k);
+                    $this->setOutput(explode(",",$v),$k);
                 }
             }
             $this->setOutput($type,"type");
-
+            
             //顶级分类列表
             $cate=$this->cateDao()->getList("pid=0 AND tid=".$type_id);
             $this->setOutput($cate,"cate");
-
+            
             //顶级分类信息
             $category=$this->cateDao()->get($data['cid']);
             $data["pid"]=$category['pid'];
-
+            
             //二级分类列表
             $cate2=$this->cateDao()->getList("pid=".$data["pid"]);
             $this->setOutput($cate2,"cate2");
-
-            $this->setOutput($data,"data");            
+            
+            $this->setOutput($data,"data");
             $this->setTemplate("manage_edit");
         }else{
             $this->setTemplate("");
@@ -149,7 +152,7 @@ class ManageController extends AdminBaseController {
         }
     }
     
-   
+    
     
     private function typeDao(){
         return Wekit::load('SRC:extensions.mModel.service.dao.TypeDao');
