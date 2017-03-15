@@ -1,5 +1,6 @@
 <?php
 defined('WEKIT_VERSION') or exit(403);
+Wind::import('SRC:service.user.PwUser');
 /**
 * 前台入口
 *
@@ -66,7 +67,6 @@ class IndexController extends PwBaseController {
         //获取item详情
         $data=$this->itemDao()->get($id);
         $this->setOutput($data,"data");
-        print_r($data);
 
         //获取分类信息
         $cate['child']=$this->cateDao()->get($data['cid']);
@@ -77,7 +77,16 @@ class IndexController extends PwBaseController {
         $type=$this->typeDao()->get($data['tid']);
         $this->setOutput($type,"type");
 
+        //获取用户信息
+        $user_model=new PwUser();
+        $user=$user_model->getUserByUid($data['uid']);
+        $this->setOutput($user['username'],"username");
+
         //获取相关性的搜索
+        //获取同一子分类的数据
+        $about=$this->itemDao()->getList("cid={$data['cid']}",4);
+        $this->setOutput($about,"about");
+        
         
     }
 
@@ -92,7 +101,24 @@ class IndexController extends PwBaseController {
     }
 
     public function downloadAction(){
-        
+        if(!$this->loginUser->uid){
+            $this->showError("请先登录！");
+        }
+        $id=$this->getInput("id");
+        if(!$id){
+            $this->showError("请先选择文件");
+        }
+        $item=$this->itemDao()->get($id);
+        if(!isset($item)||empty($item)){
+            $this->showError("文件选择错误");
+        }
+
+        //获取文件地址
+        $file=$this->fileDao()->get($item['file']);
+
+
+        echo '<meta http-equiv="refresh" content="0;url='.$file['path'].'">';
+        $this->setTemplate("");
     }
     
     //获取分类信息
@@ -111,6 +137,9 @@ class IndexController extends PwBaseController {
     }
 
 
+    private function fileDao(){
+        return Wekit::load('SRC:extensions.mModel.service.dao.FileDao');
+    }
     
     private function typeDao(){
         return Wekit::load('SRC:extensions.mModel.service.dao.TypeDao');

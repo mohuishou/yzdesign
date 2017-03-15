@@ -47,8 +47,7 @@
 
                 <!--贴图展示-->
                 <div class="m-details-img">
-                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />"
-                        target="_blank"></a>
+                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url( <component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);" target="_blank"></a>
                 </div>
 
                 <div class="m-details-info">
@@ -119,15 +118,15 @@
                 <div class="m-img-designer clear">
                     <div class="m-user">
                         <div class="m-user-avatar">
-                            <img src="http://big.justeasy.cn//avatar/201702/707866_589d5691c4f6e_200.jpg" />
+                            <img src="{@Pw::getAvatar($data['uid'])}" />
                         </div>
                         <div class="m-user-info">
-                            <a href="">ADMIN</a>
-                            <span><i class="iconfont icon-address"></i>中国</span>
+                            <a href="">{$username}</a>
+                            <!--<span><i class="iconfont icon-address"></i>中国</span>-->
                         </div>
                     </div>
                     <div class="m-download">
-                        <a class="m-download-1" href="http://reg.justeasy.cn//material/down.php?id=15350"> <i class="iconfont icon-download"></i> 下载贴图
+                        <a class="m-download-1" href="{@url:app/mModel/index/download?id=$data['id']}" target="_blank"> <i class="iconfont icon-download"></i> 下载贴图
                         </a>
                         <a href="http://reg.justeasy.cn//material/down.php?id=15350"> <i class="iconfont icon-zan"></i> 点赞
                         </a>
@@ -159,7 +158,7 @@
             <template source='SRC:extensions.mModel.template.common.sliderDetails' />
         </div>
         <script>
-            //保存
+            
         </script>
         <template source='SRC:extensions.mModel.template.common.footer' load='true' />
     </div>

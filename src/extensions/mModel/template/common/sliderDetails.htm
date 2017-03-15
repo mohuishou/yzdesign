@@ -3,17 +3,14 @@
         {$data['name']}相关搜索
     </div>
     <div class="m-research">
+        <!--#if(isset($about)&&!empty($about)){#-->
+        <!--#foreach($about as $v){
+            $pic=explode(",",$v['pictures'])[0];
+        #-->
         <div class="m-item">
-            <a href="" style="background-image: url(http://big.justeasy.cn//material/upimg_201703/20170310151521_991.jpg);"></a>
-            <p>木纹</p>
+            <a href="{@url:app/mModel/index/details?id=$v['id']}" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);"></a>
+            <p>{$v['name']}</p>
         </div>
-        <div class="m-item">
-            <a href="" style="background-image: url(http://big.justeasy.cn//material/upimg_201703/20170310151521_991.jpg);"></a>
-            <p>木纹</p>
-        </div>
-        <div class="m-item">
-            <a href="" style="background-image: url(http://big.justeasy.cn//material/upimg_201703/20170310151521_991.jpg);"></a>
-            <p>木纹</p>
-        </div>
+        <!--#}}#-->
     </div>
 </div>
