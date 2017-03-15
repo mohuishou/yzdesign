@@ -69,6 +69,16 @@ public function detailsAction(){
     
     //获取item详情
     $data=$this->itemDao()->get($id);
+    $data["is_liked"]=0;
+    
+    if($this->loginUser->uid){
+        $like=$this->likeDao()->getByLast($id,$this->loginUser->uid);
+        if(isset($like)&&!empty($like)){
+            $data["is_liked"]=1;
+        }
+    }
+    
+    
     $this->setOutput($data,"data");
     
     //获取分类信息

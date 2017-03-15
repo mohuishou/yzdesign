@@ -99,6 +99,9 @@
   background: #e70;
   color: #fff;
 }
+.m-details-main .m-img-designer .m-download .m-active {
+  color: #e70;
+}
 .m-details-main .m-des {
   margin-top: 15px;
 }
