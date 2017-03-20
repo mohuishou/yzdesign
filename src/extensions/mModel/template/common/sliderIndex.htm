@@ -5,11 +5,11 @@
     <div class="m-all">
         <div class="m-item">
             <div class="m-item-parent">
-                <a href="">{$cates['parent']['name']}</a>
+                <a href="##">{$cates['parent']['name']}</a>
             </div>
             <ul class="m-item-children">
                 <!--#foreach($cates['children'] as $v){#-->
-                    <li class="links"><a href="cad_bysmallclass.asp?sid=41">{$v['name']}</a></li>
+                    <li class="links"><a href="{@url:app/mModel/index/run?type_id=$type['id']&cid=$v['id']}">{$v['name']}</a></li>
                 <!--#}#-->
             </ul>
         </div>
