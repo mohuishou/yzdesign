@@ -102,6 +102,20 @@ class CategoryController extends AdminBaseController {
         }
     }
 
+    public function getByTypeAction(){
+        $tid=$this->getInput("tid");
+        if(!$tid){
+            $this->error("请选择属于类别");
+        }
+        $data=$this->cateDao()->getList("pid=0 AND tid=".$tid);
+        if(!empty($data)){
+            $this->success("获取成功！",$data);
+        }else{
+           $this->success("改类型暂无顶级分类！",$data); 
+        }
+        $this->setTemplate("");
+    }
+
     public function getAction(){
         $pid=$this->getInput("pid");
         $pid || $pid=0;
