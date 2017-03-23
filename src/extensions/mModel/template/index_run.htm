@@ -15,8 +15,8 @@
             <template source='SRC:extensions.mModel.template.common.sliderIndex' />
             <div class="m-index-main">
                 <div class="m-title">
-                    <a class="active" disabled href="">最新发布</a>
-                    <a href="">最多下载</a>
+                    <a href="{@url:app/mModel/index/run?type_id=$type['id']&order=1}">最新发布</a>
+                    <a href="{@url:app/mModel/index/run?type_id=$type['id']&order=2}">最多下载</a>
                 </div>
                 <!--#
                     foreach($items as $item){#
@@ -44,7 +44,28 @@
             </div>
         </div>
         <script>
+            Wind.use('jquery', 'global', function () {
 
+                $(document).ready(function(){
+                    initNav(); 
+                    $(".m-title a.active").click(function(){
+                        event.preventDefault();
+                    });
+                });
+
+                function initNav() {
+                    var order = getQueryString("order");
+                    if (order == null) order = 1;
+                    var $title = $(".m-index-main .m-title");
+                    $title.children("a:eq(" + (order - 1) + ")").addClass("active");
+                }
+
+                function getQueryString(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+            });
         </script>
         <template source='TPL:common.footer' load='true' />
     </div>

@@ -159,7 +159,7 @@
                     <!-- 展示end -->
 
                     <div class="layui-form-item upload-file">
-                        <label class="layui-form-label">上传模型</label>
+                        <label class="layui-form-label">上传{$type["name"]}</label>
                         <div class="layui-input-block">
                             <input type="file" lay-ext="7z|zip|rar" lay-title="请上传压缩文件,支持zip/rar/7z格式" name="models" class="layui-upload-file">
                         </div>
@@ -186,7 +186,7 @@
                 base: "{@G:url.extres}/mModel/lay/modules/"
             }).use(['uploadEx'], function () {
                 layui.uploadEx({
-                    url: 'admin.php?app=mModel&m=app&c=upload&a=upload',
+                    url: 'index.php?app=mModel&m=app&c=upload&a=upload',
                     size: "20",
                     before: function () {
                         load = layer.load();
@@ -253,7 +253,7 @@
                 //分类监听
                 form.on('select(cate)', function (data) {
                     var load = layer.load();
-                    $.get("admin.php?app=mModel&m=app&c=category&a=get" + "&pid=" + data.value,
+                    $.get("index.php?app=mModel&m=app&c=index&a=getCate" + "&pid=" + data.value,
                         function (res) {
                             res = JSON.parse(res);
                             layer.close(load);

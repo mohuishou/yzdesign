@@ -210,11 +210,9 @@ class ImageFilter {
 	}
 
 	private function imagetext($args = null) {
-
 		$text = empty($args['text']) ? $this->marktext : $args['text'];
-		$font = empty($args['fontfamily']) ? $this->fontfamily[0] : $this->fontfamily[$args['fontfamily']];
+		$font = empty($args['fontfamily']) ? $this->fontfamily[0] : $args['fontfamily'];
 		$fontsize = empty($args['fontsize']) ? $this->fontsize : (int) $args['fontsize'];
-
         $texts=explode(",",$text);
         foreach ($texts as $v){
             $tbs[] = imagettfbbox($fontsize, 0, $font, $v);

@@ -94,6 +94,8 @@ class UploadController extends AdminBaseController {
      * @return string $ids 返回图片的id
      */
     public function picture($paths){
+        $font_dir=dirname(__DIR__)."/res/font/";
+        $font=$font_dir."wqwm.ttf";
         $return_data=[];
         $ids='';
         if (!is_array($paths)){
@@ -108,7 +110,7 @@ class UploadController extends AdminBaseController {
             $text="编号：{$id},亚洲室内设计";
             $job=[
                 'scaling'=>['size'=>"800,615"],
-                'imagetext'=>['text'=>$text,'fontsize'=>'17','fontfamily'=>'msyh']
+                'imagetext'=>['text'=>$text,'fontsize'=>'17','fontfamily'=>$font]
             ];
             $image=new ImageFilter($v,$job,$v);
             $image->outimage();
