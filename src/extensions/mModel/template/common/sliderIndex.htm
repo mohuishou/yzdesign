@@ -3,15 +3,19 @@
         {$type['name']}分类
     </div>
     <div class="m-all">
+        <!--#
+        if(!empty($cates)){
+        foreach($cates as $cate){#-->
         <div class="m-item">
             <div class="m-item-parent">
-                <a href="##">{$cates['parent']['name']}</a>
+                <a href="##">{$cate['parent']['name']}</a>
             </div>
             <ul class="m-item-children">
-                <!--#foreach($cates['children'] as $v){#-->
+                <!--#foreach($cate['children'] as $v){#-->
                     <li class="links"><a href="{@url:app/mModel/index/run?type_id=$type['id']&cid=$v['id']}">{$v['name']}</a></li>
                 <!--#}#-->
             </ul>
         </div>
+        <!--#}}#-->
     </div>
 </div>

@@ -10,7 +10,7 @@
     <div class="wrap">
         <template source='SRC:extensions.mModel.template.common.nav' />
         <fieldset class="layui-elem-field">
-            <legend>添加模型类别</legend>
+            <legend>编辑模型类别</legend>
             <div class="layui-field-box">
                 <form class="layui-form">
                     <div class="layui-form-item">
@@ -24,7 +24,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">属于类型</label>
                         <div class="layui-input-block">
-                            <select name="tid" lay-verify="required">
+                            <select name="tid" lay-filter="type" lay-verify="required">
                                 <option value=""></option>
                                 <!--#foreach($type_data  as $v){#-->
                                 <!--#if($data['tid']==$v['id']){#-->
@@ -73,6 +73,29 @@
         //Demo
         layui.use('form', function () {
             var form = layui.form();
+
+            //类别监听
+            form.on('select(type)', function (data) {
+                var load = layer.load();
+                $.get("{@url:app/mModel/category/getByType}" + "&tid=" + data.value, function (res) {
+                    res = JSON.parse(res);
+                    layer.close(load);
+                    if (res.status) {
+                        var str = '<option value="">请选择上级分类*</option><option value="0">顶级分类</option>';
+                        for (x in res.data) {
+                            str += '<option value="' + res.data[x].id + '">' + res.data[x].name +
+                                '</option>';
+                        }
+                        $('select[name="pid"]').html(str);
+                        form.render('select');
+                    } else {
+                        layer.msg(res.msg, {
+                            icon: 2
+                        });
+                    }
+                });
+                return false;
+            });
 
             //监听提交
             form.on('submit(submit)', function (data) {

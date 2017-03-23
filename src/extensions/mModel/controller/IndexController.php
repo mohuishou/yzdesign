@@ -204,11 +204,11 @@ protected function file($fid){
 protected function getCate($tid){
     $parent=$this->cateDao()->getList("tid={$tid} AND pid=0");
     $data=[];
-    foreach($parent as $v){
-        $data['parent']=$v;
-        $data['children']=[];
+    foreach($parent as $k=>$v){
+        $data[$k]['parent']=$v;
+        $data[$k]['children']=[];
         if($v['id']){
-            $data['children']=$this->cateDao()->getList("tid={$tid} AND pid=".$v['id']);
+            $data[$k]['children']=$this->cateDao()->getList("tid={$tid} AND pid=".$v['id']);
             
         }
     }
