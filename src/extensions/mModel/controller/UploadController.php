@@ -119,7 +119,6 @@ class UploadController extends PwBaseController {
         $ids=rtrim($ids, ",");
         $return_data['pictures']=$ids;
         return $return_data;
-
     }
 
     private function pictureDao(){

@@ -1,50 +1,50 @@
-a {
+.m-details-img a {
   color: #bf966a;
   text-decoration: none;
 }
-ol,
-ul {
+.m-details-img ol,
+.m-details-img ul {
   list-style: none;
 }
-img {
+.m-details-img img {
   display: block;
 }
-.focus {
-  width: 1000px;
-  height: 536px;
+.m-details-img .focus {
+  width: 900px;
+  height: 740px;
   margin: 50px auto;
 }
-.focusbox {
-  background-color: #1C1C1C;
+.m-details-img .focusbox {
+  background-color: #fff;
   position: relative;
 }
-.focusimg {
-  border: 5px solid #2F2F2F;
-  width: 990px;
-  height: 376px;
+.m-details-img .focusimg {
+  border: 1px solid #eee;
+  width: 890px;
+  height: 620px;
   position: relative;
   overflow: hidden;
-  -webkit-perspective: 1300px;
+  perspective: 1200px;
 }
-.fimglist {
+.m-details-img .fimglist {
   width: 99300px;
   position: relative;
-  -moz-perspective: 1300px;
+  -moz-perspective: 1200px;
 }
-.fimglist img {
-  display: block;
-  width: 990px;
-  height: 376px;
-  cursor: pointer;
+.m-details-img .fimglist a {
+  background-position: center;
+  background-size: cover;
+  height: 600px;
+  width: 860px;
 }
-.fimglist li {
-  width: 990px;
-  height: 376px;
+.m-details-img .fimglist li {
+  width: 890px;
+  height: 610px;
   float: left;
   -webkit-transform-origin: 50% 100%;
   transform-origin: 50% 100%;
 }
-.fimglist li.onpre {
+.m-details-img .fimglist li.onpre {
   -webkit-animation: onpre 0.5s ease-in-out;
   animation: onpre 0.5s ease-in-out;
   opacity: 0;
@@ -71,39 +71,41 @@ img {
     transform: rotateY(90deg);
   }
 }
-.focustool {
-  width: 935px;
+.m-details-img .focustool {
+  width: 835px;
   overflow: hidden;
   padding: 5px 0 10px;
   margin: 0 auto;
   position: relative;
 }
-.ftoollist {
-  width: 4655px;
+.m-details-img .ftoollist {
+  width: 4600px;
   position: relative;
 }
-.ftoollist img {
+.m-details-img .ftoollist img {
   display: block;
   width: 129px;
   height: 69px;
   margin-bottom: 3px;
 }
-.ftoollist a {
+.m-details-img .ftoollist a {
   background-color: #1C1C1C;
   display: block;
   width: 129px;
+  height: 69px;
   padding: 4px 0 4px 4px;
   position: relative;
   -webkit-transition: all .3s linear;
   transition: all .3s linear;
 }
-.ftoollist li {
+.m-details-img .ftoollist li {
   float: left;
+  margin-right: 5px;
   cursor: pointer;
   -webkit-transition: all .3s linear;
   transition: all .3s linear;
 }
-.ftoollist .imgname {
+.m-details-img .ftoollist .imgname {
   line-height: 25px;
   text-align: center;
   color: #FFF;
@@ -114,7 +116,7 @@ img {
   overflow: hidden;
   cursor: pointer;
 }
-.ftoollist .imgshortcat {
+.m-details-img .ftoollist .imgshortcat {
   line-height: 20px;
   text-align: center;
   color: #7D7D7D;
@@ -123,29 +125,27 @@ img {
   overflow: hidden;
   cursor: pointer;
 }
-.ftoollist a:hover {
-  background-color: #503769;
-  padding: 4px;
-  margin-right: -4px;
+.m-details-img .ftoollist .on:hover {
   z-index: 100;
   top: -5px;
 }
-.ftoollist a:hover .imgname {
+.m-details-img .ftoollist a:hover .imgname {
   color: #DBC98C;
 }
-.ftoollist a:hover .imgshortcat {
+.m-details-img .ftoollist a:hover .imgshortcat {
   color: #FFF;
 }
-.ftoollist .on a {
-  background-color: #503769;
+.m-details-img .focustool .on {
+  background-color: #eee;
+}
+.m-details-img .ftoollist .on a {
   padding: 4px;
-  margin-right: -4px;
   z-index: 100;
   top: -5px;
 }
-.ftoollist .on .imgname {
+.m-details-img .ftoollist .on .imgname {
   color: #DBC98C;
 }
-.ftoollist .on .imgshortcat {
+.m-details-img .ftoollist .on .imgshortcat {
   color: #FFF;
 }

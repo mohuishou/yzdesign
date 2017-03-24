@@ -5,6 +5,7 @@
     <template source='TPL:common.head' load='true' />
     <template source='SRC:extensions.mModel.template.common.indexHead' />
     <link rel="stylesheet" href="{@G:url.extres}/mModel/css/details.css">
+    <link rel="stylesheet" href="{@G:url.extres}/mModel/css/imgSlider.css">
 </head>
 
 <body>
@@ -43,14 +44,50 @@
                         </div>
                     </div>
                 </div>
-                <!--#$pic=explode(",",$data['pictures'])[0];#-->
+                <!--#$pic=explode(",",$data['pictures']);#-->
 
                 <!--贴图展示-->
+                <!--#if(count($pic)==1){ $pic=$pic[0]#-->
                 <div class="m-details-img">
-                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url( <component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);"
+                    <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);"
                         target="_blank"></a>
                 </div>
-
+                <!--#}else{#-->
+                <div class="m-details-img">
+                    <div class="focus">
+                        <div class="focusbox">
+                            <div class="focusimg">
+                                <ul class="fimglist clearfix">
+                                    <!--#foreach($pic as $v){#-->
+                                    <li>
+                                        <a href="#" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$v' />);"></a>
+                                    </li>
+                                    <!--#}#-->
+                                </ul>
+                            </div>
+                            <div class="focustool">
+                                <ul class="ftoollist clearfix">
+                                    <!--通过控制该ul的left值来实现列表的左右移动，增量为931px-->
+                                    <!--#foreach($pic as $k => $v){#-->
+                                    <!--#if($k==0){#-->
+                                    <li class="on">
+                                        <a href="#/" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$v' />);">
+                                        </a>
+                                    </li>
+                                    <!--#}else{#-->
+                                    <li>
+                                        <a href="#/" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$v' />);">
+                                        </a>
+                                    </li>
+                                    <!--#}}#-->
+                                </ul>
+                            </div>
+                            <a href="#" class="btn_pre" target="_self" style="display:none">上一页</a>
+                            <a href="#" class="btn_next" target="_self" style="display:none">下一页</a>
+                        </div>
+                    </div>
+                </div>
+                <!--#}#-->
                 <div class="m-details-info">
                     <ul>
                         <!--#
@@ -163,6 +200,7 @@
             </div>
             <template source='SRC:extensions.mModel.template.common.sliderDetails' />
         </div>
+        <script src="{@G:url.extres}/mModel/js/imgSlider.js"></script>
         <script>
             //是否登录
             Wind.use('jquery', 'global', function () {
