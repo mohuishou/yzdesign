@@ -24,7 +24,7 @@ class TypeController extends AdminBaseController {
 	}
 
 	public function addAction(){
-        $datas=$this->getInput(["name","style","version","img_type","light","admin_only","pay_id"],"POST",true);
+        $datas=$this->getInput(["name","style","version","img_type","light","is_vr","admin_only","pay_id"],"POST",true);
         $token=$this->getInput("csrf_token");
         $creditBo = PwCreditBo::getInstance();
         if (!$token){
@@ -49,7 +49,7 @@ class TypeController extends AdminBaseController {
 		$id=$this->getInput("id");
         $token=$this->getInput("csrf_token");
         $creditBo = PwCreditBo::getInstance();
-        $datas=$this->getInput(["name","style","version","img_type","light","admin_only","pay_id"],"POST",true);
+        $datas=$this->getInput(["name","style","version","is_vr","img_type","light","admin_only","pay_id"],"POST",true);
         if (!$token){
              //获取支付方式
             $this->setOutput($creditBo, 'creditBo');
