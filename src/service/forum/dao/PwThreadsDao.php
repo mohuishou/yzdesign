@@ -29,7 +29,32 @@ class PwThreadsDao extends PwBaseDao {
 		$smt = $this->getConnection()->createStatement($sql);
 		return $smt->queryAll(array($fid), 'tid');
 	}
-	
+
+    /**
+     * 新增查询多个板块的列表
+     * @param $fid_arr
+     * @param $limit
+     * @param $offset
+     * @author mohuishou<1@lailin.xyz>
+     * @return array|boolean
+     */
+    public function getThreadByFids($fid_arr, $limit, $offset) {
+        if (!is_array($fid_arr)){
+            return false;
+        }
+
+        $fids="(";
+        foreach ($fid_arr as $v){
+            $fids .="'".$v."',";
+        }
+        $fids=rtrim($fids, ",");
+        $fids.=")";
+
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE fid in %s AND disabled=0 ORDER BY lastpost_time DESC %s', $this->getTable(),$fids, $this->sqlLimit($limit, $offset));
+        $smt = $this->getConnection()->createStatement($sql);
+        return $smt->queryAll(array(), 'tid');
+    }
+
 	public function fetchThreadByTid($tids, $limit, $offset) {
 		$sql = $this->_bindSql('SELECT * FROM %s WHERE tid IN %s AND disabled=0 ORDER BY special_sort DESC, lastpost_time DESC %s', $this->getTable(), $this->sqlImplode($tids), $this->sqlLimit($limit, $offset));
 		$smt = $this->getConnection()->createStatement($sql);

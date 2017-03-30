@@ -135,7 +135,11 @@
                                 </div>
                             </div>
                             <div class="m-panel-type">
+                                <!--#if(isset($value['forum_name'])){#-->
+                                <a href="{@url:bbs/thread/run?fid=$value['fid']}">{$value['forum_name']}</a>
+                                <!--#}else{#-->
                                 <a href="{@url:bbs/thread/run?fid=$value['fid']}">{$pwforum->foruminfo['name']}</a>
+                                <!--#}#-->
                             </div>
                         </div>
                     </div>

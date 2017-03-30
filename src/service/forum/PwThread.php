@@ -63,6 +63,10 @@ class PwThread {
 		return $this->_getThreadDao($fetchmode)->getThreadByFid($fid, $limit, $offset);
 	}
 
+    public function getThreadByFids($fid_arr, $limit, $offset = 0, $fetchmode = self::FETCH_MAIN) {
+        return $this->_getThreadDao($fetchmode)->getThreadByFids($fid_arr, $limit, $offset);
+    }
+
 	public function fetchThreadByTid($tids, $limit, $start, $fetchmode = self::FETCH_MAIN) {
 		return $this->_getThreadDao($fetchmode)->fetchThreadByTid($tids, $limit, $start);
 	}

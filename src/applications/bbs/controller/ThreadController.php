@@ -75,6 +75,12 @@ class ThreadController extends PwBaseController {
 			Wind::import('SRV:forum.srv.threadList.PwCommonThread');
 			$dataSource = new PwCommonThread($pwforum);
 		}
+
+		//获取包含子版块的帖子列表
+        $fids=[$fid];
+        $fids=array_merge($fids,array_keys($pwforum->getSubForums()));
+        $dataSource->setFids($fids);
+
 		$orderby != $defaultOrderby && $dataSource->setUrlArg('orderby', $orderby);
 		$threadList->execute($dataSource);
 
@@ -88,6 +94,8 @@ class ThreadController extends PwBaseController {
 		$this->setOutput($threadList->icon, 'icon');
 		$this->setOutput($threadList->uploadIcon, 'uploadIcon');
 		$this->setOutput($operateThread, 'operateThread');
+
+
 
         //获取所有的目录列表
         $this->setOutput($this->getCate($pwforum), 'cateList');
@@ -143,7 +151,7 @@ class ThreadController extends PwBaseController {
         $cate_data=[];
         if(count($data)==2){
             $pwForumBo2=new PwForumBo($data[0]);
-            $cate_3=$pwForumBo2->getSubForums(1,true);
+            $cate_3=$pwForumBo2->getSubForums(1,false);
             $cate_data['cate_2']=$pwForumBo2->foruminfo;
             foreach ($cate_3 as $v){
                 $tmp['fid']=$v['fid'];
@@ -196,8 +204,6 @@ class ThreadController extends PwBaseController {
             }
             $cate_data['all']['active']=1;
             $cate_data['all']['fid']=$pwForumBo->foruminfo['fid'];
-
-
         }
         return $cate_data;
     }
@@ -212,8 +218,10 @@ class ThreadController extends PwBaseController {
         if(!isset($data)||!is_array($data)){
             return false;
         }
+        $fid = intval($this->getInput('fid'));
         $thread_data=[];
         $tmp=[];
+
         foreach ($data as  $k => $v){
             $v['thumb']=$this->getThumb($v['tid']);
             if($v['topped']){
@@ -222,6 +230,10 @@ class ThreadController extends PwBaseController {
                     $thread_data[]=$v;
                 }
             }else{
+                if ($v['fid']!=$fid){
+                    $pwforum = new PwForumBo($v['fid'],false);
+                    $v['forum_name']=$pwforum->foruminfo['name'];
+                }
                 $thread_data[]=$v;
             }
         }

@@ -13,6 +13,8 @@ defined('WEKIT_VERSION') || exit('Forbidden');
 
 abstract class PwThreadDataSource {
 
+    protected $fids=[];
+
 	protected $urlArgs = array();
 
 	/**
@@ -40,6 +42,10 @@ abstract class PwThreadDataSource {
 	public function setUrlArg($key, $value) {
 		$this->urlArgs[$key] = $value;
 	}
+
+	public function setFids($arr){
+	    $this->fids=$arr;
+    }
 
 	/**
 	 * 获取当前链接模式

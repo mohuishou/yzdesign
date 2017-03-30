@@ -42,6 +42,8 @@ class PwCommonThread extends PwThreadDataSource {
 		$offset -= min($this->count, $offset);
 		if ($limit > 0) {
 			$array = $this->_getThreadDs()->getThreadByFid($this->forum->fid, $limit, $offset);
+            if (!empty($this->fids))
+			    $array = $this->_getThreadDs()->getThreadByFids($this->fids, $limit, $offset);
 			foreach ($array as $key => $value) {
 				$threaddb[] = $value;
 			}
