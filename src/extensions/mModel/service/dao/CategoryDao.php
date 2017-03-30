@@ -21,7 +21,7 @@ class CategoryDao extends PwBaseDao {
     /**
      * table fields
      */
-    protected $_dataStruct = array('id','name','pid','tid','created_time','updated_time');
+    protected $_dataStruct = array('id','name','pid','tid',"sort",'created_time','updated_time');
 
     /**
      * 获取总条数
@@ -35,7 +35,7 @@ class CategoryDao extends PwBaseDao {
     }
 
     public function getList($where=1, $limit=10, $offset=0){
-        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
+        $sql = $this->_bindSql('SELECT * FROM %s WHERE  %s  ORDER BY sort DESC,id desc  %s', $this->getTable(), $where, $this->sqlLimit($limit, $offset));
         $smt = $this->getConnection()->createStatement($sql);
         return $smt->queryAll(array());
     }

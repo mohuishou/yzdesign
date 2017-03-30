@@ -30,18 +30,19 @@ class CategoryController extends AdminBaseController {
         //类型选择
         $types=$this->typeDao()->getList();
         $type_id=$this->getInput("type_id");
-
         $this->setOutput($types,"types");
         $this->setOutput($type_id,"type_id");
 
 
-        //顶级类别
-        $cates=$this->cateDao()->getList("pid=0 AND tid=".$type_id);
-        $cid=$this->getInput("cid");
-        $this->setOutput($cid,"cid");
-        $this->setOutput($cates,"cates");
 
         if (!empty($type_id)&&$type_id!=0){
+
+            //顶级类别
+            $cates=$this->cateDao()->getList("pid=0 AND tid=".$type_id);
+            $cid=$this->getInput("cid");
+            $this->setOutput($cid,"cid");
+            $this->setOutput($cates,"cates");
+
             $where="tid=".$type_id;
             if (!empty($cid)&&$cid!=0){
                 $where .=" AND pid=".$cid;
@@ -57,7 +58,7 @@ class CategoryController extends AdminBaseController {
     }
 
     public function addAction(){
-        $datas=$this->getInput(["name","tid","pid"],"POST",true);
+        $datas=$this->getInput(["name","tid","pid","sort"],"POST",true);
         $token=$this->getInput("csrf_token");
         if (!$token){
             $type_data=$this->typeDao()->getList();
@@ -94,14 +95,18 @@ class CategoryController extends AdminBaseController {
         }
     }
 
+    /**
+     * 添加
+     * @author mohuishou<1@lailin.xyz>
+     */
     public function editAction(){
         $id=$this->getInput("id");
-        $datas=$this->getInput(["name","tid","pid"],"POST",true);
+        $datas=$this->getInput(["name","tid","pid","sort"],"POST",true);
         $token=$this->getInput("csrf_token");
         if (!$token){
             $data=$this->cateDao()->get($id);
             $type_data=$this->typeDao()->getList();
-            $cate_data=$this->cateDao()->getList("pid=0");
+            $cate_data=$this->cateDao()->getList("pid=0 AND tid=".$data['tid']);
             $this->setOutput($data,"data");
             $this->setOutput($type_data,"type_data");
             $this->setOutput($cate_data,"cate_data");

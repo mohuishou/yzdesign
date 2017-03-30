@@ -58,6 +58,13 @@
                     </div>
 
                     <div class="layui-form-item">
+                        <label class="layui-form-label">排序</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="sort" required lay-verify="required" placeholder="排序" value="{$data['sort']}" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
                             <button onclick="history.go(-1)" class="layui-btn layui-btn-primary">返回</button>

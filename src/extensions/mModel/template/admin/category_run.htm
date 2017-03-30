@@ -67,6 +67,7 @@
                             <th>属于类型</th>
                             <th>上级类别</th>
                             <th>类别名</th>
+                            <th>排序</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -77,6 +78,7 @@
                             <td><component class='EXT:mModel.service.srv.Helper' method='typeName' args='$data["tid"]' /></td>
                             <td><component class='EXT:mModel.service.srv.Helper' method='cateName' args='$data["pid"]' /></td>
                             <td>{$data["name"]}</td>
+                            <td>{$data["sort"]}</td>
                             <td>
                                 <a href="{@url:app/mModel/category/edit?id=$data['id']}" class="layui-btn layui-btn-small edit">编辑</a>
                                 <a href="{@url:app/mModel/category/delete?id=$data['id']}" class="layui-btn layui-btn-small layui-btn-danger delete">删除</a>
