@@ -24,7 +24,32 @@ class CategoryController extends AdminBaseController {
         $perpage=10;
         $page=$this->getInput("page");
         $page || $page=1;
-        $datas=$this->cateDao()->getList(1,$page*$perpage,($page-1)*$perpage);
+
+        $where="1";
+
+        //类型选择
+        $types=$this->typeDao()->getList();
+        $type_id=$this->getInput("type_id");
+
+        $this->setOutput($types,"types");
+        $this->setOutput($type_id,"type_id");
+
+
+        //顶级类别
+        $cates=$this->cateDao()->getList("pid=0 AND tid=".$type_id);
+        $cid=$this->getInput("cid");
+        $this->setOutput($cid,"cid");
+        $this->setOutput($cates,"cates");
+
+        if (!empty($type_id)&&$type_id!=0){
+            $where="tid=".$type_id;
+            if (!empty($cid)&&$cid!=0){
+                $where .=" AND pid=".$cid;
+            }
+        }
+
+        $datas=$this->cateDao()->getList($where,$page*$perpage,($page-1)*$perpage);
+
         $this->setOutput($datas,"datas");
         $this->setOutput($perpage,"perpage");
         $this->setOutput($page,"curr");

@@ -9,9 +9,57 @@
 <body>
     <div class="wrap">
         <template source='SRC:extensions.mModel.template.common.nav' />
+
+
+
         <fieldset class="layui-elem-field">
             <legend>模型分类设置 <a class="layui-btn  layui-btn-primary layui-btn-small" href="{@url:app/mModel/category/add}">新增</a></legend>
             <div class="layui-field-box">
+
+                <!-- 类型选择 -->
+                <div>
+                    <form class="layui-form layui-form-pane m-type-select" action="">
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">类型</label>
+                                <div class="layui-input-inline" style="width: 240px;">
+                                    <select lay-filter="typeSelect" lay-verify="required">
+                                        <option value="0">全部</option>
+                                        <!--# foreach($types as $type){ #-->
+                                        <!--#if($type['id']==$type_id){#-->
+                                        <option selected value="{$type['id']}">{$type['name']}</option>
+                                        <!--# }else{ #-->
+                                        <option  value="{$type['id']}">{$type['name']}</option>
+                                        <!--# } #-->
+                                        <!--# } #-->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">顶级类别</label>
+                                <div class="layui-input-inline" style="width: 240px;">
+                                    <select lay-filter="cateSelect" lay-verify="required">
+                                        <!--#if(empty($cates)){#-->
+                                            <option value="">请先选择模型类型</option>
+                                        <!--#}else{#-->
+                                            <option value="0">全部</option>
+                                            <!--# foreach($cates as $cate){ #-->
+                                                <!--#if($cate['id']==$cid){#-->
+                                                <option selected value="{$cate['id']}">{$cate['name']}</option>
+                                                <!--# }else{ #-->
+                                                <option  value="{$cate['id']}">{$cate['name']}</option>
+                                                <!--# } #-->
+                                            <!--# } #-->
+                                        <!--#}#-->
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
                 <table class="layui-table" lay-even>
                     <thead>
                         <tr>
@@ -65,7 +113,23 @@
                 }, function () {});
             });
             return false;
-        })
+        });
+        layui.use('form', function () {
+            var form = layui.form();
+
+            //监听提交
+            form.on('select(typeSelect)', function (data) {
+                layer.load();
+                location.href = "?m=app&app=mModel&c=category&a=run&type_id=" + data.value;
+            });
+
+            //监听提交
+            form.on('select(cateSelect)', function (data) {
+                layer.load();
+                var type_id="{$type_id}";
+                location.href = "?m=app&app=mModel&c=category&a=run&type_id="+type_id+"&cid=" + data.value;
+            });
+        });
 
         layui.use(['laypage', 'layer'], function () {
             var laypage = layui.laypage,
@@ -79,7 +143,7 @@
                 jump: function (obj, first) {
                     if (!first) {
                         layer.load();
-                        url = "?m=app&app=mModel&c=category&a=run&page=" + obj.curr;
+                        var url = "?m=app&app=mModel&c=category&a=run&page=" + obj.curr;
                         location.href = url;
                     }
                 }
