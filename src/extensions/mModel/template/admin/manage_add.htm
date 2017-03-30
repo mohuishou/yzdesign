@@ -130,12 +130,21 @@
                         </div>
                     </div>
 
+                    <!--#if(!$type['is_vr']){#-->
                     <div class="layui-form-item">
                         <label class="layui-form-label">上传渲染图</label>
                         <div class="layui-input-block">
                             <input type="file" multiple="multiple" lay-type="images" lay-title="最多选择五张图片哦" lay-filter="picture" name="img[]" class="layui-upload-file">
                         </div>
                     </div>
+                    <!--#}else{#-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上传全景图</label>
+                        <div class="layui-input-block">
+                            <input type="file" lay-type="images" lay-title="最多选择1张图片哦" lay-filter="picture" name="img[]" class="layui-upload-file">
+                        </div>
+                    </div>
+                    <!--#}#-->
 
                     <!-- 图片展示 -->
                     <div class="m-upload-img">

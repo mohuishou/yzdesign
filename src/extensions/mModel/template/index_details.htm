@@ -47,7 +47,33 @@
                 <!--#$pic=explode(",",$data['pictures']);#-->
 
                 <!--贴图展示-->
-                <!--#if(count($pic)==1){ $pic=$pic[0]#-->
+
+                <!--是否是全景图片？-->
+                <!--#if($type['is_vr']){$pic=$pic[0]#-->
+                <div id="m-panorama" style="height: 600px;" class="m-details-img m-panorama">
+
+                </div>
+                <script src="{@G:url.extres}/mModel/js/three.min.js"></script>
+                <script src="{@G:url.extres}/mModel/js/photo-sphere-viewer.min.js"></script>
+                <script>
+                    Wind.use("jquery",function () {
+                        var $div=$(".m-panorama");
+                        var div = document.getElementById("m-panorama");
+                        var img_path="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />";
+                        var PSV = new PhotoSphereViewer({
+                            // Path to the panorama
+                            panorama: "attachment/1703/m-model/pic/20170325021207_985.jpg",
+
+                            // Container
+                            container: div,
+
+                            // Display the navigation bar
+                            navbar: true
+                        });
+                    });
+                </script>
+                <!--#}#-->
+                <!--#else if(count($pic)==1){ $pic=$pic[0]#-->
                 <div class="m-details-img">
                     <a href="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />" style="background-image: url(<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />);"
                         target="_blank"></a>
@@ -88,6 +114,8 @@
                     </div>
                 </div>
                 <!--#}#-->
+
+
                 <div class="m-details-info">
                     <ul>
                         <!--#
@@ -164,7 +192,7 @@
                         </div>
                     </div>
                     <div class="m-download">
-                        <a class="m-download-1" href="{@url:app/mModel/index/download?id=$data['id']}" target="_blank"> <i class="iconfont icon-download"></i> 下载贴图
+                        <a class="m-download-1" href="{@url:app/mModel/index/download?id=$data['id']}" target="_blank"> <i class="iconfont icon-download"></i> 下载{$type['name']}
                         </a>
                         <!--#if($data['is_liked']){#-->
                         <a href="##" class="m-zan m-active"> <i class="iconfont icon-zan"></i> 点赞

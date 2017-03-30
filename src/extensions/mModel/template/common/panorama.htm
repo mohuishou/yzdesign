@@ -1,0 +1,18 @@
+<div class="m-details-img m-panorama">
+
+</div>
+<script src="{@G:url.extres}/mModel/js/three.min.js"></script>
+<script src="{@G:url.extres}/mModel/js/photo-sphere-viewer.min.js"></script>
+<script>
+    Wind.use("jquery",function () {
+        var $div=$(".m-panorama");
+        var img_path="<component class='EXT:mModel.service.srv.Helper' method='getPic' args='$pic' />";
+        var PSV = new PhotoSphereViewer({
+            // Path to the panorama
+            panorama: img_path,
+
+            // Container
+            container: $div
+        });
+    });
+</script>
